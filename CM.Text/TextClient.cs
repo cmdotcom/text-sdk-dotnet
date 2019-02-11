@@ -13,9 +13,10 @@ namespace CM.Text
     /// This class provides methods to send text messages.
     /// </summary>
     [PublicAPI]
-    public class TextClient : HttpClient
+    public class TextClient
     {
         private readonly Guid _apiKey;
+        private readonly HttpClient _httpClient;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TextClient" /> class.
@@ -25,6 +26,7 @@ namespace CM.Text
         public TextClient(Guid apiKey)
         {
             this._apiKey = apiKey;
+            this._httpClient = new HttpClient();
         }
 
         /// <summary>
@@ -43,7 +45,7 @@ namespace CM.Text
             {
                 request.Content = new StringContent(BusinessMessagingApi.GetHttpPostBody(this._apiKey, messageText, from, to, reference), Encoding.UTF8, BusinessMessagingApi.Constant.BusinessMessagingGatewayMediaTypeJson);
 
-                using (var requestResult = await this.SendAsync(request, cancellationToken).ConfigureAwait(false))
+                using (var requestResult = await _httpClient.SendAsync(request, cancellationToken).ConfigureAwait(false))
                 {
                     cancellationToken.ThrowIfCancellationRequested();
 
