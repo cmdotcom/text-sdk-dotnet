@@ -5,7 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-- Add opion to pass http client to constructor
+
+## [1.1.0] - 2018-11-08
+- Add option to pass http client to constructor
 
 ## [1.0.1] - 2018-11-08
 - Initial release
