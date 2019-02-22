@@ -13,5 +13,20 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel {
         /// </summary>
         [JsonProperty("media")]
         public MediaContent Media { get; set; }
+
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        public MediaMessage() { }
+
+        /// <summary>
+        /// Constructor setting values.
+        /// </summary>
+        /// <param name="mediaName"></param>
+        /// <param name="mediaUri"></param>
+        /// <param name="mimeType"></param>
+        public MediaMessage(string mediaName, string mediaUri, string mimeType) {
+            Media = new MediaContent(mediaName, mediaUri, mimeType);
+        }
     }
 }
