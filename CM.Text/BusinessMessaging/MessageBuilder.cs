@@ -18,7 +18,7 @@ namespace CM.Text.BusinessMessaging {
         /// <param name="messageText"></param>
         /// <param name="from"></param>
         /// <param name="to"></param>
-        public MessageBuilder(string messageText, string from, IEnumerable<string> to) {
+        public MessageBuilder(string messageText, string from, params string[] to) {
             message = new Message();
             message.Body = new Body {
                 Content = messageText,
