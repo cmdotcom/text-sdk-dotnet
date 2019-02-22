@@ -43,21 +43,23 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         internal static string GetHttpPostBody(Guid apiKey, string messageText, string from, IEnumerable<string> to, string reference)
         {
-            return JsonConvert.SerializeObject(new
-            { 
-                messages = new Request.Messages
-                {
-                    authentication = new Request.Authentication { producttoken = apiKey.ToString() },
-                    msg = new List<Request.Message>
+            var message = new MessageBuilder(messageText, from, to).WithReference(reference).Build();
+            return GetHttpPostBody(apiKey, message);
+        }
+
+        /// <summary>
+        /// Gets the HTTP post body.
+        /// </summary>
+        /// <param name="apiKey">The API key.</param>
+        /// <param name="message">The message to send.</param>
+        /// <returns></returns>
+        internal static string GetHttpPostBody(Guid apiKey, Message message) {
+            return JsonConvert.SerializeObject(new {
+                messages = new Request.MessagesEnvelope {
+                    Authentication = new Request.Authentication { ProductToken = apiKey.ToString() },
+                    Messages = new List<Message>
                     {
-                        new Request.Message
-                        {
-                            reference = reference,
-                            from = from,
-                            body = new Request.Body {content = messageText, type = Constant.BusinessMessagingBodyTypeAuto},
-                            to = to.Select(toEntry => new Request.To {number = toEntry}).ToArray(),
-                            customGrouping3 = Common.Constant.TextSdkReference
-                        }
+                        message
                     }.ToArray()
                 }
             });

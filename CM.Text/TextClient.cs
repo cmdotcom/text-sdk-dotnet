@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using CM.Text.BusinessMessaging;
+using CM.Text.BusinessMessaging.Model;
 using JetBrains.Annotations;
 
 namespace CM.Text
@@ -59,6 +60,25 @@ namespace CM.Text
 
                 using (var requestResult = await this._httpClient.SendAsync(request, cancellationToken).ConfigureAwait(false))
                 {
+                    cancellationToken.ThrowIfCancellationRequested();
+
+                    return BusinessMessagingApi.GetTextApiResult(await requestResult.Content.ReadAsStringAsync().ConfigureAwait(false));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sends a message asynchronous.
+        /// </summary>
+        /// <param name="message">The message to send.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        [PublicAPI]
+        public async Task<TextClientResult> SendMessageAsync(Message message, CancellationToken cancellationToken = default(CancellationToken)) {
+            using (var request = new HttpRequestMessage(HttpMethod.Post, new Uri(BusinessMessagingApi.Constant.BusinessMessagingGatewayJsonEndpoint))) {
+                request.Content = new StringContent(BusinessMessagingApi.GetHttpPostBody(this._apiKey, message), Encoding.UTF8, BusinessMessagingApi.Constant.BusinessMessagingGatewayMediaTypeJson);
+
+                using (var requestResult = await this._httpClient.SendAsync(request, cancellationToken).ConfigureAwait(false)) {
                     cancellationToken.ThrowIfCancellationRequested();
 
                     return BusinessMessagingApi.GetTextApiResult(await requestResult.Content.ReadAsStringAsync().ConfigureAwait(false));
