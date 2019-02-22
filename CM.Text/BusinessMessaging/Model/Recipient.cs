@@ -1,9 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using JetBrains.Annotations;
+using Newtonsoft.Json;
 
 namespace CM.Text.BusinessMessaging.Model {
     /// <summary>
     /// A destination mobile number.
     /// </summary>
+    [PublicAPI]
     public class Recipient {
         /// <summary>
         /// This value should be in international format.

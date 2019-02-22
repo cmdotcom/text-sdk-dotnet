@@ -1,9 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using JetBrains.Annotations;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace CM.Text.BusinessMessaging.Model {
     /// <summary>
     /// Represents one message. One message can be sent to multiple recipients.
     /// </summary>
+    [PublicAPI]
     public class Message {
         /// <summary>
         /// Optional: For each message you send, you can set a reference.
@@ -91,5 +95,23 @@ namespace CM.Text.BusinessMessaging.Model {
         /// </summary>
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore, PropertyName = "maximumNumberOfMessageParts")]
         public int? MaximumNumberOfMessageParts { get; set; }
+
+        /// <summary>
+        /// The allowed channels field forces a message to only use certain routes.
+        /// In this field you can define a list of which channels you want your message to use.
+        /// Not defining any channels will be interpreted as allowing all channels.
+        /// </summary>
+        /// <remarks>Note that for channels other than SMS, CM needs to configure the out going flows.
+        /// For those flows to work, we need to be contacted.</remarks>
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore, PropertyName = "allowedChannels", ItemConverterType = typeof(StringEnumConverter))]
+        public Channel[] AllowedChannels { get; set; }
+
+        /// <summary>
+        /// Used for Hybrid messaging, see https://docs.cmtelecom.com/en/hybrid-messaging/v2.0.0 for more information
+        /// Messages will be sent over the <see cref="Channel.Push"/> channel.
+        /// </summary>
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore, PropertyName = "appKey")]
+        public Guid HybridAppKey { get; set; }
+
     }
 }
