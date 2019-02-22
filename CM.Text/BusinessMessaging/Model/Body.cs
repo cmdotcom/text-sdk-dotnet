@@ -1,9 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using JetBrains.Annotations;
+using Newtonsoft.Json;
 
 namespace CM.Text.BusinessMessaging.Model {
     /// <summary>
     /// Represents the Body element of the message.
     /// </summary>
+    [PublicAPI]
     public class Body {
         /// <summary>
         /// The actual text body of the message.
