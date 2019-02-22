@@ -15,6 +15,8 @@ namespace CM.Text
     [PublicAPI]
     public class TextClient
     {
+        private static readonly Lazy<HttpClient> ClientSingletonLazy = new Lazy<HttpClient>();
+
         private readonly Guid _apiKey;
         private readonly HttpClient _httpClient;
 
@@ -23,10 +25,20 @@ namespace CM.Text
         /// </summary>
         /// <param name="apiKey">The API key.</param>
         [PublicAPI]
-        public TextClient(Guid apiKey)
+        public TextClient(Guid apiKey) : this(apiKey, ClientSingletonLazy.Value)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TextClient" /> class.
+        /// </summary>
+        /// <param name="apiKey">The API key.</param>
+        /// <param name="httpClient">An optional HTTP client.</param>
+        [PublicAPI]
+        public TextClient(Guid apiKey, HttpClient httpClient)
         {
             this._apiKey = apiKey;
-            this._httpClient = new HttpClient();
+            this._httpClient = httpClient;
         }
 
         /// <summary>
@@ -45,7 +57,7 @@ namespace CM.Text
             {
                 request.Content = new StringContent(BusinessMessagingApi.GetHttpPostBody(this._apiKey, messageText, from, to, reference), Encoding.UTF8, BusinessMessagingApi.Constant.BusinessMessagingGatewayMediaTypeJson);
 
-                using (var requestResult = await _httpClient.SendAsync(request, cancellationToken).ConfigureAwait(false))
+                using (var requestResult = await this._httpClient.SendAsync(request, cancellationToken).ConfigureAwait(false))
                 {
                     cancellationToken.ThrowIfCancellationRequested();
 
