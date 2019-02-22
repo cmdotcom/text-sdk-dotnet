@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0]
+- Adding multichannel options
+
 ## [1.1.0] - 2018-11-08
 - Add option to pass http client to constructor
 
