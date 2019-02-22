@@ -1,92 +1,42 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 
 namespace CM.Text
 {
     /// <summary>
-    /// Data model that's returned after interaction with CM.com's Text interface.
+    ///     Data model that's returned after interaction with CM.com's Text interface.
     /// </summary>
     [PublicAPI]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Json interface")]
     public class TextClientResult
     {
         /// <summary>
-        /// A message that describes the result.
+        ///     Gets or sets the details for each message.
         /// </summary>
         /// <value>
-        /// The status message.
+        ///     The details.
         /// </value>
-        [JsonProperty(Order = 0)]
-        public string statusMessage { get; set; }
+        [JsonProperty(Order = 2)]
+        public IEnumerable<TextClientMessageDetail> details { get; set; }
 
         /// <summary>
-        /// Gets or sets the status code.
+        ///     Gets or sets the status code.
         /// </summary>
         /// <value>
-        /// The status code.
+        ///     The status code.
         /// </value>
         [JsonProperty(Order = 1)]
         public TextClientStatusCode statusCode { get; set; }
 
         /// <summary>
-        /// Gets or sets the details for each message.
+        ///     A message that describes the result.
         /// </summary>
         /// <value>
-        /// The details.
-        /// </value>
-        [JsonProperty(Order = 2)]
-        public IEnumerable<TextClientMessageDetail> details { get; set; }
-    }
-
-    /// <summary>
-    /// Data model that contains detailed message information per recipient.
-    /// </summary>
-    [PublicAPI]
-    public class TextClientMessageDetail
-    {
-        /// <summary>
-        /// The reference to a message.
-        /// </summary>
-        /// <value>
-        /// The reference.
+        ///     The status message.
         /// </value>
         [JsonProperty(Order = 0)]
-        public string reference { get; set; }
-
-        /// <summary>
-        /// The status of a message.
-        /// </summary>
-        /// <value>
-        /// The status.
-        /// </value>
-        [JsonProperty(Order = 1)]
-        public string status { get; set; }
-
-        /// <summary>
-        /// The recipient.
-        /// </summary>
-        /// <value>
-        /// To.
-        /// </value>
-        [JsonProperty(Order = 2)]
-        public string to { get; set; }
-        
-        /// <summary>
-        /// The amount of parts a message is split up to.
-        /// </summary>
-        /// <value>
-        /// The parts.
-        /// </value>
-        [JsonProperty(Order = 3)]
-        public int parts { get; set; }
-
-        /// <summary>
-        /// Message details.
-        /// </summary>
-        /// <value>
-        /// The details.
-        /// </value>
-        [JsonProperty(Order = 4)]
-        public string details { get; set; }
+        public string statusMessage { get; set; }
     }
 }

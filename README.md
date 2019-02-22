@@ -49,5 +49,25 @@ var result = await client.SendMessageAsync("Message_Text", "Sender_Name", new Li
   ]
 }
 ```
+
+## Sending a rich message
+By using the `MessageBuilder` it is possible to create images with media for channels such as WhatsApp and RCS
+```cs
+var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
+var client = new TextClient(apiKey);
+var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_PhoneNumber");
+builder
+    .WithAllowedChannels(Channel.WhatsApp)
+    .WithRichMessage(
+        new MediaMessage(
+            "cm.com",
+            "https://avatars3.githubusercontent.com/u/8234794?s=200&v=4",
+            "image/png"
+        )
+    );
+var message = builder.Build();
+var result = await client.SendMessageAsync(message);
+```
+
 ## Status codes
 For all possibly returned status codes, please reference the `TextClientStatusCode` enum.

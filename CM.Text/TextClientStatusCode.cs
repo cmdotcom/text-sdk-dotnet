@@ -1,76 +1,92 @@
 ﻿namespace CM.Text
 {
     /// <summary>
-    /// TextClientResult status codes 
+    ///     TextClientResult status codes
     /// </summary>
     public enum TextClientStatusCode
     {
         /// <summary>
-        /// Ok
+        ///     Ok
         /// </summary>
         Ok = 0,
+
         /// <summary>
-        /// Authentication failed.
+        ///     Authentication failed.
         /// </summary>
         AuthenticationFailed = 101,
+
         /// <summary>
-        /// Insufficient balance.
+        ///     Insufficient balance.
         /// </summary>
         BalanceInsufficient = 102,
+
         /// <summary>
-        /// Incorrect API key.
+        ///     Incorrect API key.
         /// </summary>
         ApiKeyIncorrect = 103,
+
         /// <summary>
-        /// This request has one or more errors in its messages. Some or all messages have not been sent.
+        ///     This request has one or more errors in its messages. Some or all messages have not been sent.
         /// </summary>
         NotAllSent = 201,
+
         /// <summary>
-        /// Malformed request
+        ///     Malformed request
         /// </summary>
         RequestMalformed = 202,
+
         /// <summary>
-        /// The MSG array is incorrect.
+        ///     The MSG array is incorrect.
         /// </summary>
         MsgArrayIncorrect = 203,
+
         /// <summary>
-        /// From field invalid
+        ///     From field invalid
         /// </summary>
         FromFieldInvalid = 301,
+
         /// <summary>
-        /// To field invalid
+        ///     To field invalid
         /// </summary>
         ToFieldInvalid = 302,
+
         /// <summary>
-        /// MSISDN invalid
+        ///     MSISDN invalid
         /// </summary>
         MsisdnInvalid = 303,
+
         /// <summary>
-        /// Body field invalid
+        ///     Body field invalid
         /// </summary>
         BodyFieldInvalid = 304,
+
         /// <summary>
-        /// Field invalid
+        ///     Field invalid
         /// </summary>
         FieldInvalid = 305,
+
         /// <summary>
-        /// Spam filtered
+        ///     Spam filtered
         /// </summary>
         SpamFiltered = 401,
+
         /// <summary>
-        /// Black listed
+        ///     Black listed
         /// </summary>
         BlackListed = 402,
+
         /// <summary>
-        /// Rejected
+        ///     Rejected
         /// </summary>
         Rejected = 403,
+
         /// <summary>
-        /// Internal server error
+        ///     Internal server error
         /// </summary>
         InternalServerError = 500,
+
         /// <summary>
-        /// Unknown error, please contact CM support
+        ///     Unknown error, please contact CM support
         /// </summary>
         Unknown = 999
     }
