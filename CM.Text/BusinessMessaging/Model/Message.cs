@@ -1,4 +1,5 @@
 ﻿using System;
+using CM.Text.BusinessMessaging.Model.MultiChannel;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -113,5 +114,10 @@ namespace CM.Text.BusinessMessaging.Model {
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore, PropertyName = "appKey")]
         public Guid HybridAppKey { get; set; }
 
+        /// <summary>
+        /// Can be used by channels that support rich content (all channels except <see cref="Channel.SMS"/>,
+        /// <see cref="Channel.Voice"/> and <see cref="Channel.Push"/> at this moment)
+        /// </summary>
+        public RichContent RichContent { get; set; }
     }
 }

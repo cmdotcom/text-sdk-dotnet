@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using CM.Text.BusinessMessaging.Model;
+using CM.Text.BusinessMessaging.Model.MultiChannel;
 using JetBrains.Annotations;
 
 namespace CM.Text.BusinessMessaging {
@@ -11,6 +12,7 @@ namespace CM.Text.BusinessMessaging {
     public class MessageBuilder {
         
         private readonly Message message;
+        private RichContent richContent;
         
         /// <summary>
         /// Creates a new MessageBuilder
@@ -61,10 +63,41 @@ namespace CM.Text.BusinessMessaging {
         }
 
         /// <summary>
+        /// Adds suggestions to the message. It is dependent on the channel that is used which
+        /// suggestions are supported.
+        /// </summary>
+        /// <param name="suggestions"></param>
+        /// <returns></returns>
+        public MessageBuilder WithSuggestions(params SuggestionBase[] suggestions) {
+            if (richContent == null) {
+                richContent = new RichContent();
+            }
+
+            richContent.Suggestions = suggestions;
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a message that replaces the <see cref="Message.Body"/> for channels that support
+        /// rich content (all channels except <see cref="Channel.SMS"/>, <see cref="Channel.Voice"/>
+        /// and <see cref="Channel.Push"/> at this moment)
+        /// </summary>
+        /// <param name="richMessage"></param>
+        /// <returns></returns>
+        public MessageBuilder WithRichMessage(IRichMessage richMessage) {
+            if (richContent == null) {
+                richContent = new RichContent();
+            }
+            richContent.AddConversionPart(richMessage);
+            return this;
+        }
+
+        /// <summary>
         /// Constructs the message.
         /// </summary>
         /// <returns></returns>
         public Message Build() {
+            message.RichContent = richContent;
             return message;
         }
     }
