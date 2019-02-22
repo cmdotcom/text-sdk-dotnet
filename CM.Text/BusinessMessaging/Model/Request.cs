@@ -8,6 +8,7 @@ namespace CM.Text.BusinessMessaging.Model
         {
             [JsonProperty("authentication")]
             internal Authentication Authentication { get; set; }
+
             [JsonProperty("msg")]
             internal Message[] Messages { get; set; }
         }

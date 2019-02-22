@@ -2,32 +2,34 @@
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 
-namespace CM.Text.BusinessMessaging.Model.MultiChannel {
+namespace CM.Text.BusinessMessaging.Model.MultiChannel
+{
     /// <summary>
-    /// Contains information for a <see cref="CalendarSuggestion"/>.
+    ///     Contains information for a <see cref="CalendarSuggestion" />.
     /// </summary>
     [PublicAPI]
-    public class CalendarOptions {
+    public class CalendarOptions
+    {
+        /// <summary>
+        ///     The end of the appointment.
+        /// </summary>
+        [JsonProperty("endTime")] public DateTime EndTime;
 
         /// <summary>
-        /// The title of the appointment which will appear in the calendar app
+        ///     The start of the appointment.
         /// </summary>
-        [JsonProperty("title")]
-        public string Title { get; set; }
+        [JsonProperty("startTime")] public DateTime StartTime;
+
         /// <summary>
-        /// The description which will appear in the calendar app
+        ///     The description which will appear in the calendar app
         /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; }
+
         /// <summary>
-        /// The start of the appointment.
+        ///     The title of the appointment which will appear in the calendar app
         /// </summary>
-        [JsonProperty("startTime")]
-        public DateTime StartTime;
-        /// <summary>
-        /// The end of the appointment.
-        /// </summary>
-        [JsonProperty("endTime")]
-        public DateTime EndTime;
+        [JsonProperty("title")]
+        public string Title { get; set; }
     }
 }

@@ -2,19 +2,22 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace CM.Text.BusinessMessaging.Model.MultiChannel {
+namespace CM.Text.BusinessMessaging.Model.MultiChannel
+{
     /// <summary>
-    /// Used by a <see cref="Carousel"/> to set the width
+    ///     Used by a <see cref="Carousel" /> to set the width
     /// </summary>
     [PublicAPI]
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum CarouselCardWidth {
+    public enum CarouselCardWidth
+    {
         /// <summary>
-        /// Small cards
+        ///     Small cards
         /// </summary>
         Small,
+
         /// <summary>
-        /// Medium sized cards
+        ///     Medium sized cards
         /// </summary>
         Medium
     }
