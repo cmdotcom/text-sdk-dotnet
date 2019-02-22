@@ -41,9 +41,8 @@ namespace CM.Text.BusinessMessaging
         /// <param name="to">To.</param>
         /// <param name="reference">The reference.</param>
         /// <returns></returns>
-        internal static string GetHttpPostBody(Guid apiKey, string messageText, string from, IEnumerable<string> to, string reference)
-        {
-            var message = new MessageBuilder(messageText, from, to).WithReference(reference).Build();
+        internal static string GetHttpPostBody(Guid apiKey, string messageText, string from, IEnumerable<string> to, string reference) {
+            var message = new MessageBuilder(messageText, from, to.ToArray()).WithReference(reference).Build();
             return GetHttpPostBody(apiKey, message);
         }
 
