@@ -85,7 +85,7 @@ namespace CM.Text.BusinessMessaging
             if (this._richContent == null)
                 this._richContent = new RichContent();
 
-            this._richContent.AddConversionPart(richMessage);
+            this._richContent.AddConversationPart(richMessage);
             return this;
         }
 
