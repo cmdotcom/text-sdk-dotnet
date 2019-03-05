@@ -36,7 +36,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         ///     Adds a message, such as a <see cref="RichCard" /> or <see cref="TextMessage" />.
         /// </summary>
         /// <param name="part"></param>
-        public void AddConversionPart(IRichMessage part)
+        public void AddConversationPart(IRichMessage part)
         {
             if (this.Conversation == null)
                 this.Conversation = new[] {part};
