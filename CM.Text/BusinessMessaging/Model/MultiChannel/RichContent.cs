@@ -16,7 +16,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel {
         public IRichMessage[] Conversation { get; set; }
 
         /// <summary>
-        /// The suggestions
+        /// Suggestions, used in channels that support these, such as <see cref="Channel.RCS"/>.
         /// </summary>
         [JsonProperty("suggestions")]
         public SuggestionBase[] Suggestions { get; set; }

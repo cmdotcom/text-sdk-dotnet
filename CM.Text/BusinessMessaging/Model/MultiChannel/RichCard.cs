@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel {
     /// <summary>
-    /// A rich card, which can be used for <see cref="Channel.RCS"/>.
+    /// A rich card, which can be used to display media, text and images in <see cref="Channel.RCS"/>.
     /// </summary>
     [PublicAPI]
     public class RichCard : TextMessage {
@@ -18,5 +18,11 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel {
         /// </summary>
         [JsonProperty("header")]
         public string Header { get; set; }
+
+        /// <summary>
+        /// Suggestions, used in channels that support these, such as <see cref="Channel.RCS"/>.
+        /// </summary>
+        [JsonProperty("suggestions")]
+        public SuggestionBase[] Suggestions { get; set; }
     }
 }

@@ -10,7 +10,9 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel {
     [PublicAPI]
     public class TextMessage : IRichMessage {
         /// <summary>
-        /// The text to display.
+        /// A plain text message, when used it replaces the 'SMS' body text.
+        /// In <see cref="Channel.RCS"/>, when used in combination with an header and/or media this
+        /// will be set as the text of a rich card.
         /// </summary>
         [JsonProperty("text")]
         public string Text { get; set; }
