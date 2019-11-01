@@ -34,8 +34,17 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         ///     Search for this location instead of using the latitude/longitude.
         /// </summary>
-        /// <remarks>Either <see cref="Latitude" /> and <see cref="Longitude" /> or SearchQuery is required </remarks>
+        /// <remarks>
+        ///     Either <see cref="Latitude" /> and <see cref="Longitude" /> or SearchQuery is required.
+        ///     For other connections both may be required.
+        /// </remarks>
         [JsonProperty("searchQuery")]
         public string SearchQuery { get; set; }
+
+        /// <summary>
+        /// Can be used in some <see cref="Channel.RCS"/> connections to display a radius instead of only a pointer
+        /// </summary>
+        [JsonProperty("radius")]
+        public int? Radius { get; set; }
     }
 }
