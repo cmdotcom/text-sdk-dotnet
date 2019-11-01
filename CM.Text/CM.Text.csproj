@@ -12,7 +12,7 @@
     <Copyright>2018 CM.com</Copyright>
     <PackageLicenseUrl>https://mit-license.org</PackageLicenseUrl>
     <PackageReleaseNotes>See CHANGELOG.md for details</PackageReleaseNotes>
-    <Version>1.2.0</Version>
+    <Version>1.5.0</Version>
     <PackageIconUrl>http://static.cmtelecom.com/images/cm-nuget.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/cmdotcom/text-sdk-dotnet</PackageProjectUrl>
     <NeutralLanguage>en</NeutralLanguage>

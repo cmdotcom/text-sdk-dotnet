@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2019-11-01
+- Added several RichFeatures.
+ 1. TemplateMessage
+ 2. LocationPushMessage
+ 3. ContactMessage
+
 ## [1.4.0] - 2019-03-05
 - Fix typo in conversation
 
