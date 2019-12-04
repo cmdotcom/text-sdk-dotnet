@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.2] - 2019-12-04
+- Fix WhatsApp template signature (@Michel16867)
+
 ## [1.5.0] - 2019-11-01
 - Added several RichFeatures.
  1. TemplateMessage
