@@ -1,4 +1,7 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
@@ -7,15 +10,15 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     /// Used to send a template message, at this moment only supported in <see cref="Channel.WhatsApp"/>.
     /// </summary>
     [PublicAPI]
-    public class TemplateMessage : IRichMessage
+    public class TemplateMessageContent
     {
         /// <summary>
-        /// The Content of the WhatsApp template message
+        /// The WhatsApp template message
         /// </summary>
         /// <remarks>Templates need to be configured by CM and approved by Whatsapp before it is possible
         /// to send these messages.
         /// </remarks>
-        [JsonProperty("template")]
-        public TemplateMessageContent Content { get; set; }
+        [JsonProperty("whatsapp")]
+        public WhatsappTemplate Whatsapp { get; set; }
     }
 }
