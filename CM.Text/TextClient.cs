@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -10,11 +10,50 @@ using JetBrains.Annotations;
 
 namespace CM.Text
 {
+    public interface ITextClient
+    {
+        /// <summary>
+        ///     Sends a message asynchronous.
+        /// </summary>
+        /// <param name="messageText">The message text.</param>
+        /// <param name="from">
+        ///     This is the sender name. The maximum length is 11 alphanumerical characters or 16 digits. Example:
+        ///     'CM Telecom'.
+        /// </param>
+        /// <param name="to">
+        ///     These are the destination mobile numbers. Restrictions: this value should be in international format.
+        ///     Example: '00447911123456'.
+        /// </param>
+        /// <param name="reference">
+        ///     Here you can include your message reference. This information will be returned in a status
+        ///     report so you can match the message and it's status. Restrictions: 1 - 32 alphanumeric characters and reference
+        ///     will not work for demo accounts.
+        /// </param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        Task<TextClientResult> SendMessageAsync(
+            string messageText,
+            string from,
+            IEnumerable<string> to,
+            [CanBeNull] string reference,
+            CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        ///     Sends a message asynchronous.
+        /// </summary>
+        /// <param name="message">The message to send.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        Task<TextClientResult> SendMessageAsync(
+            Message message,
+            CancellationToken cancellationToken = default(CancellationToken));
+    }
+
     /// <summary>
     ///     This class provides methods to send text messages.
     /// </summary>
     [PublicAPI]
-    public class TextClient
+    public class TextClient : ITextClient
     {
         private static readonly Lazy<HttpClient> ClientSingletonLazy = new Lazy<HttpClient>();
         private readonly Guid _apiKey;
