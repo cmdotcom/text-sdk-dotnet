@@ -113,5 +113,20 @@ namespace CM.Text.BusinessMessaging
             this._message.HybridAppKey = appKey;
             return this;
         }
+
+        /// <summary>
+        ///  Adds a whatsapp template message that replaces the <see cref="Message.Body" /> for whatsApp
+        ///  please note that you need to have approved wa templates.
+        /// </summary>
+        /// <param name="template"></param>
+        /// <returns></returns>
+        public MessageBuilder WithTemplate(TemplateMessage template)
+        {
+            if (this._richContent == null)
+                this._richContent = new RichContent();
+
+            this._richContent.AddConversationPart(template);
+            return this;
+        }
     }
 }
