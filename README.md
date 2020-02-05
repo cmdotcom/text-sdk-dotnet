@@ -73,7 +73,7 @@ var result = await client.SendMessageAsync(message);
 For all possibly returned status codes, please reference the `TextClientStatusCode` enum.
 
 
-## Sending a whatsApp template message
+## Sending a WhatsApp template message
 By using the `MessageBuilder` it is possible to create template messages. Please not that this is WhatsApp only and you your template needs to be approved before sending.
 For more info please check our documentation: https://docs.cmtelecom.com/en/api/business-messaging-api/1.0/index#whatsapp-template-message
 ```cs
@@ -110,7 +110,7 @@ builder
 var message = builder.Build();
 var result = await client.SendMessageAsync(message);
 ```
-## Sending a rich whatsApp template message
+## Sending a rich WhatsApp template message
 It is also possible to send a rich template with an image!			
 			
 ```cs

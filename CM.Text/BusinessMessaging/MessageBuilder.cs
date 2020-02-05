@@ -115,7 +115,7 @@ namespace CM.Text.BusinessMessaging
         }
 
         /// <summary>
-        ///  Adds a whatsapp template message that replaces the <see cref="Message.Body" /> for whatsApp
+        ///  Adds a WhatsApp template message that replaces the <see cref="Message.Body" /> for WhatsApp
         ///  please note that you need to have approved wa templates.
         /// </summary>
         /// <param name="template"></param>
