@@ -128,5 +128,19 @@ namespace CM.Text.BusinessMessaging
             this._richContent.AddConversationPart(template);
             return this;
         }
+
+        /// <summary>
+        ///  Adds a ApplePay request .
+        /// </summary>
+        /// <param name="appePayRequest"></param>
+        /// <returns></returns>
+        public MessageBuilder WithApplePay(ApplePayRequest applePayRequest)
+        {
+            if (this._richContent == null)
+                this._richContent = new RichContent();
+
+            this._richContent.AddConversationPart(applePayRequest);
+            return this;
+        }
     }
 }

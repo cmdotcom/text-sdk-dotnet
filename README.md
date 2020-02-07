@@ -159,3 +159,40 @@ builder
 var message = builder.Build();
 var result = await client.SendMessageAsync(message);
 ```
+
+## Sending a Apple Pay Request
+It is now possible to send a apple pay request only possible in Apple Business Chat
+
+```cs
+var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
+var client = new TextClient(apiKey);
+var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_PhoneNumber");
+ builder
+        .WithAllowedChannels(Channel.iMessage)
+        .WithApplePay(new ApplePayRequest()
+           {
+             ApplePayConfiguration = new ApplePayConfiguration()
+                 {
+                        Total = 1,
+                        RecipientCountryCode = "recipient-country-code",
+                        CurrencyCode = "currency-code",
+                        Description = "product-description",
+                        RecipientEmail = "recipient-email",
+                        languageCountryCode = "language-country-code",
+                        OrderReference = "unique-order-guid",
+                        MerchantName = "merchant-name",
+                        LineItems = new LineItem[]
+                        {
+                            new LineItem()
+                            {
+                                Amount = 1,
+                                Label = "product-name",
+                                Type = "final-or-pending"
+                            },
+                        }
+                    }
+                });
+            
+var message = builder.Build();
+var result = await client.SendMessageAsync(message);
+```
