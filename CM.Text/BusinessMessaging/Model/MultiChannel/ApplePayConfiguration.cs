@@ -50,16 +50,22 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         /// Value indicating the currency code of the apple pay request
         /// </summary>
+        /// <remarks> Value must be in upper case.
+        /// </remarks>
         [JsonProperty("currencyCode")]
         public string CurrencyCode { get; set; }
         /// <summary>
         /// Country of the Apple Pay contact.
         /// </summary>
+        /// <remarks> Value must be in upper case.
+        /// </remarks>
         [JsonProperty("recipientCountryCode")]
         public string RecipientCountryCode { get; set; }
         /// <summary>
         /// The Language of the Country of the Apple Pay Contact
         /// </summary>
+        /// <remarks> Value must be in lower case.
+        /// </remarks>
         [JsonProperty("languageCountryCode")]
         public string languageCountryCode { get; set; }
         /// <summary>
