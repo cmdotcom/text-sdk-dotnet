@@ -44,6 +44,12 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         [JsonProperty("localizable_params")]
         public LocalizableParam[] LocalizableParams { get; set; }
+
+        /// <summary>
+        /// Source: https://developers.facebook.com/docs/whatsapp/api/messages/message-templates
+        /// This field is an array of values to apply to variables in the template
+        /// </summary>
+        public TemplateComponents[] Components { get; set; }
     }
 
     /// <summary>
@@ -196,5 +202,38 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         [JsonProperty("policy")]
         public string Policy { get; set; }
+    }
+    /// <summary>
+    /// Source: https://developers.facebook.com/docs/whatsapp/api/messages/message-templates
+    /// Dynamic content of the message. Separated in in different sections.
+    /// </summary>
+    public class TemplateComponents
+    {
+        /// <summary>
+        ///  Required. describes the component type. Possible values: header, content, footer.
+        /// </summary>
+        [JsonProperty("type")]
+        public string Type { get; set; }
+        /// <summary>
+        ///  Can be empty. Array containing the dynamic content of the message.
+        /// </summary>
+        [JsonProperty("parameters")]
+        public ComponentParameters[] ComponentParameters { get; set; }
+    }
+    /// <summary>
+    /// Source: https://developers.facebook.com/docs/whatsapp/api/messages/message-templates
+    /// Dynamic content of a media template message.
+    /// </summary>
+    public class ComponentParameters
+    {
+        /// <summary>
+        ///  Describes the parameter type. Possible values: text, currency, date_time, image, document.
+        /// </summary>
+        [JsonProperty("type")]
+        public string Type { get; set; }
+        [JsonProperty("text")]
+        public string Text { get; set; }
+        [JsonProperty("media")]
+        public MediaContent Media { get; set; }
     }
 }

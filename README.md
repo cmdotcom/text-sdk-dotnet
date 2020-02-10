@@ -71,3 +71,128 @@ var result = await client.SendMessageAsync(message);
 
 ## Status codes
 For all possibly returned status codes, please reference the `TextClientStatusCode` enum.
+
+
+## Sending a WhatsApp template message
+By using the `MessageBuilder` it is possible to create template messages. Please not that this is WhatsApp only and you your template needs to be approved before sending.
+For more info please check our documentation: https://docs.cmtelecom.com/en/api/business-messaging-api/1.0/index#whatsapp-template-message
+```cs
+var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
+var client = new TextClient(apiKey);
+var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_PhoneNumber");
+builder
+ .WithAllowedChannels(Channel.WhatsApp)
+ .WithTemplate(new TemplateMessage() {
+  Content = new TemplateMessageContent() {
+   Whatsapp = new WhatsappTemplate() {
+    Name = "template-name",
+     Namespace = "the-namespace-of-template",
+     Language = new Language() {
+      Code = "en",
+       Policy = "deterministic"
+     },
+     LocalizableParams = new LocalizableParam[] {},
+     Components = new TemplateComponents[] {
+      new TemplateComponents() {
+       Type = "body",
+        ComponentParameters = new ComponentParameters[] {
+         new ComponentParameters() {
+          Type = "text",
+           Text = "firstname"
+         }
+        }
+      },
+     }
+   }
+  }
+ });
+
+var message = builder.Build();
+var result = await client.SendMessageAsync(message);
+```
+## Sending a rich WhatsApp template message
+It is also possible to send a rich template with an image!			
+			
+```cs
+var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
+var client = new TextClient(apiKey);
+var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_PhoneNumber");
+builder
+ .WithAllowedChannels(Channel.WhatsApp)
+ .WithTemplate(new TemplateMessage() {
+  Content = new TemplateMessageContent() {
+   Whatsapp = new WhatsappTemplate() {
+    Name = "template-name",
+     Namespace = "the-namespace-of-template",
+     Language = new Language() {
+      Code = "en",
+       Policy = "deterministic"
+     },
+     LocalizableParams = new LocalizableParam[] {},
+     Components = new TemplateComponents[] {
+      new TemplateComponents() {
+        Type = "header",
+         ComponentParameters = new ComponentParameters[] {
+          new ComponentParameters() {
+           Type = "image",
+            Media = new MediaContent() {
+             MediaName = "cm.com",
+              MediaUri = "https://avatars3.githubusercontent.com/u/8234794?s=200&v=4"
+            }
+          }
+         }
+       },
+       new TemplateComponents() {
+        Type = "body",
+         ComponentParameters = new ComponentParameters[] {
+          new ComponentParameters() {
+           Type = "text",
+            Text = "firstname"
+          }
+         }
+       },
+     }
+   }
+  }
+ });
+
+var message = builder.Build();
+var result = await client.SendMessageAsync(message);
+```
+
+## Sending a Apple Pay Request
+It is now possible to send a apple pay request only possible in Apple Business Chat
+
+```cs
+var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
+var client = new TextClient(apiKey);
+var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_PhoneNumber");
+ builder
+        .WithAllowedChannels(Channel.iMessage)
+        .WithApplePay(new ApplePayRequest()
+           {
+             ApplePayConfiguration = new ApplePayConfiguration()
+                 {
+                        Total = 1,
+                        RecipientCountryCode = "recipient-country-code",
+                        CurrencyCode = "currency-code",
+                        Description = "product-description",
+                        RecipientEmail = "recipient-email",
+                        languageCountryCode = "language-country-code",
+                        OrderReference = "unique-order-guid",
+                        MerchantName = "merchant-name",
+                        LineItems = new LineItem[]
+                        {
+                            new LineItem()
+                            {
+                                Amount = 1,
+                                Label = "product-name",
+                                Type = "final-or-pending"
+                            },
+                        }
+                    }
+                });
+            
+var message = builder.Build();
+var result = await client.SendMessageAsync(message);
+```
