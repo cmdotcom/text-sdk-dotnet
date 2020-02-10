@@ -9,10 +9,10 @@
     <PackageTags>messaging, text, sms, email, push, whatsapp, viber, wechat, rcs, voice, business messaging, telegram, conversational, sms chat, chat, sms 2.0, rbm, mms, rich sms, rich communication services</PackageTags>
     <RepositoryUrl>https://github.com/cmdotcom/text-sdk-dotnet</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
-    <Copyright>2018 CM.com</Copyright>
+    <Copyright>2020 CM.com</Copyright>
     <PackageLicenseUrl>https://mit-license.org</PackageLicenseUrl>
     <PackageReleaseNotes>See CHANGELOG.md for details</PackageReleaseNotes>
-    <Version>1.5.0</Version>
+    <Version>1.6.0</Version>
     <PackageIconUrl>http://static.cmtelecom.com/images/cm-nuget.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/cmdotcom/text-sdk-dotnet</PackageProjectUrl>
     <NeutralLanguage>en</NeutralLanguage>
