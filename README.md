@@ -70,11 +70,11 @@ var result = await client.SendMessageAsync(message);
 ```
 
 ## Status codes
-For all possibly returned status codes, please reference the `TextClientStatusCode` enum.
+For all possible status codes, please reference the `TextClientStatusCode` enum.
 
 
 ## Sending a WhatsApp template message
-By using the `MessageBuilder` it is possible to create template messages. Please not that this is WhatsApp only and you your template needs to be approved before sending.
+By using the `MessageBuilder` it is possible to create template messages. Please note that this is WhatsApp only and your template needs to be approved before sending.
 For more info please check our documentation: https://docs.cmtelecom.com/en/api/business-messaging-api/1.0/index#whatsapp-template-message
 ```cs
 var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
@@ -160,8 +160,8 @@ var message = builder.Build();
 var result = await client.SendMessageAsync(message);
 ```
 
-## Sending a Apple Pay Request
-It is now possible to send a apple pay request only possible in Apple Business Chat
+## Sending an Apple Pay Request
+It is now possible to send an apple pay request only possible in Apple Business Chat
 
 ```cs
 var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
