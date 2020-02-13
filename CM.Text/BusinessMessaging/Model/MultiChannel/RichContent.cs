@@ -60,7 +60,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
             else
             {
                 var newArr = this.Suggestions;
-                Array.Resize(ref newArr, this.Conversation.Length + 1);
+                Array.Resize(ref newArr, this.Suggestions.Length + 1);
                 newArr[newArr.Length - 1] = suggestion;
                 this.Suggestions = newArr;
             }
