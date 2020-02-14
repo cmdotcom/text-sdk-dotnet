@@ -231,8 +231,14 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
+        /// <summary>
+        /// Only to be filled in when `type` = `text`.
+        /// </summary>
         [JsonProperty("text")]
         public string Text { get; set; }
+        /// <summary>
+        /// Only to be filled in when `type` = `document` or `image`.
+        /// </summary>
         [JsonProperty("media")]
         public MediaContent Media { get; set; }
     }
