@@ -28,9 +28,10 @@ namespace CM.Text.BusinessMessaging
             {
                 Body = new Body
                 {
-                    Content = messageText, Type = BusinessMessagingApi.Constant.BusinessMessagingBodyTypeAuto
+                    Content = messageText,
+                    Type = BusinessMessagingApi.Constant.BusinessMessagingBodyTypeAuto
                 },
-                Recipients = to.Select(toEntry => new Recipient {Number = toEntry})
+                Recipients = to.Select(toEntry => new Recipient { Number = toEntry })
                     .ToArray(),
                 From = from,
                 CustomGrouping3 = Constant.TextSdkReference
@@ -70,6 +71,33 @@ namespace CM.Text.BusinessMessaging
         public MessageBuilder WithReference(string reference)
         {
             this._message.Reference = reference;
+            return this;
+        }
+
+        /// <summary>
+        ///     Add a validity period to the message.
+        /// </summary>
+        /// <remarks>
+        ///     You can supply the time zone for the validity period using either of the following formats:
+        ///     
+        ///     Absolute date and time:
+        ///     
+        ///     2017-04-20 11:50:05 GMT
+        ///     2017-04-20 11:50:05+8
+        ///     2017-04-20 11:55:05-07:00
+        ///     If no time zone was specified, CE(S)T will be used. (CM local time)
+        ///     
+        ///     Relative offset in hour(h) or minute(m)
+        ///     
+        ///     2h
+        ///     30m
+        ///     You can set the validity in either hours or minutes. A combination of both is not supported.
+        /// </remarks>
+        /// <param name="period"></param>
+        /// <returns></returns>
+        public MessageBuilder WithValidityPeriod(string period)
+        {
+            this._message.Validity = period;
             return this;
         }
 
@@ -132,7 +160,7 @@ namespace CM.Text.BusinessMessaging
         /// <summary>
         ///  Adds a ApplePay request .
         /// </summary>
-        /// <param name="appePayRequest"></param>
+        /// <param name="applePayRequest"></param>
         /// <returns></returns>
         public MessageBuilder WithApplePay(ApplePayRequest applePayRequest)
         {

@@ -133,5 +133,30 @@ namespace CM.Text.BusinessMessaging.Model
         ///     <see cref="Channel.Voice" /> and <see cref="Channel.Push" /> at this moment)
         /// </summary>
         public RichContent RichContent { get; set; }
+
+        /// <summary>
+        ///     Optional: For each message you send, you can set a validity.
+        ///     Specify a time at which a delayed message can be considered irrelevant, you can supply an absolute date & time 
+        ///     or a relative offset. A message is considered failed if it was not successfully delivered before that time. 
+        ///     And via a Status Report we inform you this was the case.
+        ///     For more information on status reports, see:
+        ///     https://docs.cmtelecom.com/business-messaging/v1.0#/status_report_webhook
+        ///     You can supply the time zone for the validity period using either of the following formats:
+        ///     
+        ///     Absolute date and time:
+        ///     
+        ///     2017-04-20 11:50:05 GMT
+        ///     2017-04-20 11:50:05+8
+        ///     2017-04-20 11:55:05-07:00
+        ///     If no time zone was specified, CE(S)T will be used. (CM local time)
+        ///     
+        ///     Relative offset in hour(H) or minute(M)
+        ///     
+        ///     2h
+        ///     30m
+        ///     You can set the validity in either hours or minutes. A combination of both is not supported.
+        /// </summary>
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore, PropertyName = "validity")]
+        public string Validity { get; set; }
     }
 }
