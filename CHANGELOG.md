@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed issue when adding suggestions.
 - Resolved typo's in documentation.
 
+## [1.6.1] - 2020-02-14
+- Version is equal to 1.7.0, due to not working release flow.
+
 ## [1.6.0] - 2020-02-07
 - Add Rich templates + ApplePay
 
