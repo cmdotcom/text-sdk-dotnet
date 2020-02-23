@@ -1,8 +1,6 @@
-[![Build](https://img.shields.io/appveyor/ci/rvnijnatten/text-sdk-dotnet/master.svg "Build Status")](https://ci.appveyor.com/project/rvnijnatten/text-sdk-dotnet/branch/master)
+[![Build](https://img.shields.io/appveyor/ci/cmdotcom/text-sdk-dotnet/master.svg "Build Status")](https://ci.appveyor.com/project/cmdotcom/text-sdk-dotnet/branch/master)
 [![NuGetV](https://img.shields.io/nuget/v/CM.Text.svg "Nuget Version")](https://www.nuget.org/packages/CM.Text)
-[![NuGetVPre](https://img.shields.io/nuget/vpre/CM.Text.svg "Nuget Prerelease Version")](https://www.nuget.org/packages/CM.Text)
 [![NuGetDownloads](https://img.shields.io/nuget/dt/CM.Text.svg "Nuget downloads")](https://www.nuget.org/packages/CM.Text)
-<!-- [![Test](https://img.shields.io/appveyor/tests/rvnijnatten/text-sdk-dotnet/master.svg "Test Status")](https://ci.appveyor.com/project/rvnijnatten/text-sdk-dotnet/branch/master/tests) -->
 
 # CM Text SDK
 A software development kit to provide ways to interact with CM.com's Text service. API's used:
