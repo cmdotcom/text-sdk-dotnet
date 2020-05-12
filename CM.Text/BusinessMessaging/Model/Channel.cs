@@ -71,6 +71,14 @@ namespace CM.Text.BusinessMessaging.Model
         /// <remarks>
         ///     Note that CM needs to configure this for you to work.
         /// </remarks>
-        Line
+        Line,
+
+        /// <summary>
+        ///     Messages will be sent over Line.
+        /// </summary>
+        /// <remarks>
+        ///     Note that CM needs to configure this for you to work.
+        /// </remarks>
+        Twitter
     }
 }
