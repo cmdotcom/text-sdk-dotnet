@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -18,11 +18,13 @@ namespace CM.Text
         /// <param name="messageText">The message text.</param>
         /// <param name="from">
         ///     This is the sender name. The maximum length is 11 alphanumerical characters or 16 digits. Example:
-        ///     'CM Telecom'.
+        ///     'CM Telecom'.<br/>
+        ///     For Twitter: use the Twitter Snowflake ID of the account you want to use as sender.
         /// </param>
         /// <param name="to">
         ///     These are the destination mobile numbers. Restrictions: this value should be in international format.
-        ///     Example: '00447911123456'.
+        ///     Example: '00447911123456'.<br/>
+        ///     For Twitter: use the Twitter Snowflake ID
         /// </param>
         /// <param name="reference">
         ///     Here you can include your message reference. This information will be returned in a status
@@ -86,11 +88,13 @@ namespace CM.Text
         /// <param name="messageText">The message text.</param>
         /// <param name="from">
         ///     This is the sender name. The maximum length is 11 alphanumerical characters or 16 digits. Example:
-        ///     'CM Telecom'.
+        ///     'CM Telecom'.<br/>
+        ///     For Twitter: use the Twitter Snowflake ID of the account you want to use as sender.
         /// </param>
         /// <param name="to">
         ///     These are the destination mobile numbers. Restrictions: this value should be in international format.
-        ///     Example: '00447911123456'.
+        ///     Example: '00447911123456'.<br/>
+        ///     For Twitter: use the Twitter Snowflake ID
         /// </param>
         /// <param name="reference">
         ///     Here you can include your message reference. This information will be returned in a status
