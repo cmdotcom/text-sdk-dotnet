@@ -161,7 +161,7 @@ It is also possible to send a rich template with an currency and an date!
 ```cs
 var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
 var client = new TextClient(apiKey);
-var builder = new MessageBuilder("Message Text", "Sender_name", "0031636170815");
+var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_PhoneNumber");
  builder
  .WithAllowedChannels(Channel.WhatsApp)
  .WithTemplate(new TemplateMessage() {
