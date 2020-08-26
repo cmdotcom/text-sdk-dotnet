@@ -89,7 +89,6 @@ builder
       Code = "en",
        Policy = "deterministic"
      },
-     LocalizableParams = new LocalizableParam[] {},
      Components = new TemplateComponents[] {
       new TemplateComponents() {
        Type = "body",
@@ -126,7 +125,6 @@ builder
       Code = "en",
        Policy = "deterministic"
      },
-     LocalizableParams = new LocalizableParam[] {},
      Components = new TemplateComponents[] {
       new TemplateComponents() {
         Type = "header",
@@ -157,7 +155,67 @@ builder
 var message = builder.Build();
 var result = await client.SendMessageAsync(message);
 ```
+## Sending a WhatsApp template message with date and Currency
+It is also possible to send a rich template with an currency and an date!			
+			
+```cs
+var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
+var client = new TextClient(apiKey);
+var builder = new MessageBuilder("Message Text", "Sender_name", "0031636170815");
+ builder
+ .WithAllowedChannels(Channel.WhatsApp)
+ .WithTemplate(new TemplateMessage() {
+  Content = new TemplateMessageContent() {
+   Whatsapp = new WhatsappTemplate() {
+                            Name = "template-name",
+                            Namespace = "the-namespace-of-template",
+                            Language = new Language()
+                            {
+                                Code = "en",
+                                Policy = "deterministic"
+                            },
+                            Components = new TemplateComponents[] {
+                                new TemplateComponents() {
+                                    Type = "header",
+                                    ComponentParameters = new ComponentParameters[] {
+                                        new ComponentParameters() {
+                                            Type = "image",
+                                            Media = new MediaContent() {
+                                                MediaName = "cm.com",
+                                                MediaUri = "https://avatars3.githubusercontent.com/u/8234794?s=200&v=4"
+                                            },
+                                        }
+                                    }
+                                },
+                                new TemplateComponents()
+                                {
+                                    Type = "body",
+                                    ComponentParameters = new ComponentParameters[]
+                                    {
+                                        new ComponentParameters()
+                                       {
+                                           Type = "currency",
+                                           Currency = new TemplateCurrency()
+                                           {
+                                               FallbackValue = "$100.99",
+                                               Amount = 100990,
+                                               CurrencyCode = "USD"
+                                           }
+                                       },
+                                       new ComponentParameters()
+                                       {
+                                           Type = "date_time",
+                                           DateTime = new TemplateDateTime(DateTime.Now)
+                                       }
+                                    }}
+                            }
+                        }
+                    }
+                });
 
+   var message = builder.Build();
+   var result = await client.SendMessageAsync(message);
+```
 ## Sending an Apple Pay Request
 It is now possible to send an apple pay request only possible in Apple Business Chat
 
