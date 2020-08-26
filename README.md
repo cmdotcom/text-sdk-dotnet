@@ -156,7 +156,8 @@ var message = builder.Build();
 var result = await client.SendMessageAsync(message);
 ```
 ## Sending a WhatsApp template message with date and Currency
-It is also possible to send a rich template with an currency and an date!			
+It is also possible to send a rich template with an currency and an date!
+please note that the timezone is in UTC format		
 			
 ```cs
 var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);

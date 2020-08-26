@@ -164,7 +164,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
             Month = moment.Month;
             Year = moment.Year;
             DayOfMonth = moment.Day;
-            DayOfWeek = (int)moment.DayOfWeek;
+            DayOfWeek = (int)(moment.DayOfWeek + 6) % 7 + 1;
         }
     }
 
