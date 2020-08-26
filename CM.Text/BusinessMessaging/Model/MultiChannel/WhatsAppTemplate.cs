@@ -89,7 +89,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     public class TemplateCurrency
     {
         /// <summary>
-        /// Currency code, for example USD or EUR
+        /// The Fallback amount
         /// </summary>
         [JsonProperty("fallback_value")]
         public string FallbackValue { get; set; }
@@ -114,7 +114,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     public class TemplateDateTime
     {
         /// <summary>
-        /// The fallback date
+        /// The fallback date in UTC format
         /// </summary>
         /// <remarks>There will be no checking whether this is correct,</remarks>
         [JsonProperty("fallback_value")]
