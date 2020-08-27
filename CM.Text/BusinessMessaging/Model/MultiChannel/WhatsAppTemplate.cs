@@ -38,13 +38,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         [JsonProperty("language")]
         public Language Language { get; set; }
 
-        /// <summary>
-        /// Source: https://developers.facebook.com/docs/whatsapp/api/messages/message-templates
-        /// This field is an array of values to apply to variables in the template
-        /// </summary>
-        [JsonProperty("localizable_params")]
-        public LocalizableParam[] LocalizableParams { get; set; }
-
+   
         /// <summary>
         /// Source: https://developers.facebook.com/docs/whatsapp/api/messages/message-templates
         /// This field is an array of values to apply to variables in the template
@@ -95,9 +89,15 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     public class TemplateCurrency
     {
         /// <summary>
+        /// The Fallback amount
+        /// </summary>
+        [JsonProperty("fallback_value")]
+        public string FallbackValue { get; set; }
+
+        /// <summary>
         /// Currency code, for example USD or EUR
         /// </summary>
-        [JsonProperty("currency_code")]
+        [JsonProperty("code")]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -114,33 +114,21 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     public class TemplateDateTime
     {
         /// <summary>
-        /// The date component as described in https://developers.facebook.com/docs/whatsapp/api/messages/message-templates
+        /// The fallback date in UTC format
         /// </summary>
-        [JsonProperty("component")]
-        public TemplateDateTimeComponent Component { get; }
+        /// <remarks>There will be no checking whether this is correct,</remarks>
+        [JsonProperty("fallback_value")]
+        public string FallbackValue { get; }
 
         /// <summary>
-        /// Constructor initializing the component.
-        /// </summary>
-        /// <param name="moment"></param>
-        public TemplateDateTime(DateTime moment)
-        {
-            Component = new TemplateDateTimeComponent(moment);
-        }
-    }
-
-    /// <summary>
-    /// Used to localize a date time as described in
-    /// https://developers.facebook.com/docs/whatsapp/api/messages/message-templates
-    /// </summary>
-    public class TemplateDateTimeComponent
-    {
-        /// <summary>
-        /// The day of the week.
+        /// The day of the week as specified in Facebook documentation
+        /// Options: "MONDAY", 1, "TUESDAY", 2, "WEDNESDAY", 3, "THURSDAY", 4, "FRIDAY", 5, "SATURDAY", 6, "SUNDAY", 7
+        /// see https://developers.facebook.com/docs/whatsapp/message-templates/localization
+        /// 
         /// </summary>
         /// <remarks>There will be no checking whether this is correct,</remarks>
         [JsonProperty("day_of_week")]
-        public string DayOfWeek { get; }
+        public int DayOfWeek { get; }
         /// <summary>
         /// The day of the month.
         /// </summary>
@@ -168,19 +156,22 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         public int Minute { get; }
 
         /// <summary>
-        /// Constructor initializing the values.
+        /// Constructor initializing the component.
         /// </summary>
         /// <param name="moment"></param>
-        public TemplateDateTimeComponent(DateTime moment)
+        public TemplateDateTime(DateTime moment)
         {
+            FallbackValue = moment.ToUniversalTime().ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'");
             Minute = moment.Minute;
             Hour = moment.Hour;
             Month = moment.Month;
             Year = moment.Year;
             DayOfMonth = moment.Day;
-            DayOfWeek = moment.DayOfWeek.ToString();
+            DayOfWeek  = moment.DayOfWeek == System.DayOfWeek.Friday ? 7 : (int)moment.DayOfWeek;
         }
     }
+
+   
     /// <summary>
     /// Source: https://developers.facebook.com/docs/whatsapp/api/messages/message-templates
     /// The language parameter sets the language policy for an Message Template;
@@ -241,5 +232,29 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         [JsonProperty("media")]
         public MediaContent Media { get; set; }
+
+        /// <summary>
+        /// Source: https://developers.facebook.com/docs/whatsapp/api/messages/message-templates
+        /// 
+        /// Default text if localization fails
+        /// </summary>
+        [JsonProperty("default")]
+        public string Default { get; set; }
+
+        /// <summary>
+        /// Source: https://developers.facebook.com/docs/whatsapp/api/messages/message-templates
+        /// 
+        /// If the currency object is used, it contains required parameters currency_code and amount_1000.
+        /// </summary>
+        [JsonProperty("currency")]
+        public TemplateCurrency Currency { get; set; }
+
+        /// <summary>
+        /// Source: https://developers.facebook.com/docs/whatsapp/api/messages/message-templates
+        /// 
+        /// If the date_time object is used, further definition of the date and time is required. 
+        /// </summary>
+        [JsonProperty("date_time")]
+        public TemplateDateTime DateTime { get; set; }
     }
 }
