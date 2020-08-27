@@ -121,7 +121,10 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         public string FallbackValue { get; }
 
         /// <summary>
-        /// The day of the week.
+        /// The day of the week as specified in Facebook documentation
+        /// Options: "MONDAY", 1, "TUESDAY", 2, "WEDNESDAY", 3, "THURSDAY", 4, "FRIDAY", 5, "SATURDAY", 6, "SUNDAY", 7
+        /// see https://developers.facebook.com/docs/whatsapp/message-templates/localization
+        /// 
         /// </summary>
         /// <remarks>There will be no checking whether this is correct,</remarks>
         [JsonProperty("day_of_week")]
