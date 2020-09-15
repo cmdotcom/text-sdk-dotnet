@@ -33,9 +33,9 @@ namespace CM.Text.BusinessMessaging
         ///     Gets the HTTP post body.
         /// </summary>
         /// <param name="apiKey">The API key.</param>
-        /// <param name="message">The message to send.</param>
+        /// <param name="messages">The message to send.</param>
         /// <returns></returns>
-        internal static string GetHttpPostBody(Guid apiKey, Message message)
+        internal static string GetHttpPostBody(Guid apiKey, Message[] messages)
         {
             return JsonConvert.SerializeObject(
                 new
@@ -43,7 +43,7 @@ namespace CM.Text.BusinessMessaging
                     messages = new Request.MessagesEnvelope
                     {
                         Authentication = new Request.Authentication {ProductToken = apiKey.ToString()},
-                        Messages = new List<Message> {message}.ToArray()
+                        Messages = messages
                     }
                 }
             );

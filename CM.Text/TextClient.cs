@@ -10,6 +10,9 @@ using JetBrains.Annotations;
 
 namespace CM.Text
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ITextClient
     {
         /// <summary>
@@ -43,11 +46,11 @@ namespace CM.Text
         /// <summary>
         ///     Sends a message asynchronous.
         /// </summary>
-        /// <param name="message">The message to send.</param>
+        /// <param name="messages">The message to send.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns></returns>
         Task<TextClientResult> SendMessageAsync(
-            Message message,
+            Message[] messages,
             CancellationToken cancellationToken = default(CancellationToken));
     }
 
@@ -138,12 +141,12 @@ namespace CM.Text
         /// <summary>
         ///     Sends a message asynchronous.
         /// </summary>
-        /// <param name="message">The message to send.</param>
+        /// <param name="messages">The message to send.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns></returns>
         [PublicAPI]
         public async Task<TextClientResult> SendMessageAsync(
-            Message message,
+            Message[] messages,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             using (var request = new HttpRequestMessage(
@@ -152,7 +155,7 @@ namespace CM.Text
             ))
             {
                 request.Content = new StringContent(
-                    BusinessMessagingApi.GetHttpPostBody(this._apiKey, message),
+                    BusinessMessagingApi.GetHttpPostBody(this._apiKey, messages),
                     Encoding.UTF8,
                     BusinessMessagingApi.Constant.BusinessMessagingGatewayMediaTypeJson
                 );
