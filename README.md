@@ -218,9 +218,8 @@ var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_Phone
    var result = await client.SendMessageAsync(message);
 ```
 ## Sending interactive template messages
-Interactive templates is a newer generation of WhatsApp templates, 
-which in addition to the media template, can also support button-components	
-for more info please visit https://www.cm.com/app/docs/en/api/business-messaging-api/1.0/index#/whatsapp-template-message
+Interactive templates allows you to send templates that include buttons. 
+For more info please visit https://www.cm.com/app/docs/en/api/business-messaging-api/1.0/index#/whatsapp-template-message
 ```cs
 var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
 var client = new TextClient(apiKey);
