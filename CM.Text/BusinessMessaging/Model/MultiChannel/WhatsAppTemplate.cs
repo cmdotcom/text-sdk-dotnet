@@ -38,7 +38,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         [JsonProperty("language")]
         public Language Language { get; set; }
 
-   
+
         /// <summary>
         /// Source: https://developers.facebook.com/docs/whatsapp/api/messages/message-templates
         /// This field is an array of values to apply to variables in the template
@@ -167,11 +167,11 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
             Month = moment.Month;
             Year = moment.Year;
             DayOfMonth = moment.Day;
-            DayOfWeek  = moment.DayOfWeek == System.DayOfWeek.Friday ? 7 : (int)moment.DayOfWeek;
+            DayOfWeek = moment.DayOfWeek == System.DayOfWeek.Friday ? 7 : (int)moment.DayOfWeek;
         }
     }
 
-   
+
     /// <summary>
     /// Source: https://developers.facebook.com/docs/whatsapp/api/messages/message-templates
     /// The language parameter sets the language policy for an Message Template;
@@ -205,6 +205,19 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
+
+        /// <summary>
+        ///  Can be empty. describes the Type of button being created. Possible values: quick_reply, url.
+        /// </summary>
+        [JsonProperty("sub_type")]
+        public string SubType { get; set; }
+        /// <summary>
+        ///  Can be empty. Position index of the button.
+        /// You can have up to 3 buttons using index values of 0-2.
+        /// </summary>
+        [JsonProperty("index")]
+        public int Index { get; set; }
+
         /// <summary>
         ///  Can be empty. Array containing the dynamic content of the message.
         /// </summary>
@@ -222,6 +235,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
+
         /// <summary>
         /// Only to be filled in when `type` = `text`.
         /// </summary>
@@ -256,5 +270,12 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         [JsonProperty("date_time")]
         public TemplateDateTime DateTime { get; set; }
+
+        /// <summary>
+        /// Developer-defined payload that will be returned when the button is clicked in addition to the display text on the button
+        /// Required for quick_reply buttons
+        /// </summary>
+        [JsonProperty("payload")]
+        public string Payload { get; set; }
     }
 }
