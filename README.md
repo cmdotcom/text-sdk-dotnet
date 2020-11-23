@@ -217,6 +217,51 @@ var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_Phone
    var message = builder.Build();
    var result = await client.SendMessageAsync(message);
 ```
+## Sending interactive template messages
+Interactive templates allows you to send templates that include buttons. 
+For more info please visit https://www.cm.com/app/docs/en/api/business-messaging-api/1.0/index#/whatsapp-template-message
+```cs
+var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
+var client = new TextClient(apiKey);
+var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_PhoneNumber");
+builder.WithAllowedChannels(Channel.WhatsApp).WithTemplate(new TemplateMessage() {
+	Content = new TemplateMessageContent() {
+		Whatsapp = new WhatsappTemplate() {
+			Name = "Template name",
+			Namespace = "whatsapp template id",
+			Language = new Language() {
+				Code = "en",
+				Policy = "deterministic"
+			},
+			Components = new TemplateComponents[] {
+				new TemplateComponents() {
+					Type = "body",
+					ComponentParameters = new ComponentParameters[] {
+						new ComponentParameters() {
+							Type = "text",
+							Text = "your message here"
+						}
+					}
+				},
+				new TemplateComponents() {
+					Type = "button",
+					SubType = "quick_reply",
+					Index = 0,
+					ComponentParameters = new ComponentParameters[] {
+						new ComponentParameters() {
+							Type = "payload",
+							Payload = "developer defined payload"
+						}
+					}
+				}
+			}
+		}
+	}
+});
+
+var message = builder.Build();
+var result = await client.SendMessageAsync(message);
+```
 ## Sending an Apple Pay Request
 It is now possible to send an apple pay request only possible in Apple Business Chat
 
