@@ -19,7 +19,8 @@ namespace CM.Text
         /// <param name="from">
         ///     This is the sender name. The maximum length is 11 alphanumerical characters or 16 digits. Example:
         ///     'CM Telecom'.<br/>
-        ///     For Twitter: use the Twitter Snowflake ID of the account you want to use as sender.
+        ///     For Twitter: use the Twitter Snowflake ID of the account you want to use as sender.<br/>
+        ///     For MobilePush: use the app key of the account you want to use as sender.
         /// </param>
         /// <param name="to">
         ///     These are the destination mobile numbers. Restrictions: this value should be in international format.
@@ -89,7 +90,8 @@ namespace CM.Text
         /// <param name="from">
         ///     This is the sender name. The maximum length is 11 alphanumerical characters or 16 digits. Example:
         ///     'CM Telecom'.<br/>
-        ///     For Twitter: use the Twitter Snowflake ID of the account you want to use as sender.
+        ///     For Twitter: use the Twitter Snowflake ID of the account you want to use as sender.<br/>
+        ///     For MobilePush: use the app key of the account you want to use as sender.
         /// </param>
         /// <param name="to">
         ///     These are the destination mobile numbers. Restrictions: this value should be in international format.
