@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System.Runtime.Serialization;
+using JetBrains.Annotations;
 
 namespace CM.Text.BusinessMessaging.Model
 {
@@ -89,5 +90,23 @@ namespace CM.Text.BusinessMessaging.Model
         ///     Contact CM for information on how to migrate your current Push integration
         /// </remarks>
         MobilePush,
+
+        /// <summary>
+        ///     Messages will be sent over Facebook Messenger.
+        /// </summary>
+        /// <remarks>
+        ///     Note that CM needs to configure this for you to work.
+        /// </remarks>
+        [EnumMember(Value = "Facebook Messenger")]
+        FacebookMessenger,
+
+        /// <summary>
+        ///     Messages will be sent over Google Business Messages.
+        /// </summary>
+        /// <remarks>
+        ///     Note that CM needs to configure this for you to work.
+        /// </remarks>
+        [EnumMember(Value = "Google Business Messages")]
+        GoogleBusinessMessages,
     }
 }
