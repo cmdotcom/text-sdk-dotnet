@@ -14,5 +14,23 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         [JsonProperty("action")]
         public override string Action => "reply";
+
+        /// <summary>
+        ///     Description of the Reply suggestion
+        /// </summary>
+        /// <remarks>
+        ///     For <see cref="Channel.Twitter" />
+        /// </remarks>
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        /// <summary>
+        ///     The thumbnail image of the Reply suggestion
+        /// </summary>
+        /// <remarks>
+        ///     For <see cref="Channel.FacebookMessenger" />
+        /// </remarks>
+        [JsonProperty("media")]
+        public MediaContent Media { get; set; }
     }
 }
