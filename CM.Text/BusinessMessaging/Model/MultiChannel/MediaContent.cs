@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using Newtonsoft.Json;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
