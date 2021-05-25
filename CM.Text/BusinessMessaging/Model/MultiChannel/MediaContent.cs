@@ -31,16 +31,19 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         ///     The name of the image, audio or video.
         /// </summary>
+        [JsonProperty("mediaName")]
         public string MediaName { get; set; }
 
         /// <summary>
         ///     The location of the image, audio or video.
         /// </summary>
+        [JsonProperty("mediaUri")]
         public string MediaUri { get; set; }
 
         /// <summary>
         ///     The mimetype of the image, audio or video.
         /// </summary>
+        [JsonProperty("mimeType")]
         public string MimeType { get; set; }
     }
 }
