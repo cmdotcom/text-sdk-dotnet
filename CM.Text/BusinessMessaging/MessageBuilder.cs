@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CM.Text.BusinessMessaging.Model;
 using CM.Text.BusinessMessaging.Model.MultiChannel;
@@ -13,8 +14,7 @@ namespace CM.Text.BusinessMessaging
     [PublicAPI]
     public class MessageBuilder
     {
-        private readonly Message _message;
-        private RichContent _richContent;
+        private readonly List<Message> _messages = new List<Message>();
 
         /// <summary>
         ///     Creates a new MessageBuilder
@@ -24,7 +24,7 @@ namespace CM.Text.BusinessMessaging
         /// <param name="to"></param>
         public MessageBuilder(string messageText, string from, params string[] to)
         {
-            this._message = new Message
+            this._messages.Add( new Message
             {
                 Body = new Body
                 {
@@ -35,17 +35,41 @@ namespace CM.Text.BusinessMessaging
                     .ToArray(),
                 From = from,
                 CustomGrouping3 = Constant.TextSdkReference
-            };
+            });
         }
 
         /// <summary>
         ///     Constructs the message.
         /// </summary>
         /// <returns></returns>
-        public Message Build()
+        public Message[] Build()
         {
-            this._message.RichContent = this._richContent;
-            return this._message;
+            return this._messages.ToArray();
+        }
+
+        /// <summary>
+        /// Adds a new message to the batch
+        /// </summary>
+        /// <param name="messageText"></param>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns></returns>
+        public MessageBuilder AddNewMessageToBatch(string messageText, string from, params string[] to)
+        {
+            this._messages.Add(new Message
+            {
+                Body = new Body
+                {
+                    Content = messageText,
+                    Type = BusinessMessagingApi.Constant.BusinessMessagingBodyTypeAuto
+                },
+                Recipients = to.Select(toEntry => new Recipient { Number = toEntry })
+                    .ToArray(),
+                From = from,
+                CustomGrouping3 = Constant.TextSdkReference
+            });
+
+            return this;
         }
 
         /// <summary>
@@ -59,7 +83,7 @@ namespace CM.Text.BusinessMessaging
         /// </remarks>
         public MessageBuilder WithAllowedChannels(params Channel[] channels)
         {
-            this._message.AllowedChannels = channels;
+            this._messages.Last().AllowedChannels = channels;
             return this;
         }
 
@@ -70,7 +94,7 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         public MessageBuilder WithReference(string reference)
         {
-            this._message.Reference = reference;
+            this._messages.Last().Reference = reference;
             return this;
         }
 
@@ -97,7 +121,7 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         public MessageBuilder WithValidityPeriod(string period)
         {
-            this._message.Validity = period;
+            this._messages.Last().Validity = period;
             return this;
         }
 
@@ -110,10 +134,10 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         public MessageBuilder WithRichMessage(IRichMessage richMessage)
         {
-            if (this._richContent == null)
-                this._richContent = new RichContent();
+            if (this._messages.Last().RichContent == null)
+                this._messages.Last().RichContent = new RichContent();
 
-            this._richContent.AddConversationPart(richMessage);
+            this._messages.Last().RichContent.AddConversationPart(richMessage);
             return this;
         }
 
@@ -125,10 +149,10 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         public MessageBuilder WithSuggestions(params SuggestionBase[] suggestions)
         {
-            if (this._richContent == null)
-                this._richContent = new RichContent();
+            if (this._messages.Last().RichContent == null)
+                this._messages.Last().RichContent = new RichContent();
 
-            this._richContent.Suggestions = suggestions;
+            this._messages.Last().RichContent.Suggestions = suggestions;
             return this;
         }
 
@@ -138,7 +162,7 @@ namespace CM.Text.BusinessMessaging
         /// </summary>
         public MessageBuilder WitHybridAppKey(Guid appKey)
         {
-            this._message.HybridAppKey = appKey;
+            this._messages.Last().HybridAppKey = appKey;
             return this;
         }
 
@@ -150,10 +174,10 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         public MessageBuilder WithTemplate(TemplateMessage template)
         {
-            if (this._richContent == null)
-                this._richContent = new RichContent();
+            if (this._messages.Last().RichContent == null)
+                this._messages.Last().RichContent = new RichContent();
 
-            this._richContent.AddConversationPart(template);
+            this._messages.Last().RichContent.AddConversationPart(template);
             return this;
         }
 
@@ -164,10 +188,10 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         public MessageBuilder WithApplePay(ApplePayRequest applePayRequest)
         {
-            if (this._richContent == null)
-                this._richContent = new RichContent();
+            if (this._messages.Last().RichContent == null)
+                this._messages.Last().RichContent = new RichContent();
 
-            this._richContent.AddConversationPart(applePayRequest);
+            this._messages.Last().RichContent.AddConversationPart(applePayRequest);
             return this;
         }
     }
