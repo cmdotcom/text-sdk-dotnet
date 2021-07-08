@@ -85,7 +85,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     Messages will be sent over the <see cref="Channel.Push" /> channel.
         /// </summary>
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore, PropertyName = "appKey")]
-        public Guid HybridAppKey { get; set; }
+        public Guid? HybridAppKey { get; set; }
 
         /// <summary>
         ///     Used when sending multipart or concatenated SMS messages and always used together with
@@ -132,6 +132,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     Can be used by channels that support rich content (all channels except <see cref="Channel.SMS" />,
         ///     <see cref="Channel.Voice" /> and <see cref="Channel.Push" /> at this moment)
         /// </summary>
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore, PropertyName = "richContent")]
         public RichContent RichContent { get; set; }
 
         /// <summary>

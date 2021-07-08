@@ -1,12 +1,12 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
     /// <summary>
-    ///     A regular text message, replaces the <see cref="Message.Body" /> for channels
-    ///     that support rich content (all channels except <see cref="Channel.SMS" />, <see cref="Channel.Voice" />
-    ///     and <see cref="Channel.Push" /> at this moment)
+    ///     A regular text message, replaces the <see cref="Message.Body" /> for channels that support rich content
+    ///     (all channels except <see cref="Channel.SMS" />, <see cref="Channel.Voice" /> and <see cref="Channel.Push" /> at this moment)
     /// </summary>
     [PublicAPI]
     public class TextMessage : IRichMessage
@@ -28,11 +28,39 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         }
 
         /// <summary>
-        /// A plain text message, when used it replaces the 'SMS' body text.
-        /// In <see cref="Channel.RCS"/>, when used in combination with an header and/or media this
-        /// will be set as the text of a rich card.
+        ///     A plain text message, when used it replaces the 'SMS' body text.
+        ///     In <see cref="Channel.RCS"/>, when used in combination with an header and/or media this will be set as the text of a rich card.
         /// </summary>
         [JsonProperty("text")]
         public string Text { get; set; }
+
+        /// <summary>
+        ///     Tag to send important and/or personally relevant 1:1 updates to recipients. E.g. to notify a recipient of an update on a recent purchase.
+        /// </summary>
+        [JsonProperty("tag")]
+        public string Tag { get; set; }
+
+        /// <summary>
+        ///     The suggestions of a text message.
+        /// </summary>
+        [JsonProperty("suggestions")]
+        public SuggestionBase[] Suggestions { get; set; }
+
+        /// <summary>
+        ///     Adds a suggestion
+        /// </summary>
+        /// <param name="suggestion"></param>
+        public void AddSuggestion(SuggestionBase suggestion)
+        {
+            if (this.Suggestions == null)
+                this.Suggestions = new[] { suggestion };
+            else
+            {
+                var newArr = this.Suggestions;
+                Array.Resize(ref newArr, this.Suggestions.Length + 1);
+                newArr[newArr.Length - 1] = suggestion;
+                this.Suggestions = newArr;
+            }
+        }
     }
 }
