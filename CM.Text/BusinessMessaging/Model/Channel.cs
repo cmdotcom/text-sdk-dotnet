@@ -119,5 +119,14 @@ namespace CM.Text.BusinessMessaging.Model
         /// </remarks>
         [EnumMember(Value = "Google Business Messages")]
         GoogleBusinessMessages,
+
+        /// <summary>
+        ///     Messages will be sent over Instagram.
+        /// </summary>
+        /// <remarks>
+        ///     Note that CM needs to configure this for you to work.
+        /// </remarks>
+        [EnumMember(Value = "Instagram")]
+        Instagram,
     }
 }

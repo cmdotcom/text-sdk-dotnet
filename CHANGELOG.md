@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Suggestions property to TextMessage model used within a rich message.
 - Add AppleBusinessChat as channel type, and marked iMessage as obsolete.
 
+## [2.0.6] - 2021-07-06
+- Add Instagram
+
 ## [2.0.5] - 2021-05-25
 - Correct JSON formatting of MediaContent
 
