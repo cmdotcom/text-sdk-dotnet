@@ -1,5 +1,4 @@
-﻿using System;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Newtonsoft.Json;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
@@ -45,22 +44,5 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         [JsonProperty("suggestions")]
         public SuggestionBase[] Suggestions { get; set; }
-
-        /// <summary>
-        ///     Adds a suggestion
-        /// </summary>
-        /// <param name="suggestion"></param>
-        public void AddSuggestion(SuggestionBase suggestion)
-        {
-            if (this.Suggestions == null)
-                this.Suggestions = new[] { suggestion };
-            else
-            {
-                var newArr = this.Suggestions;
-                Array.Resize(ref newArr, this.Suggestions.Length + 1);
-                newArr[newArr.Length - 1] = suggestion;
-                this.Suggestions = newArr;
-            }
-        }
     }
 }
