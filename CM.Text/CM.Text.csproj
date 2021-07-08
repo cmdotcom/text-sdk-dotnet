@@ -12,13 +12,13 @@
     <Copyright>2020 CM.com</Copyright>
     <PackageLicenseUrl>https://mit-license.org</PackageLicenseUrl>
     <PackageReleaseNotes>See CHANGELOG.md for details</PackageReleaseNotes>
-    <Version>2.0.6</Version>
+    <Version>2.1.0</Version>
     <PackageIconUrl>http://static.cmtelecom.com/images/cm-nuget.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/cmdotcom/text-sdk-dotnet</PackageProjectUrl>
     <NeutralLanguage>en</NeutralLanguage>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <AssemblyVersion>2.0.6.0</AssemblyVersion>
-    <FileVersion>2.0.6.0</FileVersion>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <FileVersion>2.1.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

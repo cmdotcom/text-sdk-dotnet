@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 
 namespace CM.Text.BusinessMessaging.Model
@@ -63,8 +64,18 @@ namespace CM.Text.BusinessMessaging.Model
         /// <remarks>
         ///     Note that CM needs to configure this for you to work.
         /// </remarks>
+        [Obsolete("Use 'Channel.AppleBusinessChat' instead")]
         // ReSharper disable once InconsistentNaming
         iMessage,
+
+        /// <summary>
+        ///     Messages will be sent over Apple Business Chat.
+        /// </summary>
+        /// <remarks>
+        ///     Note that CM needs to configure this for you to work.
+        /// </remarks>
+        [EnumMember(Value = "Apple Business Chat")]
+        AppleBusinessChat,
 
         /// <summary>
         ///     Messages will be sent over Line.

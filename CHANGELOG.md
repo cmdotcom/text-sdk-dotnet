@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2021-07-08
+- Ignore HybridAppKey when null instead of empty, to support Notifire flow of channel MobilePush
+- Add DefaultValueHandling to RichContent property of Message model.
+- Add Tag property to TextMessage model used within a rich message.
+- Add Suggestions property to TextMessage model used within a rich message.
+- Add AppleBusinessChat as channel type, and marked iMessage as obsolete.
+
 ## [2.0.6] - 2021-07-06
 - Add Instagram
 
@@ -24,7 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.0] - 2020-08-26
 - Removed Localizable Params because it is Deprecated by Facebook,
-Also updated the WhatsApp Template Signature based on Facebook spec updates.
+- Also updated the WhatsApp Template Signature based on Facebook spec updates.
 
 ## [1.8.0] - 2020-06-24
 - Add Twitter support
