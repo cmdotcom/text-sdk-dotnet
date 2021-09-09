@@ -158,6 +158,20 @@ namespace CM.Text.BusinessMessaging
         }
 
         /// <summary>
+        ///  Adds a WhatsApp interactive message that replaces the <see cref="Message.Body" /> for WhatsApp
+        /// </summary>
+        /// <param name="interactive"></param>
+        /// <returns></returns>
+        public MessageBuilder WithInteractive(WhatsAppInteractiveMessage interactive)
+        {
+            if (this._richContent == null)
+                this._richContent = new RichContent();
+
+            this._richContent.AddConversationPart(interactive);
+            return this;
+        }
+
+        /// <summary>
         ///  Adds a ApplePay request .
         /// </summary>
         /// <param name="applePayRequest"></param>
