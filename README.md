@@ -298,3 +298,61 @@ var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_Phone
 var message = builder.Build();
 var result = await client.SendMessageAsync(message);
 ```
+## Sending WhatsApp interactive messages
+It is now possible to send list messages and reply buttons without using templates
+only supported in WhatsApp
+
+```cs
+var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
+var client = new TextClient(apiKey);
+ var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_PhoneNumber");
+     builder.WithAllowedChannels(Channel.WhatsApp).WithInteractive(new CM.Text.BusinessMessaging.Model.MultiChannel.WhatsAppInteractiveMessage()
+            {
+                whatsAppInteractiveContent = new CM.Text.BusinessMessaging.Model.MultiChannel.WhatsAppInteractiveContent()
+                {
+                    Type = "list",
+                    Header = new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveHeader()
+                    {
+                        Type = "text",
+                        Text = "List message example"
+                    },
+                    Body = new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveBody()
+                    {
+                        Text = "checkout our list message demo"
+                    },
+                    Action = new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveAction()
+                    {
+                        Button = "button text",
+                        Sections = new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveSection[]
+                         {
+                             new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveSection()
+                             {
+                                 Title = "Select an option",
+                                 Rows = new CM.Text.BusinessMessaging.Model.MultiChannel.Rows[]
+                                 {
+                                     new CM.Text.BusinessMessaging.Model.MultiChannel.Rows()
+                                     {
+                                         Id = "unique Id",
+                                         Title = "unique title1",
+                                         Description = "description text"
+                                     },
+                                     new CM.Text.BusinessMessaging.Model.MultiChannel.Rows()
+                                     {
+                                         Id = "unique Id2",
+                                         Title = "unique title2",
+                                         Description = "description text"
+                                     },
+                                 }
+                             }
+                         }
+                    },
+                    Footer = new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveFooter()
+                    {
+                        Text = "footer text"
+                    }
+                }
+        });
+            
+var message = builder.Build();
+var result = await client.SendMessageAsync(message);
+```
