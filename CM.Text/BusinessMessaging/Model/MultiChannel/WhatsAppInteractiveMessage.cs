@@ -77,6 +77,9 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         [JsonProperty("text")]
         public string Text { get; set; }
+
+        [JsonProperty("media")]
+        public MediaContent Media { get; set; }
     }
     public class InteractiveBody
     {

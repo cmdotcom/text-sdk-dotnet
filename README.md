@@ -356,3 +356,61 @@ var client = new TextClient(apiKey);
 var message = builder.Build();
 var result = await client.SendMessageAsync(message);
 ```
+
+Only with Reply buttons you can send media like image,video or document 
+see following example.
+
+```cs
+var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
+var client = new TextClient(apiKey);
+ var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_PhoneNumber");
+    builder.WithAllowedChannels(Channel.WhatsApp).WithInteractive(new CM.Text.BusinessMessaging.Model.MultiChannel.WhatsAppInteractiveMessage()
+            {
+                whatsAppInteractiveContent = new CM.Text.BusinessMessaging.Model.MultiChannel.WhatsAppInteractiveContent()
+                {
+                    Type = "button",
+                    Header = new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveHeader()
+                    {
+                        Type = "image",                    
+                        Media = new CM.Text.BusinessMessaging.Model.MultiChannel.MediaContent()
+                         {
+                                MediaUri = "https://www.cm.com/cdn/web/blog/content/logo-cmcom.png"
+                          }
+                        
+                    },
+                    Body = new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveBody()
+                    {
+                        Text = "checkout our reply message demo"
+                    },
+                    Action = new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveAction()
+                    {
+                        Buttons = new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveButton[]
+                        {
+                            new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveButton()
+                            {
+                               Type = "reply",
+                                Reply = new CM.Text.BusinessMessaging.Model.MultiChannel.ReplyMessage()
+                                {
+                                    Id = "unique-postback-id1",
+                                    Title = "First Button"
+                                }
+                            },
+                               new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveButton()
+                            {
+                              Type = "reply",
+                                Reply = new CM.Text.BusinessMessaging.Model.MultiChannel.ReplyMessage()
+                                {
+                                    Id = "unique-postback-id2",
+                                    Title = "Second Button "
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+var message = builder.Build();
+var result = await client.SendMessageAsync(message);
+```
+
+    
