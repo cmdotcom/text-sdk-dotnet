@@ -1,15 +1,18 @@
 [![Build](https://img.shields.io/appveyor/ci/cmdotcom/text-sdk-dotnet/master.svg "Build Status")](https://ci.appveyor.com/project/cmdotcom/text-sdk-dotnet/branch/master)
-[![NuGetV](https://img.shields.io/nuget/v/CM.Text.svg "Nuget Version")](https://www.nuget.org/packages/CM.Text)
-[![NuGetDownloads](https://img.shields.io/nuget/dt/CM.Text.svg "Nuget downloads")](https://www.nuget.org/packages/CM.Text)
+[![NuGetV](https://img.shields.io/nuget/v/CM.Text.svg "NuGet Version")](https://www.nuget.org/packages/CM.Text)
+[![NuGetDownloads](https://img.shields.io/nuget/dt/CM.Text.svg "NuGet downloads")](https://www.nuget.org/packages/CM.Text)
 
 # CM Text SDK
 A software development kit to provide ways to interact with CM.com's Text service. API's used:
-- [Business Messaging](https://docs.cmtelecom.com/business-messaging/v1.0)
+- [Business Messaging](https://www.cm.com/en-en/app/docs/api/business-messaging-api/1.0/index)
 
 # Usage
 
 ## Instantiate the client
-Using your unique `ApiKey` (or product token) which authorizes you on the CM platform. Always keep this key secret!
+Using your unique `ApiKey` (or product token) which authorizes you on the CM platform. 
+Always keep this key secret!
+
+The product token can be found in the [Channels](https://www.cm.com/app/channels) application on the platform, under the `Gateway` section.
 
 ```cs
 var client = new TextClient(new Guid(ConfigurationManager.AppSettings["ApiKey"]));
@@ -73,7 +76,7 @@ For all possible status codes, please reference the `TextClientStatusCode` enum.
 
 ## Sending a WhatsApp template message
 By using the `MessageBuilder` it is possible to create template messages. Please note that this is WhatsApp only and your template needs to be approved before sending.
-For more info please check our documentation: https://docs.cmtelecom.com/en/api/business-messaging-api/1.0/index#whatsapp-template-message
+For more info please check our documentation: https://www.cm.com/en-en/app/docs/api/business-messaging-api/1.0/index#whatsapp-template-message
 ```cs
 var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
 var client = new TextClient(apiKey);
@@ -412,5 +415,3 @@ var client = new TextClient(apiKey);
 var message = builder.Build();
 var result = await client.SendMessageAsync(message);
 ```
-
-    
