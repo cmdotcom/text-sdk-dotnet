@@ -75,7 +75,7 @@ namespace CM.Text.BusinessMessaging.Model
 
         /// <summary>
         ///     Required: This is the sender name.
-        ///     The maximum length is 11 alphanumerical characters or 16 digits. Example: 'CM Telecom'
+        ///     The maximum length is 11 alphanumerical characters or 16 digits. Example: 'MyCompany'
         /// </summary>
         [JsonProperty("from")]
         public string From { get; set; }

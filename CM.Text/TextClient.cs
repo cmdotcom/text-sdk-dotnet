@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -10,6 +11,9 @@ using JetBrains.Annotations;
 
 namespace CM.Text
 {
+    /// <summary>
+    ///     Interface to the client to send text messages.
+    /// </summary>
     public interface ITextClient
     {
         /// <summary>
@@ -18,7 +22,7 @@ namespace CM.Text
         /// <param name="messageText">The message text.</param>
         /// <param name="from">
         ///     This is the sender name. The maximum length is 11 alphanumerical characters or 16 digits. Example:
-        ///     'CM Telecom'.<br/>
+        ///     'MyCompany'.<br/>
         ///     For Twitter: use the Twitter Snowflake ID of the account you want to use as sender.<br/>
         ///     For MobilePush: use the app key of the account you want to use as sender.<br/>
         ///     For Facebook Messenger: use the Facebook Page ID of the account you want to use as sender.<br/>
@@ -45,7 +49,7 @@ namespace CM.Text
             string from,
             IEnumerable<string> to,
             [CanBeNull] string reference,
-            CancellationToken cancellationToken = default(CancellationToken));
+            CancellationToken cancellationToken = default);
 
         /// <summary>
         ///     Sends a message asynchronous.
@@ -55,7 +59,7 @@ namespace CM.Text
         /// <returns></returns>
         Task<TextClientResult> SendMessageAsync(
             Message message,
-            CancellationToken cancellationToken = default(CancellationToken));
+            CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -73,7 +77,8 @@ namespace CM.Text
         /// </summary>
         /// <param name="apiKey">The API key.</param>
         [PublicAPI]
-        public TextClient(Guid apiKey) : this(apiKey, ClientSingletonLazy.Value)
+        [SuppressMessage("ReSharper", "IntroduceOptionalParameters.Global", Justification = "Backwards compatibility")]
+        public TextClient(Guid apiKey) : this(apiKey, null)
         {
         }
 
@@ -83,47 +88,20 @@ namespace CM.Text
         /// <param name="apiKey">The API key.</param>
         /// <param name="httpClient">An optional HTTP client.</param>
         [PublicAPI]
-        public TextClient(Guid apiKey, HttpClient httpClient)
+        public TextClient(Guid apiKey, [CanBeNull] HttpClient httpClient)
         {
             this._apiKey = apiKey;
-            this._httpClient = httpClient;
+            this._httpClient = httpClient ?? ClientSingletonLazy.Value;
         }
 
-        /// <summary>
-        ///     Sends a message asynchronous.
-        /// </summary>
-        /// <param name="messageText">The message text.</param>
-        /// <param name="from">
-        ///     This is the sender name. The maximum length is 11 alphanumerical characters or 16 digits. Example:
-        ///     'CM Telecom'.<br/>
-        ///     For Twitter: use the Twitter Snowflake ID of the account you want to use as sender.<br/>
-        ///     For MobilePush: use the app key of the account you want to use as sender.<br/>
-        ///     For Facebook Messenger: use the Facebook Page ID of the account you want to use as sender.<br/>
-        ///     For Google Business Messages: use the Google Business Messages agent ID of the account you want to use as sender (without dashes).<br/>
-        ///     For Instagram: use the Instagram Account ID of the account you want to use as sender.
-        /// </param>
-        /// <param name="to">
-        ///     These are the destination mobile numbers. Restrictions: this value should be in international format.
-        ///     Example: '00447911123456'.<br/>
-        ///     For Twitter: use the Twitter Snowflake ID.<br/>
-        ///     For Facebook Messenger: use the Facebook Page Scoped User ID (PSID).<br/>
-        ///     For Google Business Messages: use the Google Business Messages conversation ID (without dashes).<br/>
-        ///     For Instagram: use the Instagram Scoped User ID (IGSID).
-        /// </param>
-        /// <param name="reference">
-        ///     Here you can include your message reference. This information will be returned in a status
-        ///     report so you can match the message and it's status. Restrictions: 1 - 32 alphanumeric characters and reference
-        ///     will not work for demo accounts.
-        /// </param>
-        /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns></returns>
+        /// <inheritdoc />
         [PublicAPI]
         public async Task<TextClientResult> SendMessageAsync(
             string messageText,
             string from,
             IEnumerable<string> to,
-            [CanBeNull] string reference,
-            CancellationToken cancellationToken = default(CancellationToken))
+            string reference,
+            CancellationToken cancellationToken = default)
         {
             using (var request = new HttpRequestMessage(
                 HttpMethod.Post,
@@ -150,7 +128,7 @@ namespace CM.Text
         }
 
         /// <summary>
-        ///     Sends a message asynchronous.
+        ///     Sends a message asynchronously.
         /// </summary>
         /// <param name="message">The message to send.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
@@ -158,7 +136,7 @@ namespace CM.Text
         [PublicAPI]
         public async Task<TextClientResult> SendMessageAsync(
             Message message,
-            CancellationToken cancellationToken = default(CancellationToken))
+            CancellationToken cancellationToken = default)
         {
             using (var request = new HttpRequestMessage(
                 HttpMethod.Post,

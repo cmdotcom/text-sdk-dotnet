@@ -12,7 +12,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         /// The WhatsApp template message
         /// </summary>
-        /// <remarks>Templates need to be configured by CM and approved by Whatsapp before it is possible
+        /// <remarks>Templates need to be configured by CM and approved by WhatsApp before it is possible
         /// to send these messages.
         /// </remarks>
         [JsonProperty("whatsapp")]
