@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 namespace CM.Text
 {
     /// <summary>
-    /// Factory to create <see cref="TextClient"/>s for different api keys
+    ///     Interface to a factory to create <see cref="ITextClient"/>s for different api keys
     /// </summary>
     public interface ITextClientFactory
     {
@@ -18,7 +18,7 @@ namespace CM.Text
     }
 
     /// <summary>
-    /// 
+    ///     Factory to create <see cref="TextClient"/>s for different api keys
     /// </summary>
     /// <seealso cref="CM.Text.ITextClientFactory" />
     [PublicAPI]
