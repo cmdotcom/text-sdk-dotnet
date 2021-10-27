@@ -49,7 +49,7 @@ namespace CM.Text
             string from,
             IEnumerable<string> to,
             [CanBeNull] string reference,
-            CancellationToken cancellationToken = default);
+            CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         ///     Sends a message asynchronous.
@@ -59,7 +59,7 @@ namespace CM.Text
         /// <returns></returns>
         Task<TextClientResult> SendMessageAsync(
             Message message,
-            CancellationToken cancellationToken = default);
+            CancellationToken cancellationToken = default(CancellationToken));
     }
 
     /// <summary>
@@ -101,7 +101,7 @@ namespace CM.Text
             string from,
             IEnumerable<string> to,
             string reference,
-            CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken = default(CancellationToken))
         {
             using (var request = new HttpRequestMessage(
                 HttpMethod.Post,
@@ -136,7 +136,7 @@ namespace CM.Text
         [PublicAPI]
         public async Task<TextClientResult> SendMessageAsync(
             Message message,
-            CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken = default(CancellationToken))
         {
             using (var request = new HttpRequestMessage(
                 HttpMethod.Post,

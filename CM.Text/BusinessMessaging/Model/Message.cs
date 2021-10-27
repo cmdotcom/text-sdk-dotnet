@@ -137,7 +137,7 @@ namespace CM.Text.BusinessMessaging.Model
 
         /// <summary>
         ///     Optional: For each message you send, you can set a validity.
-        ///     Specify a time at which a delayed message can be considered irrelevant, you can supply an absolute date & time 
+        ///     Specify a time at which a delayed message can be considered irrelevant, you can supply an absolute date &amp; time 
         ///     or a relative offset. A message is considered failed if it was not successfully delivered before that time. 
         ///     And via a Status Report we inform you this was the case.
         ///     For more information on status reports, see:
