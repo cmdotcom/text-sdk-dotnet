@@ -34,7 +34,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     You can limit the number of parts by setting the maximum number of message parts.
         ///     <see cref="Message.MaximumNumberOfMessageParts" />
         /// </summary>
-        [JsonProperty("type")]
+        [JsonProperty("type", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string Type { get; set; }
     }
 }
