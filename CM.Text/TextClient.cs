@@ -70,6 +70,7 @@ namespace CM.Text
     {
         private static readonly Lazy<HttpClient> ClientSingletonLazy = new Lazy<HttpClient>();
         private readonly Guid _apiKey;
+        [CanBeNull] private readonly Uri _endPointOverride;
         private readonly HttpClient _httpClient;
 
         /// <summary>
@@ -88,10 +89,23 @@ namespace CM.Text
         /// <param name="apiKey">The API key.</param>
         /// <param name="httpClient">An optional HTTP client.</param>
         [PublicAPI]
-        public TextClient(Guid apiKey, [CanBeNull] HttpClient httpClient)
+        [SuppressMessage("ReSharper", "IntroduceOptionalParameters.Global", Justification = "Binary backwards compatibility")]
+        public TextClient(Guid apiKey, [CanBeNull] HttpClient httpClient): this(apiKey, httpClient, null)
+        {
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="TextClient" /> class.
+        /// </summary>
+        /// <param name="apiKey">The API key.</param>
+        /// <param name="httpClient">An optional HTTP client.</param>
+        /// <param name="endPointOverride">(Optional) The end point to use, instead of the default "https://gw.cmtelecom.com/v1.0/message".</param>
+        [PublicAPI]
+        public TextClient(Guid apiKey, [CanBeNull] HttpClient httpClient, [CanBeNull] Uri endPointOverride)
         {
             this._apiKey = apiKey;
             this._httpClient = httpClient ?? ClientSingletonLazy.Value;
+            this._endPointOverride = endPointOverride;
         }
 
         /// <inheritdoc />
@@ -104,9 +118,9 @@ namespace CM.Text
             CancellationToken cancellationToken = default(CancellationToken))
         {
             using (var request = new HttpRequestMessage(
-                HttpMethod.Post,
-                new Uri(BusinessMessagingApi.Constant.BusinessMessagingGatewayJsonEndpoint)
-            ))
+                       HttpMethod.Post,
+                       this._endPointOverride ?? new Uri(BusinessMessagingApi.Constant.BusinessMessagingGatewayJsonEndpoint)
+                   ))
             {
                 request.Content = new StringContent(
                     BusinessMessagingApi.GetHttpPostBody(this._apiKey, messageText, from, to, reference),

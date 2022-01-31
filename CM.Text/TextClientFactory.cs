@@ -25,20 +25,23 @@ namespace CM.Text
     public class TextClientFactory : ITextClientFactory
     {
         private readonly HttpClient _httpClient;
+        [CanBeNull] private readonly Uri _endPointOverride;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TextClientFactory"/> class.
         /// </summary>
         /// <param name="httpClient">The HTTP client.</param>
-        public TextClientFactory(HttpClient httpClient)
+        /// <param name="endPointOverride">(Optional) The end point to use, instead of the default "https://gw.cmtelecom.com/v1.0/message".</param>
+        public TextClientFactory(HttpClient httpClient, Uri endPointOverride = null)
         {
             this._httpClient = httpClient;
+            this._endPointOverride = endPointOverride;
         }
 
         /// <inheritdoc />
         public ITextClient GetClient(Guid productToken)
         {
-            return new TextClient(productToken, this._httpClient);
+            return new TextClient(productToken, this._httpClient, this._endPointOverride);
         }
     }
 }
