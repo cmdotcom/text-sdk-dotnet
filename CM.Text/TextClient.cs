@@ -154,7 +154,7 @@ namespace CM.Text
         {
             using (var request = new HttpRequestMessage(
                 HttpMethod.Post,
-                new Uri(BusinessMessagingApi.Constant.BusinessMessagingGatewayJsonEndpoint)
+                this._endPointOverride ?? new Uri(BusinessMessagingApi.Constant.BusinessMessagingGatewayJsonEndpoint)
             ))
             {
                 request.Content = new StringContent(
