@@ -128,5 +128,14 @@ namespace CM.Text.BusinessMessaging.Model
         /// </remarks>
         [EnumMember(Value = "Instagram")]
         Instagram,
+        
+        /// <summary>
+        ///     Messages will be sent over Telegram.
+        /// </summary>
+        /// <remarks>
+        ///     Note that CM needs to configure this for you to work.
+        /// </remarks>
+        [EnumMember(Value = "Telegram Messenger")]
+        Telegram,
     }
 }
