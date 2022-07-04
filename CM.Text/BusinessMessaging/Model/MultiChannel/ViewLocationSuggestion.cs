@@ -1,5 +1,5 @@
-﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -12,13 +12,13 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         ///     The action of this suggestion
         /// </summary>
-        [JsonProperty("action")]
+        [JsonPropertyName("action")]
         public override string Action => "viewLocation";
 
         /// <summary>
         ///     The location options
         /// </summary>
-        [JsonProperty("viewLocation")]
+        [JsonPropertyName("viewLocation")]
         public ViewLocationOptions Location { get; set; }
     }
 }

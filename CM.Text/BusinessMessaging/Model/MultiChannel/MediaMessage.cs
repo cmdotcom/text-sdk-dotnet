@@ -1,5 +1,5 @@
-﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -31,7 +31,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         ///     The image or video of the message.
         /// </summary>
-        [JsonProperty("media")]
+        [JsonPropertyName("media")]
         public MediaContent Media { get; set; }
     }
 }

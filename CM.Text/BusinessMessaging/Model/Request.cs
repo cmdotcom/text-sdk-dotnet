@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace CM.Text.BusinessMessaging.Model
 {
@@ -6,16 +6,16 @@ namespace CM.Text.BusinessMessaging.Model
     {
         internal class MessagesEnvelope
         {
-            [JsonProperty("authentication")]
+            [JsonPropertyName("authentication")]
             internal Authentication Authentication { get; set; }
 
-            [JsonProperty("msg")]
+            [JsonPropertyName("msg")]
             internal Message[] Messages { get; set; }
         }
 
         internal class Authentication
         {
-            [JsonProperty("producttoken")]
+            [JsonPropertyName("producttoken")]
             internal string ProductToken { get; set; }
         }
     }

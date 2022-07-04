@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 using JetBrains.Annotations;
-using Newtonsoft.Json;
 
 namespace CM.Text
 {
@@ -17,7 +17,7 @@ namespace CM.Text
         /// <value>
         ///     The details.
         /// </value>
-        [JsonProperty(Order = 4)]
+        [JsonPropertyOrder(4)]
         public string details { get; set; }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace CM.Text
         /// <value>
         ///     The parts.
         /// </value>
-        [JsonProperty(Order = 3)]
+        [JsonPropertyOrder(3)]
         public int parts { get; set; }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace CM.Text
         /// <value>
         ///     The reference.
         /// </value>
-        [JsonProperty(Order = 0)]
+        [JsonPropertyOrder(0)]
         public string reference { get; set; }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace CM.Text
         /// <value>
         ///     The status.
         /// </value>
-        [JsonProperty(Order = 1)]
+        [JsonPropertyOrder(1)]
         public string status { get; set; }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace CM.Text
         /// <value>
         ///     To.
         /// </value>
-        [JsonProperty(Order = 2)]
+        [JsonPropertyOrder(2)]
         public string to { get; set; }
     }
 }

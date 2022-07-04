@@ -1,5 +1,5 @@
-﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -12,13 +12,13 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         ///     The cards of the carousel
         /// </summary>
-        [JsonProperty("cards")]
+        [JsonPropertyName("cards")]
         public RichCard[] Cards { get; set; }
 
         /// <summary>
         ///     The width for the items of the carousel
         /// </summary>
-        [JsonProperty("cardWidth")]
+        [JsonPropertyName("cardWidth")]
         public CarouselCardWidth CarouselCardWidth { get; set; }
     }
 }

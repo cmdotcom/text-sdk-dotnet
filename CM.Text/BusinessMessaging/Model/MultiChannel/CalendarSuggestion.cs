@@ -1,5 +1,5 @@
-﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -14,13 +14,13 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         ///     The action of this suggestion
         /// </summary>
-        [JsonProperty("action")]
+        [JsonPropertyName("action")]
         public override string Action => "CreateCalendarEvent";
 
         /// <summary>
         ///     The options of the agenda item
         /// </summary>
-        [JsonProperty("calendar")]
+        [JsonPropertyName("calendar")]
         public CalendarOptions Calendar { get; set; }
     }
 }

@@ -1,5 +1,5 @@
-﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -12,7 +12,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         ///     The number to call (in international format)
         /// </summary>
-        [JsonProperty("phoneNumber")]
+        [JsonPropertyName("phoneNumber")]
         public string PhoneNumber { get; set; }
     }
 }
