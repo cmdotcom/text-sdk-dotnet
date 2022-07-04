@@ -34,7 +34,7 @@ namespace CM.Text.BusinessMessaging
                 Recipients = to.Select(toEntry => new Recipient { Number = toEntry })
                     .ToArray(),
                 From = from,
-                CustomGrouping3 = Configuration.TextSdkReference
+                CustomGrouping3 = Constant.TextSdkReference
             };
         }
 
