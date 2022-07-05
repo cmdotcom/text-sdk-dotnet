@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 - Replace Newtsonsoft.Json with System.Text.Json
+- Add Telegram as tag
+- Enable Treat Warnings as Errors to adhere to code guidelines
 
 ## [2.5.0] - 2022-06-17
 - Add Telegram
