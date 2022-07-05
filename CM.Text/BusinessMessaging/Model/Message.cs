@@ -21,7 +21,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     For those flows to work, we need to be contacted.
         /// </remarks>
         [JsonPropertyName("allowedChannels")]
-        [JsonIgnore]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public Channel[] AllowedChannels { get; set; }
 
@@ -41,7 +41,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     Please contact support in case you would like to exceed this number.
         /// </summary>
         [JsonPropertyName("customGrouping")]
-        [JsonIgnore]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string CustomGrouping { get; set; }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     Please contact support in case you would like to exceed this number.
         /// </summary>
         [JsonPropertyName("customGrouping2")]
-        [JsonIgnore]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string CustomGrouping2 { get; set; }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace CM.Text.BusinessMessaging.Model
         /// </summary>
         /// <remarks>Default value within this SDK is <see cref="Common.Constant.TextSdkReference" /></remarks>
         [JsonPropertyName("customGrouping3")]
-        [JsonIgnore]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string CustomGrouping3 { get; set; }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     The maximum length is 11 alphanumerical characters or 16 digits. Example: 'MyCompany'
         /// </summary>
         [JsonPropertyName("from")]
-        [JsonIgnore]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string From { get; set; }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     Messages will be sent over the <see cref="Channel.Push" /> channel.
         /// </summary>
         [JsonPropertyName("appKey")]
-        [JsonIgnore]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public Guid? HybridAppKey { get; set; }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     message will be cut into multiple 153 characters parts limited by these parameters.
         /// </summary>
         [JsonPropertyName("maximumNumberOfMessageParts")]
-        [JsonIgnore]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int? MaximumNumberOfMessageParts { get; set; }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     message will be cut into multiple 153 characters parts limited by these parameters.
         /// </summary>
         [JsonPropertyName("minimumNumberOfMessageParts")]
-        [JsonIgnore]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int? MinimumNumberOfMessageParts { get; set; }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     The given reference must be between 1 - 32 alphanumeric characters, and will not work using demo accounts.
         /// </summary>
         [JsonPropertyName("reference")]
-        [JsonIgnore]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Reference { get; set; }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     <see cref="Channel.Voice" /> and <see cref="Channel.Push" /> at this moment)
         /// </summary>
         [JsonPropertyName("richContent")]
-        [JsonIgnore]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public RichContent RichContent { get; set; }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     You can set the validity in either hours or minutes. A combination of both is not supported.
         /// </summary>
         [JsonPropertyName("validity")]
-        [JsonIgnore]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Validity { get; set; }
     }
 }

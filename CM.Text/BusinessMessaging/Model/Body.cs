@@ -35,7 +35,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     <see cref="Message.MaximumNumberOfMessageParts" />
         /// </summary>
         [JsonPropertyName("type")]
-        [JsonIgnore]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Type { get; set; }
     }
 }
