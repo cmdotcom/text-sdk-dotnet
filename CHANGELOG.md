@@ -5,9 +5,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-- Replace Newtsonsoft.Json with System.Text.Json
-- Add Telegram as tag
+### Added
+- System.Text.Json, replaces Newtsonsoft, possibly breaking
+- Add Telegram as tag for the project
+### Changed
 - Enable Treat Warnings as Errors to adhere to code guidelines
+### Removed 
+- Newtsonsoft.Json dependency
 
 ## [2.5.0] - 2022-06-17
 - Add Telegram
