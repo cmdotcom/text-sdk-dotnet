@@ -1,22 +1,25 @@
 ﻿using System.Text.Json.Serialization;
 
 namespace CM.Text.BusinessMessaging.Model
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 {
-    internal static class Request
+    public class Request
     {
-        internal class MessagesEnvelope
+        public class MessagesEnvelope
         {
             [JsonPropertyName("authentication")]
-            internal Authentication Authentication { get; set; }
+            [JsonInclude]
+            public Authentication Authentication { get; set; }
 
             [JsonPropertyName("msg")]
-            internal Message[] Messages { get; set; }
+            public Message[] Messages { get; set; }
         }
 
-        internal class Authentication
+        public class Authentication
         {
             [JsonPropertyName("producttoken")]
-            internal string ProductToken { get; set; }
+            public string ProductToken { get; set; }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         }
     }
 }

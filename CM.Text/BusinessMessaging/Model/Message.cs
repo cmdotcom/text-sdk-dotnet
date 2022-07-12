@@ -22,7 +22,6 @@ namespace CM.Text.BusinessMessaging.Model
         /// </remarks>
         [JsonPropertyName("allowedChannels")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        [JsonConverter(typeof(JsonStringEnumConverter))]
         public Channel[] AllowedChannels { get; set; }
 
         /// <summary>

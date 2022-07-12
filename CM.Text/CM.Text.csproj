@@ -29,6 +29,12 @@
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
   </PropertyGroup>
 
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>CM.Text.Tests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="System.Text.Json" Version="6.0.5" />
   </ItemGroup>

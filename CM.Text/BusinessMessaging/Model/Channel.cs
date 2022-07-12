@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 using JetBrains.Annotations;
 
 namespace CM.Text.BusinessMessaging.Model
@@ -12,6 +13,7 @@ namespace CM.Text.BusinessMessaging.Model
     ///     For those flows to work, we need to be contacted.
     /// </remarks>
     [PublicAPI]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Channel
     {
         /// <summary>
