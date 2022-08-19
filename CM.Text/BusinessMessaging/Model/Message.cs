@@ -40,6 +40,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     Please contact support in case you would like to exceed this number.
         /// </summary>
         [JsonPropertyName("customGrouping")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string CustomGrouping { get; set; }
 
         /// <summary>
@@ -53,6 +54,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     Please contact support in case you would like to exceed this number.
         /// </summary>
         [JsonPropertyName("customGrouping2")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string CustomGrouping2 { get; set; }
 
         /// <summary>
@@ -67,6 +69,7 @@ namespace CM.Text.BusinessMessaging.Model
         /// </summary>
         /// <remarks>Default value within this SDK is <see cref="Common.Constant.TextSdkReference" /></remarks>
         [JsonPropertyName("customGrouping3")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string CustomGrouping3 { get; set; }
 
         /// <summary>
@@ -81,6 +84,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     Messages will be sent over the <see cref="Channel.Push" /> channel.
         /// </summary>
         [JsonPropertyName("appKey")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public Guid? HybridAppKey { get; set; }
 
         /// <summary>
@@ -92,6 +96,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     message will be cut into multiple 153 characters parts limited by these parameters.
         /// </summary>
         [JsonPropertyName("maximumNumberOfMessageParts")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int? MaximumNumberOfMessageParts { get; set; }
 
         /// <summary>
@@ -103,6 +108,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     message will be cut into multiple 153 characters parts limited by these parameters.
         /// </summary>
         [JsonPropertyName("minimumNumberOfMessageParts")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int? MinimumNumberOfMessageParts { get; set; }
 
         /// <summary>
@@ -122,6 +128,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     The given reference must be between 1 - 32 alphanumeric characters, and will not work using demo accounts.
         /// </summary>
         [JsonPropertyName("reference")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Reference { get; set; }
 
         /// <summary>
@@ -129,6 +136,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     <see cref="Channel.Voice" /> and <see cref="Channel.Push" /> at this moment)
         /// </summary>
         [JsonPropertyName("richContent")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public RichContent RichContent { get; set; }
 
         /// <summary>
@@ -154,6 +162,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     You can set the validity in either hours or minutes. A combination of both is not supported.
         /// </summary>
         [JsonPropertyName("validity")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Validity { get; set; }
     }
 }
