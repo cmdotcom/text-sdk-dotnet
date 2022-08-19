@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -10,17 +10,17 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         /// (Required) A unique identifier that represents a merchant for Apple Pay.
         /// </summary>
-        [JsonProperty("merchantName")]
+        [JsonPropertyName("merchantName")]
         public string MerchantName { get; set; }
         /// <summary>
         /// (Required) Description of the item being bought.
         /// </summary>
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
         /// <summary>
         /// (Required) A unique identifier that represents a order
         /// </summary>
-        [JsonProperty("orderReference")]
+        [JsonPropertyName("orderReference")]
         public string OrderReference { get; set; }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         /// <remarks> Line items are not required. However, the array cannot be empty if the lineItems key is present. 
         /// </remarks>
-        [JsonProperty("lineItems")]
+        [JsonPropertyName("lineItems")]
         public LineItem[] LineItems { get; set; }
 
         /// <summary>
@@ -36,44 +36,44 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         /// <remarks> The total amount must be greater than zero to pass validation. 
         /// </remarks>
-        [JsonProperty("total")]
+        [JsonPropertyName("total")]
         public decimal Total { get; set; }
 
         /// <summary>
         /// Email address of the Apple Pay contact.
         /// </summary>
-        [JsonProperty("recipientEmail")]
+        [JsonPropertyName("recipientEmail")]
         public string RecipientEmail { get; set; }
         /// <summary>
         /// Value indicating the currency code of the apple pay request
         /// </summary>
         /// <remarks> Value must be in upper case.
         /// </remarks>
-        [JsonProperty("currencyCode")]
+        [JsonPropertyName("currencyCode")]
         public string CurrencyCode { get; set; }
         /// <summary>
         /// Country of the Apple Pay contact.
         /// </summary>
         /// <remarks> Value must be in upper case.
         /// </remarks>
-        [JsonProperty("recipientCountryCode")]
+        [JsonPropertyName("recipientCountryCode")]
         public string RecipientCountryCode { get; set; }
         /// <summary>
         /// The Language of the Country of the Apple Pay Contact
         /// </summary>
         /// <remarks> Value must be in lower case.
         /// </remarks>
-        [JsonProperty("languageCountryCode")]
+        [JsonPropertyName("languageCountryCode")]
         public string languageCountryCode { get; set; }
         /// <summary>
         /// Value indicating that a billing address is required
         /// </summary>
-        [JsonProperty("billingAddressRequired")]
+        [JsonPropertyName("billingAddressRequired")]
         public bool BillingAddressRequired { get; set; }
         /// <summary>
         ///  Value indicating that a shipping contact is required
         /// </summary>
-        [JsonProperty("shippingContactRequired")]
+        [JsonPropertyName("shippingContactRequired")]
         public bool ShippingContactRequired { get; set; }
     }
 }

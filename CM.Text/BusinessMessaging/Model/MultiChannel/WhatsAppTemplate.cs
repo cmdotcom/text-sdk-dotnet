@@ -1,6 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -18,14 +18,14 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// Source: https://developers.facebook.com/docs/whatsapp/api/messages/message-templates
         /// The namespace that will be used
         /// </summary>
-        [JsonProperty("namespace")]
+        [JsonPropertyName("namespace")]
         public string Namespace { get; set; }
 
         /// <summary>
         /// Source: https://developers.facebook.com/docs/whatsapp/api/messages/message-templates
         /// The element name that indicates which template to use within the namespace
         /// </summary>
-        [JsonProperty("element_name")]
+        [JsonPropertyName("element_name")]
         public string Name { get; set; }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// The language parameter sets the language policy for an Message Template;
         /// you can set it to either fallback or deterministic.
         /// </summary>
-        [JsonProperty("language")]
+        [JsonPropertyName("language")]
         public Language Language { get; set; }
 
 
@@ -58,7 +58,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// 
         /// Default text if localization fails
         /// </summary>
-        [JsonProperty("default")]
+        [JsonPropertyName("default")]
         public string Default { get; set; }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// 
         /// If the currency object is used, it contains required parameters currency_code and amount_1000.
         /// </summary>
-        [JsonProperty("currency")]
+        [JsonPropertyName("currency")]
         public TemplateCurrency Currency { get; set; }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// 
         /// If the date_time object is used, further definition of the date and time is required. 
         /// </summary>
-        [JsonProperty("date_time")]
+        [JsonPropertyName("date_time")]
         public TemplateDateTime DateTime { get; set; }
 
     }
@@ -91,20 +91,20 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         /// The Fallback amount
         /// </summary>
-        [JsonProperty("fallback_value")]
+        [JsonPropertyName("fallback_value")]
         public string FallbackValue { get; set; }
 
         /// <summary>
         /// Currency code, for example USD or EUR
         /// </summary>
-        [JsonProperty("code")]
+        [JsonPropertyName("code")]
         public string CurrencyCode { get; set; }
 
         /// <summary>
         /// Amount in currency_code times 1000
         /// </summary>
         /// <example>50110 EUR becomes €50.11 in the message</example>
-        [JsonProperty("amount_1000")]
+        [JsonPropertyName("amount_1000")]
         public long Amount { get; set; }
     }
 
@@ -117,7 +117,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// The fallback date in UTC format
         /// </summary>
         /// <remarks>There will be no checking whether this is correct,</remarks>
-        [JsonProperty("fallback_value")]
+        [JsonPropertyName("fallback_value")]
         public string FallbackValue { get; }
 
         /// <summary>
@@ -127,32 +127,32 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// 
         /// </summary>
         /// <remarks>There will be no checking whether this is correct,</remarks>
-        [JsonProperty("day_of_week")]
+        [JsonPropertyName("day_of_week")]
         public int DayOfWeek { get; }
         /// <summary>
         /// The day of the month.
         /// </summary>
-        [JsonProperty("day_of_month")]
+        [JsonPropertyName("day_of_month")]
         public int DayOfMonth { get; }
         /// <summary>
         /// The year.
         /// </summary>
-        [JsonProperty("year")]
+        [JsonPropertyName("year")]
         public int Year { get; }
         /// <summary>
         /// The month.
         /// </summary>
-        [JsonProperty("month")]
+        [JsonPropertyName("month")]
         public int Month { get; }
         /// <summary>
         /// The hour (24 hour notation)
         /// </summary>
-        [JsonProperty("hour")]
+        [JsonPropertyName("hour")]
         public int Hour { get; }
         /// <summary>
         /// The minute of the hour.
         /// </summary>
-        [JsonProperty("minute")]
+        [JsonPropertyName("minute")]
         public int Minute { get; }
 
         /// <summary>
@@ -183,7 +183,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// Source: https://developers.facebook.com/docs/whatsapp/api/messages/message-templates
         /// The code of the language or locale to use — Accepts both language and language_locale formats (e.g., en and en_US).
         /// </summary>
-        [JsonProperty("code")]
+        [JsonPropertyName("code")]
         public string Code { get; set; }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// Options: fallback, deterministic
         /// The language policy the message should follow
         /// </summary>
-        [JsonProperty("policy")]
+        [JsonPropertyName("policy")]
         public string Policy { get; set; }
     }
     /// <summary>
@@ -203,25 +203,25 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         ///  Required. describes the component type. Possible values: header, content, footer.
         /// </summary>
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public string Type { get; set; }
 
         /// <summary>
         ///  Can be empty. describes the Type of button being created. Possible values: quick_reply, url.
         /// </summary>
-        [JsonProperty("sub_type")]
+        [JsonPropertyName("sub_type")]
         public string SubType { get; set; }
         /// <summary>
         ///  Can be empty. Position index of the button.
         /// You can have up to 3 buttons using index values of 0-2.
         /// </summary>
-        [JsonProperty("index")]
+        [JsonPropertyName("index")]
         public int Index { get; set; }
 
         /// <summary>
         ///  Can be empty. Array containing the dynamic content of the message.
         /// </summary>
-        [JsonProperty("parameters")]
+        [JsonPropertyName("parameters")]
         public ComponentParameters[] ComponentParameters { get; set; }
     }
     /// <summary>
@@ -233,18 +233,18 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         ///  Describes the parameter type. Possible values: text, currency, date_time, image, document.
         /// </summary>
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public string Type { get; set; }
 
         /// <summary>
         /// Only to be filled in when `type` = `text`.
         /// </summary>
-        [JsonProperty("text")]
+        [JsonPropertyName("text")]
         public string Text { get; set; }
         /// <summary>
         /// Only to be filled in when `type` = `document` or `image`.
         /// </summary>
-        [JsonProperty("media")]
+        [JsonPropertyName("media")]
         public MediaContent Media { get; set; }
 
         /// <summary>
@@ -252,7 +252,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// 
         /// Default text if localization fails
         /// </summary>
-        [JsonProperty("default")]
+        [JsonPropertyName("default")]
         public string Default { get; set; }
 
         /// <summary>
@@ -260,7 +260,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// 
         /// If the currency object is used, it contains required parameters currency_code and amount_1000.
         /// </summary>
-        [JsonProperty("currency")]
+        [JsonPropertyName("currency")]
         public TemplateCurrency Currency { get; set; }
 
         /// <summary>
@@ -268,14 +268,14 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// 
         /// If the date_time object is used, further definition of the date and time is required. 
         /// </summary>
-        [JsonProperty("date_time")]
+        [JsonPropertyName("date_time")]
         public TemplateDateTime DateTime { get; set; }
 
         /// <summary>
         /// Developer-defined payload that will be returned when the button is clicked in addition to the display text on the button
         /// Required for quick_reply buttons
         /// </summary>
-        [JsonProperty("payload")]
+        [JsonPropertyName("payload")]
         public string Payload { get; set; }
     }
 }

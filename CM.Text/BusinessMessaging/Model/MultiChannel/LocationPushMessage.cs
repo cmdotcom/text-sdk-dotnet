@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -13,7 +13,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         /// The location options to send.
         /// </summary>
-        [JsonProperty("location")]
+        [JsonPropertyName("location")]
         public ViewLocationOptions Location { get; set; }
     }
 }

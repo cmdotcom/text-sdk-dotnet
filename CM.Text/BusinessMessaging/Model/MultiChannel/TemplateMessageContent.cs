@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -15,7 +15,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <remarks>Templates need to be configured by CM and approved by WhatsApp before it is possible
         /// to send these messages.
         /// </remarks>
-        [JsonProperty("whatsapp")]
+        [JsonPropertyName("whatsapp")]
         public WhatsappTemplate Whatsapp { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace CM.Text.BusinessMessaging.Model
 {
@@ -8,34 +8,34 @@ namespace CM.Text.BusinessMessaging.Model
     {
         internal class HttpResponseBody
         {
-            [JsonProperty]
+            [JsonPropertyName("details")]
             internal string details { get; set; }
 
-            [JsonProperty]
+            [JsonPropertyName("errorCode")]
             internal int errorCode { get; set; }
 
-            [JsonProperty]
+            [JsonPropertyName("messages")]
             internal ResponseMessageDetail[] messages { get; set; }
         }
 
         internal class ResponseMessageDetail
         {
-            [JsonProperty]
+            [JsonPropertyName("messageDetails")]
             internal string messageDetails { get; set; }
 
-            [JsonProperty]
+            [JsonPropertyName("messageErrorCode")]
             internal string messageErrorCode { get; set; }
 
-            [JsonProperty]
+            [JsonPropertyName("parts")]
             internal int parts { get; set; }
 
-            [JsonProperty]
+            [JsonPropertyName("reference")]
             internal string reference { get; set; }
 
-            [JsonProperty]
+            [JsonPropertyName("status")]
             internal string status { get; set; }
 
-            [JsonProperty]
+            [JsonPropertyName("to")]
             internal string to { get; set; }
         }
     }

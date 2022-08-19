@@ -1,5 +1,6 @@
-﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+
+using JetBrains.Annotations;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -13,7 +14,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         ///     Contains the rich cards
         /// </summary>
-        [JsonProperty("carousel")]
+        [JsonPropertyName("carousel")]
         public Carousel Carousel { get; set; }
     }
 }

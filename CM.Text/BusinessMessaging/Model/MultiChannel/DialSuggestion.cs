@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -14,13 +14,13 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         ///     The action of this suggestion
         /// </summary>
-        [JsonProperty("action")]
+        [JsonPropertyName("action")]
         public override string Action => "Dial";
 
         /// <summary>
         ///     The dial options
         /// </summary>
-        [JsonProperty("dial")]
+        [JsonPropertyName("dial")]
         public Dial Dial { get; set; }
     }
 }

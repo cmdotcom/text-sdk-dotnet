@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -12,13 +12,13 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         ///     Optional: the header for a rich card
         /// </summary>
-        [JsonProperty("header")]
+        [JsonPropertyName("header")]
         public string Header { get; set; }
 
         /// <summary>
         ///     The image or video of the card.
         /// </summary>
-        [JsonProperty("media")]
+        [JsonPropertyName("media")]
         public MediaContent Media { get; set; }
     }
 }

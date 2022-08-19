@@ -1,28 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>CM Text</Authors>
-    <Company>CM.com</Company>
-    <Product>CM Text SDK</Product>
-    <Description>A software development kit to provide ways to interact with CM.com's Text service.</Description>
-    <PackageTags>messaging, text, sms, email, push, whatsapp, viber, wechat, rcs, voice, business messaging, telegram, conversational, sms chat, chat, sms 2.0, rbm, mms, rich sms, rich communication services</PackageTags>
-    <RepositoryUrl>https://github.com/cmdotcom/text-sdk-dotnet</RepositoryUrl>
-    <RepositoryType>Github</RepositoryType>
-    <Copyright>2020 CM.com</Copyright>
-    <PackageLicenseUrl>https://mit-license.org</PackageLicenseUrl>
-    <PackageReleaseNotes>See CHANGELOG.md for details</PackageReleaseNotes>
-    <Version>2.5.0</Version>
-    <PackageIconUrl>http://static.cmtelecom.com/images/cm-nuget.png</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/cmdotcom/text-sdk-dotnet</PackageProjectUrl>
-    <NeutralLanguage>en</NeutralLanguage>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <AssemblyVersion>2.5.0.0</AssemblyVersion>
-    <FileVersion>2.5.0.0</FileVersion>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+        <Authors>CM Text</Authors>
+        <Company>CM.com</Company>
+        <Product>CM Text SDK</Product>
+        <Description>A software development kit to provide ways to interact with CM.com's Text service.</Description>
+        <PackageTags>messaging, text, sms, email, push, whatsapp, viber, wechat, rcs, voice, business messaging, telegram, conversational, sms chat, chat, sms 2.0, rbm, mms, rich sms, rich communication services</PackageTags>
+        <RepositoryUrl>https://github.com/cmdotcom/text-sdk-dotnet</RepositoryUrl>
+        <RepositoryType>Github</RepositoryType>
+        <Copyright>2020 CM.com</Copyright>
+        <PackageLicenseUrl>https://mit-license.org</PackageLicenseUrl>
+        <PackageReleaseNotes>See CHANGELOG.md for details</PackageReleaseNotes>
+        <Version>2.6.0</Version>
+        <PackageIconUrl>http://static.cmtelecom.com/images/cm-nuget.png</PackageIconUrl>
+        <PackageProjectUrl>https://github.com/cmdotcom/text-sdk-dotnet</PackageProjectUrl>
+        <NeutralLanguage>en</NeutralLanguage>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <AssemblyVersion>2.6.0.0</AssemblyVersion>
+        <FileVersion>2.6.0.0</FileVersion>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-  </ItemGroup>
+    <!-- Conditionally obtain references for the netstandard2.0 target -->
+    <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+        <PackageReference Include="System.Text.Json" Version="6.0.5" />
+    </ItemGroup>
 
 </Project>

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using CM.Text.BusinessMessaging.Model;
-using Newtonsoft.Json;
 
 namespace CM.Text.BusinessMessaging
 {
@@ -37,13 +37,13 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         internal static string GetHttpPostBody(Guid apiKey, Message message)
         {
-            return JsonConvert.SerializeObject(
+            return JsonSerializer.Serialize(
                 new
                 {
                     messages = new Request.MessagesEnvelope
                     {
-                        Authentication = new Request.Authentication {ProductToken = apiKey.ToString()},
-                        Messages = new List<Message> {message}.ToArray()
+                        Authentication = new Request.Authentication { ProductToken = apiKey.ToString() },
+                        Messages = new List<Message> { message }.ToArray()
                     }
                 }
             );
@@ -56,12 +56,12 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         internal static TextClientResult GetTextApiResult(string requestResultContent)
         {
-            var deserializedResponse = JsonConvert.DeserializeObject<Response.HttpResponseBody>(requestResultContent);
+            var deserializedResponse = JsonSerializer.Deserialize<Response.HttpResponseBody>(requestResultContent);
 
             return new TextClientResult
             {
                 statusMessage = deserializedResponse.details,
-                statusCode = (TextClientStatusCode) deserializedResponse.errorCode,
+                statusCode = (TextClientStatusCode)deserializedResponse.errorCode,
                 details = deserializedResponse.messages.Select(
                         message => new TextClientMessageDetail
                         {

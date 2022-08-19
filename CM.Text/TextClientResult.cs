@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 using JetBrains.Annotations;
-using Newtonsoft.Json;
 
 namespace CM.Text
 {
@@ -18,7 +18,7 @@ namespace CM.Text
         /// <value>
         ///     The details.
         /// </value>
-        [JsonProperty(Order = 2)]
+        [JsonPropertyOrder(2)]
         public IEnumerable<TextClientMessageDetail> details { get; set; }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace CM.Text
         /// <value>
         ///     The status code.
         /// </value>
-        [JsonProperty(Order = 1)]
+        [JsonPropertyOrder(1)]
         public TextClientStatusCode statusCode { get; set; }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace CM.Text
         /// <value>
         ///     The status message.
         /// </value>
-        [JsonProperty(Order = 0)]
+        [JsonPropertyOrder(0)]
         public string statusMessage { get; set; }
     }
 }

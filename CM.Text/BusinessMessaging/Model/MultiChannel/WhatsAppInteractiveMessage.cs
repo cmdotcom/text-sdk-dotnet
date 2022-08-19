@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -14,7 +14,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         /// Gets or sets the content of the WhatsApp interactive message
         /// </summary>
-        [JsonProperty("interactive")]
+        [JsonPropertyName("interactive")]
         public WhatsAppInteractiveContent whatsAppInteractiveContent { get; set; }
     }
 
@@ -31,25 +31,25 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// The Type that will be used,
         /// either list or button
         /// </summary>
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public string Type { get; set; }
         /// <summary>
         /// Source: https://developers.facebook.com/docs/whatsapp/guides/interactive-messages
         /// Your message’s header.
         /// </summary>
-        [JsonProperty("header")]
+        [JsonPropertyName("header")]
         public InteractiveHeader Header { get; set; }
         /// <summary>
         /// Source: https://developers.facebook.com/docs/whatsapp/guides/interactive-messages
         /// Required Your message’s body.
         /// </summary>
-        [JsonProperty("body")]
+        [JsonPropertyName("body")]
         public InteractiveBody Body { get; set; }
         /// <summary>
         /// Source: https://developers.facebook.com/docs/whatsapp/guides/interactive-messages
         /// Required Your message’s footer.
         /// </summary>
-        [JsonProperty("footer")]
+        [JsonPropertyName("footer")]
         public InteractiveFooter Footer { get; set; }
         /// <summary>
         /// Source: https://developers.facebook.com/docs/whatsapp/guides/interactive-messages
@@ -57,7 +57,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         ///a button field with your button’s content, and
         ///at least one section object (maximum of 10).
         /// </summary>
-        [JsonProperty("action")]
+        [JsonPropertyName("action")]
         public InteractiveAction Action { get; set; }
     }
 
@@ -72,21 +72,21 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// Required.  The header type you would like to use.Supported values are:
         ///text: Used for List Messages and Reply Buttons.
         /// </summary>
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public string Type { get; set; }
         /// <summary>
         /// Source: https://developers.facebook.com/docs/whatsapp/guides/interactive-messages
         /// Required if type is set to text.
         /// Text for the header.Formatting allows emojis, but not markdown.
         /// </summary>
-        [JsonProperty("text")]
+        [JsonPropertyName("text")]
         public string Text { get; set; }
 
         /// <summary>
         /// Source: https://developers.facebook.com/docs/whatsapp/guides/interactive-messages
         /// Gets or sets the media.
         /// </summary>
-        [JsonProperty("media")]
+        [JsonPropertyName("media")]
         public MediaContent Media { get; set; }
     }
 
@@ -102,7 +102,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// The body content of the message. Emojis and markdown are supported. Links are supported.
         /// Maximum length: 1024 characters.
         /// </summary>
-        [JsonProperty("text")]
+        [JsonPropertyName("text")]
         public string Text { get; set; }
     }
 
@@ -118,7 +118,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// The footer content. Emojis and markdown are supported. Links are supported.
         /// Maximum length: 60 characters
         /// </summary>
-        [JsonProperty("text")]
+        [JsonPropertyName("text")]
         public string Text { get; set; }
     }
 
@@ -134,19 +134,19 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// Button content. It cannot be an empty string and must be unique within the message 
         /// Does not allow emojis or markdown.
         /// </summary>
-        [JsonProperty("button")]
+        [JsonPropertyName("button")]
         public string Button { get; set; }
         /// <summary>
         /// Source: https://developers.facebook.com/docs/whatsapp/guides/interactive-messages
         /// Required for Reply Button Messages.
         /// </summary>
-        [JsonProperty("buttons")]
+        [JsonPropertyName("buttons")]
         public InteractiveButton[] Buttons { get; set; }
         /// <summary>
         /// Source: https://developers.facebook.com/docs/whatsapp/guides/interactive-messages
         /// Required for List Messages.
         /// </summary>
-        [JsonProperty("sections")]
+        [JsonPropertyName("sections")]
         public InteractiveSection[] Sections { get; set; }
     }
 
@@ -160,27 +160,27 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// Source: https://developers.facebook.com/docs/whatsapp/guides/interactive-messages
         /// type: only supported type is reply (for Reply Button Messages).
         /// </summary>
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public string Type { get; set; }
         /// <summary>
         /// Source: https://developers.facebook.com/docs/whatsapp/guides/interactive-messages
         /// Button title.It cannot be an empty string and must be unique within the message. 
         /// Does not allow emojis or markdown. Maximum length: 20 characters.
         /// </summary>
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
         /// <summary>
         /// Source: https://developers.facebook.com/docs/whatsapp/guides/interactive-messages
         /// id: Unique identifier for your button. This ID is returned in the webhook when the button is clicked by the user.
         /// Maximum length: 256 characters.
         /// </summary>
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
         /// <summary>
         /// Source: https://developers.facebook.com/docs/whatsapp/guides/interactive-messages
         /// Reply Message for your button.
         /// </summary>
-        [JsonProperty("reply")]
+        [JsonPropertyName("reply")]
         public ReplyMessage Reply { get; set; }
     }
 
@@ -194,13 +194,13 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// Source: https://developers.facebook.com/docs/whatsapp/guides/interactive-messages
         /// id: Unique identifier for your reply message.
         /// </summary>
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
         /// <summary>
         /// Source: https://developers.facebook.com/docs/whatsapp/guides/interactive-messages
         /// title: title for your reply button.
         /// </summary>
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
     }
 
@@ -215,13 +215,13 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// Title of the section.
         /// Maximum length: 24 characters.
         /// </summary>
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
         /// <summary>
         /// Source: https://developers.facebook.com/docs/whatsapp/guides/interactive-messages
         /// Contains a list of rows.    
         /// </summary>
-        [JsonProperty("rows")]
+        [JsonPropertyName("rows")]
         public Rows[] Rows { get; set; }
     }
 
@@ -235,19 +235,19 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// Source: https://developers.facebook.com/docs/whatsapp/guides/interactive-messages
         /// Title of the row. 
         /// </summary>
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
         /// <summary>
         /// Source: https://developers.facebook.com/docs/whatsapp/guides/interactive-messages
         /// Id of the row. 
         /// </summary>
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
         /// <summary>
         /// Source: https://developers.facebook.com/docs/whatsapp/guides/interactive-messages
         /// Description of the row. 
         /// </summary>
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
     }
 }

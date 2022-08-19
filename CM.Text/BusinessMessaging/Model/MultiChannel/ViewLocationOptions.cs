@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -12,7 +12,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         ///     Optional: The label to display at the pin
         /// </summary>
-        [JsonProperty("label")]
+        [JsonPropertyName("label")]
         public string Label { get; set; }
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         /// <example>51.603802</example>
         /// <remarks>Either Latitude and <see cref="Longitude" /> or <see cref="SearchQuery" /> is required </remarks>
-        [JsonProperty("latitude")]
+        [JsonPropertyName("latitude")]
         public string Latitude { get; set; }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         /// <example>4.770821</example>
         /// <remarks>Either <see cref="Latitude" /> and Longitude or <see cref="SearchQuery" /> is required </remarks>
-        [JsonProperty("longitude")]
+        [JsonPropertyName("longitude")]
         public string Longitude { get; set; }
 
         /// <summary>
@@ -38,13 +38,13 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         ///     Either <see cref="Latitude" /> and <see cref="Longitude" /> or SearchQuery is required.
         ///     For other connections both may be required.
         /// </remarks>
-        [JsonProperty("searchQuery")]
+        [JsonPropertyName("searchQuery")]
         public string SearchQuery { get; set; }
 
         /// <summary>
         /// Can be used in some <see cref="Channel.RCS"/> connections to display a radius instead of only a pointer
         /// </summary>
-        [JsonProperty("radius")]
+        [JsonPropertyName("radius")]
         public int? Radius { get; set; }
     }
 }

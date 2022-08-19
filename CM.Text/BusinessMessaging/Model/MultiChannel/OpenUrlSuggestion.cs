@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -16,7 +16,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         ///     The action of this suggestion
         /// </summary>
-        [JsonProperty("action")]
+        [JsonPropertyName("action")]
         public override string Action => "openUrl";
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         ///     For <see cref="Channel.RCS" /> this can be an in-app link,
         ///     which will only be shown when the app is installed.
         /// </remarks>
-        [JsonProperty("url")]
+        [JsonPropertyName("url")]
         public string Url { get; set; }
     }
 }

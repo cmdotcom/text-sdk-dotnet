@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -10,17 +10,17 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         /// (Required) A short, localized description of the line item.
         /// </summary>
-        [JsonProperty("label")]
+        [JsonPropertyName("label")]
         public string Label { get; set; }
         /// <summary>
         /// A value that indicates whether the line item is final or pending.
         /// </summary>
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public string Type { get; set; }
         /// <summary>
         /// (Required) The monetary amount of the line item.
         /// </summary>
-        [JsonProperty("amount")]
+        [JsonPropertyName("amount")]
         public decimal Amount { get; set; }
     }
 }
