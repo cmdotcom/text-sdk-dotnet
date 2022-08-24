@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
     <Authors>CM Text</Authors>
     <Company>CM.com</Company>
     <Product>CM Text SDK</Product>
@@ -9,7 +9,7 @@
     <PackageTags>messaging, text, sms, email, push, whatsapp, viber, wechat, rcs, voice, business messaging, telegram, conversational, sms chat, chat, sms 2.0, rbm, mms, rich sms, rich communication services, telegram</PackageTags>
     <RepositoryUrl>https://github.com/cmdotcom/text-sdk-dotnet</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
-    <Copyright>2020 CM.com</Copyright>
+    <Copyright>2022 CM.com</Copyright>
     <PackageLicenseUrl>https://mit-license.org</PackageLicenseUrl>
     <PackageReleaseNotes>See CHANGELOG.md for details</PackageReleaseNotes>
     <Version>2.5.1</Version>
@@ -29,13 +29,14 @@
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
   </PropertyGroup>
 
-    <ItemGroup>
-        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-            <_Parameter1>CM.Text.Tests</_Parameter1>
-        </AssemblyAttribute>
-    </ItemGroup>
-
   <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>CM.Text.NET6.Tests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <!-- Conditionally obtain references for the netstandard2.0 target -->
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <PackageReference Include="System.Text.Json" Version="6.0.5" />
   </ItemGroup>
 

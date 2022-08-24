@@ -1,6 +1,4 @@
-﻿using System.Text.Json;
-using CM.Text.BusinessMessaging;
-using CM.Text.BusinessMessaging.Model;
+﻿using CM.Text.BusinessMessaging;
 using FluentAssertions;
 
 namespace CM.Text.Tests

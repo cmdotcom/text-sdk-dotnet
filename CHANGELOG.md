@@ -8,8 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - System.Text.Json, replaces Newtsonsoft, possibly breaking
 - Add Telegram as tag for the project
+- Multi target to .NET 6 and use .NET 6 included System.Text.Json
 ### Changed
-- Enable Treat Warnings as Errors to adhere to code guidelines
+- Enable "Treat Warnings as Errors" to adhere to code guidelines
 ### Removed 
 - Newtsonsoft.Json dependency
 
