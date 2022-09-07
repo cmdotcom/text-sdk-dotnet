@@ -4,7 +4,7 @@
 
 # CM Text SDK
 A software development kit to provide ways to interact with CM.com's Text service. API's used:
-- [Business Messaging](https://www.cm.com/en-en/app/docs/api/business-messaging-api/1.0/index)
+- [Business Messaging](https://developers.cm.com/messaging/docs)
 
 # Usage
 
