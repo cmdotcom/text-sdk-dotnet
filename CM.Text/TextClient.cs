@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using CM.Text.BusinessMessaging;
 using CM.Text.BusinessMessaging.Model;
+using CM.Text.Common;
 using JetBrains.Annotations;
 
 namespace CM.Text
@@ -120,13 +121,13 @@ namespace CM.Text
         {
             using (var request = new HttpRequestMessage(
                        HttpMethod.Post,
-                       this._endPointOverride ?? new Uri(BusinessMessagingApi.Constant.BusinessMessagingGatewayJsonEndpoint)
+                       this._endPointOverride ?? new Uri(Constant.BusinessMessagingGatewayJsonEndpoint)
                    ))
             {
                 request.Content = new StringContent(
                     BusinessMessagingApi.GetHttpPostBody(this._apiKey, messageText, from, to, reference),
                     Encoding.UTF8,
-                    BusinessMessagingApi.Constant.BusinessMessagingGatewayMediaTypeJson
+                    Constant.BusinessMessagingGatewayMediaTypeJson
                 );
 
                 using (var requestResult = await this._httpClient.SendAsync(request, cancellationToken)
@@ -155,13 +156,13 @@ namespace CM.Text
         {
             using (var request = new HttpRequestMessage(
                 HttpMethod.Post,
-                this._endPointOverride ?? new Uri(BusinessMessagingApi.Constant.BusinessMessagingGatewayJsonEndpoint)
+                this._endPointOverride ?? new Uri(Constant.BusinessMessagingGatewayJsonEndpoint)
             ))
             {
                 request.Content = new StringContent(
                     BusinessMessagingApi.GetHttpPostBody(this._apiKey, message),
                     Encoding.UTF8,
-                    BusinessMessagingApi.Constant.BusinessMessagingGatewayMediaTypeJson
+                    Constant.BusinessMessagingGatewayMediaTypeJson
                 );
 
                 using (var requestResult = await this._httpClient.SendAsync(request, cancellationToken)

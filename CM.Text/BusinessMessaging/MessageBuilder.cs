@@ -29,7 +29,7 @@ namespace CM.Text.BusinessMessaging
                 Body = new Body
                 {
                     Content = messageText,
-                    Type = BusinessMessagingApi.Constant.BusinessMessagingBodyTypeAuto
+                    Type = Constant.BusinessMessagingBodyTypeAuto
                 },
                 Recipients = to.Select(toEntry => new Recipient { Number = toEntry })
                     .ToArray(),
