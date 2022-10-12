@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed 
 - Newtsonsoft.Json dependency
 
+## [2.5.1] - 2022-10-12
+- Upped Newtonsoft.Json
+
 ## [2.5.0] - 2022-06-17
 - Add Telegram
 
