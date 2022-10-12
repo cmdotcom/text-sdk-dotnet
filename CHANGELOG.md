@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Multi target to .NET 6 and use .NET 6 included System.Text.Json
 ### Changed
 - Enable "Treat Warnings as Errors" to adhere to code guidelines
+- Give internal response body messagerrorcode the correct type
 ### Removed 
 - Newtsonsoft.Json dependency
 
