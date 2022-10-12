@@ -56,7 +56,7 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         internal static TextClientResult GetTextApiResult(string requestResultContent)
         {
-            var deserializedResponse = JsonSerializer.Deserialize<Response.HttpResponseBody>(requestResultContent);
+            var deserializedResponse = JsonSerializer.Deserialize<HttpResponseBody>(requestResultContent);
 
             return new TextClientResult
             {
