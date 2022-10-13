@@ -8,11 +8,18 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C893F008-8E43-4C38-ABF4-FA88F5549906}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		CHANGELOG.md = CHANGELOG.md
+		CM.Text\CHANGELOG.md = CM.Text\CHANGELOG.md
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CM.Text.NET6.Tests", "CM.Text.NET6.Tests\CM.Text.NET6.Tests.csproj", "{5389A890-EBC2-45F0-95E3-374B0BD239FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{8AC75C4D-CF2F-4E5F-85D2-4BB92C8ED1DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{83568C54-6C9B-4579-BC2A-E6739DE072D5}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\validate.yml = .github\workflows\validate.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +38,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{83568C54-6C9B-4579-BC2A-E6739DE072D5} = {8AC75C4D-CF2F-4E5F-85D2-4BB92C8ED1DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {33F57A4C-CDF2-44F4-8F81-45D5C71E3DE1}
