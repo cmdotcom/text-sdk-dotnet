@@ -10,7 +10,7 @@
     <RepositoryUrl>https://github.com/cmdotcom/text-sdk-dotnet</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
     <Copyright>2022 CM.com</Copyright>
-    <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))</PackageReleaseNotes>
+    <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../CHANGELOG.md"))</PackageReleaseNotes>
     <PackageLicenseUrl>https://mit-license.org</PackageLicenseUrl>
     <Version>2.5.1</Version>
     <PackageIconUrl>https://static.cmtelecom.com/images/cm-nuget.png</PackageIconUrl>
@@ -51,12 +51,6 @@
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <PackageReference Include="System.Text.Json" Version="6.0.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="CHANGELOG.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
