@@ -44,12 +44,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
     <WarningLevel>9999</WarningLevel>
   </PropertyGroup>
-
-  <ItemGroup>
-    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-      <_Parameter1>CM.Text.NET6.Tests</_Parameter1>
-    </AssemblyAttribute>
-  </ItemGroup>
+    
+    <ItemGroup>
+        <InternalsVisibleTo Include="CM.Text.NET6.Tests" />
+    </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <PackageReference Include="System.Text.Json" Version="6.0.6" />
