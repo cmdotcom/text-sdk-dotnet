@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enable "Treat Warnings as Errors" to adhere to code guidelines
 - Give internal response body messagerrorcode the correct type
 - Some internal refactoring
+- Changed PackageIconUrl > PackageIcon and added icon manually as it PackageIconUrl was deprecated
 ### Removed 
 - Newtsonsoft.Json dependency
 
