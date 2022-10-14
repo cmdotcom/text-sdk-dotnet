@@ -1,4 +1,4 @@
-[![Build](https://img.shields.io/appveyor/ci/cmdotcom/text-sdk-dotnet/master.svg "Build Status")](https://ci.appveyor.com/project/cmdotcom/text-sdk-dotnet/branch/master)
+[![.NET build & tests](https://github.com/cmdotcom/text-sdk-dotnet/actions/workflows/main.yml/badge.svg)](https://github.com/cmdotcom/text-sdk-dotnet/actions/workflows/main.yml)
 [![NuGetV](https://img.shields.io/nuget/v/CM.Text.svg "NuGet Version")](https://www.nuget.org/packages/CM.Text)
 [![NuGetDownloads](https://img.shields.io/nuget/dt/CM.Text.svg "NuGet downloads")](https://www.nuget.org/packages/CM.Text)
 
