@@ -16,6 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed 
 - Newtsonsoft.Json dependency
 
+## [2.5.2] - 2022-10-14
+- Enable nupkg generation in project
+
 ## [2.5.1] - 2022-10-12
 - Upped Newtonsoft.Json
 
