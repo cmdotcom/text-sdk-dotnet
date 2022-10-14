@@ -5,8 +5,8 @@ on:
     types: created
 
 jobs:
-  build:
-
+  nugetpush:
+    name: Build, test and push to nuget
     runs-on: ubuntu-latest
 
     steps:
