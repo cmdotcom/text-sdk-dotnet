@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using CM.Text.Interfaces;
 using JetBrains.Annotations;
 
 namespace CM.Text

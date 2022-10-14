@@ -5,7 +5,7 @@
     <Authors>CM Text</Authors>
     <Company>CM.com</Company>
     <Product>CM Text SDK</Product>
-    <Description>A software development kit to provide ways to interact with CM.com's Text service.</Description>
+    <Description>A software development kit to provide ways to interact with CM.com's Text/messaging service.</Description>
     <PackageTags>messaging, text, sms, email, push, whatsapp, viber, wechat, rcs, voice, business messaging, telegram, conversational, sms chat, chat, sms 2.0, rbm, mms, rich sms, rich communication services, telegram</PackageTags>
     <RepositoryUrl>https://github.com/cmdotcom/text-sdk-dotnet</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
