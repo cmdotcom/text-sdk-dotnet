@@ -1,4 +1,6 @@
 ﻿using CM.Text.BusinessMessaging;
+using CM.Text.BusinessMessaging.Model;
+using CM.Text.BusinessMessaging.Model.MultiChannel;
 using FluentAssertions;
 
 namespace CM.Text.NET6.Tests
@@ -27,6 +29,37 @@ namespace CM.Text.NET6.Tests
             data.Should().Contain(reference);
             data.Should().Contain(number1);
             data.Should().Contain(number2);
+        }
+
+        [TestMethod]
+        public void TestRichPostBody()
+        {
+            var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_PhoneNumber");
+
+            var mediaName = "cm.com icon";
+            var mediaUri = "https://avatars3.githubusercontent.com/u/8234794";
+            var mediaType = "image/png";
+
+            builder
+                .WithAllowedChannels(Channel.WhatsApp)
+                .WithRichMessage(
+                    new MediaMessage(
+                        mediaName,
+                        mediaUri,
+                        mediaType
+                    )
+                );
+            var message = builder.Build();
+
+            Guid fakeApiKey = Guid.NewGuid();
+            var data = BusinessMessagingApi.GetHttpPostBody(fakeApiKey, message);
+
+            data.Should().NotBeNull();
+            //Simple to check if all values survived our logic
+            data.Should().Contain(fakeApiKey.ToString(), "the api key should be present in the body");
+            data.Should().Contain(mediaName, "the media name needs to be sent");
+            data.Should().Contain(mediaType, "the media type has to be sent");
+            data.Should().Contain(mediaUri, "the media url has to be sent");
         }
 
 

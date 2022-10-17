@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Give internal response body messagerrorcode the correct type
 - Some internal refactoring
 - Changed PackageIconUrl > PackageIcon and added icon manually as it PackageIconUrl was deprecated
+- Change RichContent interface to support derived types
 ### Removed 
 - Newtsonsoft.Json dependency
 
