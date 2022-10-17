@@ -31,7 +31,7 @@ namespace CM.Text.BusinessMessaging.Model
 
         /// <summary>
         ///     Sends messages to push using Hybrid messages.
-        ///     See also https://docs.cmtelecom.com/en/hybrid-messaging/v2.0.0
+        ///     See also https://developers.cm.com/messaging/docs
         /// </summary>
         /// <remarks>Works only when <see cref="Message.HybridAppKey" /> is set</remarks>
         Push,

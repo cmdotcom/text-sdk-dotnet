@@ -133,7 +133,7 @@ namespace CM.Text.BusinessMessaging
         }
 
         /// <summary>
-        ///     Used for Hybrid messaging, see https://docs.cmtelecom.com/en/hybrid-messaging/v2.0.0 for more information
+        ///     Used for Hybrid messaging, see https://developers.cm.com/messaging/docs for more information
         ///     Messages will be sent over the <see cref="Channel.Push" /> channel.
         /// </summary>
         public MessageBuilder WitHybridAppKey(Guid appKey)
