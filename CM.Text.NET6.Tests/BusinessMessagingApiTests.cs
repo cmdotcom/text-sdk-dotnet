@@ -67,7 +67,20 @@ namespace CM.Text.NET6.Tests
         public void TestResponseBody()
         {
             var guid = Guid.NewGuid();
-            var message = "{\r\n    \"details\": \"Created 1 message(s)\",\r\n    \"errorCode\": 0,\r\n    \"messages\": [\r\n        {\r\n            \"to\": \"0031612345678\",\r\n            \"status\": \"Accepted\",\r\n            \"reference\": \"test-reference-1\",\r\n            \"parts\": 1,\r\n            \"messageDetails\": null,\r\n            \"messageErrorCode\": 0\r\n        }\r\n    ]\r\n}";
+            // Arrange
+            string message = @"{
+                ""messages"": [{
+                    ""to"": ""0031612345678"",
+                    ""parts"": 1,
+                    ""status"": ""Accepted"",
+                    ""reference"": ""test-reference-1"",
+                    ""messageErrorCode"": 0,
+                    ""messageDetails"": null
+                }],
+                ""details"": ""Created 1 message(s)"",
+                ""errorCode"": 0
+            }";
+
 
             var data = BusinessMessagingApi.GetTextApiResult(message);
 
