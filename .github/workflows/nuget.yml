@@ -21,5 +21,9 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: Publish
+    - name: Publish to Nuget.org
       run: dotnet nuget push **/*.nupkg --api-key ${{ secrets.nuget_apikey }} -s https://api.nuget.org/v3/index.json
+    - name: Add Github Packages source
+      run: dotnet nuget add source --username cmdotcom --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/cmdotcom/index.json"
+    - name: Publish to Github Packages
+      run: dotnet nuget push **/*.nupkg -s github
