@@ -59,7 +59,7 @@
   </PropertyGroup>
     
     <ItemGroup>
-        <InternalsVisibleTo Include="CM.Text.NET6.Tests" />
+        <InternalsVisibleTo Include="CM.Text.Tests" />
     </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
