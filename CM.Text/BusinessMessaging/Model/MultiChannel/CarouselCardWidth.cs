@@ -1,6 +1,5 @@
-﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+﻿using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -8,7 +7,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     ///     Used by a <see cref="Carousel" /> to set the width
     /// </summary>
     [PublicAPI]
-    [JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum CarouselCardWidth
     {
         /// <summary>

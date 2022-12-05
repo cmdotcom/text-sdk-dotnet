@@ -1,5 +1,5 @@
-﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
 namespace CM.Text.BusinessMessaging.Model
 {
@@ -13,7 +13,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     This value should be in international format.
         ///     A single mobile number per request. Example: '00447911123456'
         /// </summary>
-        [JsonProperty("number")]
+        [JsonPropertyName("number")]
         public string Number { get; set; }
     }
 }

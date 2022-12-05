@@ -1,5 +1,5 @@
-﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -30,19 +30,19 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         ///     A plain text message, when used it replaces the 'SMS' body text.
         ///     In <see cref="Channel.RCS"/>, when used in combination with an header and/or media this will be set as the text of a rich card.
         /// </summary>
-        [JsonProperty("text")]
+        [JsonPropertyName("text")]
         public string Text { get; set; }
 
         /// <summary>
         ///     Tag to send important and/or personally relevant 1:1 updates to recipients. E.g. to notify a recipient of an update on a recent purchase.
         /// </summary>
-        [JsonProperty("tag")]
+        [JsonPropertyName("tag")]
         public string Tag { get; set; }
 
         /// <summary>
         ///     The suggestions of a text message.
         /// </summary>
-        [JsonProperty("suggestions")]
+        [JsonPropertyName("suggestions")]
         public SuggestionBase[] Suggestions { get; set; }
     }
 }

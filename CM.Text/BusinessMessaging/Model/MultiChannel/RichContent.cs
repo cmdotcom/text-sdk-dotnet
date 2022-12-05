@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 using JetBrains.Annotations;
-using Newtonsoft.Json;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -23,13 +23,13 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         ///     The messages.
         /// </summary>
-        [JsonProperty("conversation")]
+        [JsonPropertyName("conversation")]
         public IRichMessage[] Conversation { get; set; }
 
         /// <summary>
         ///     The suggestions
         /// </summary>
-        [JsonProperty("suggestions")]
+        [JsonPropertyName("suggestions")]
         public SuggestionBase[] Suggestions { get; set; }
 
         /// <summary>

@@ -1,5 +1,5 @@
-﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -13,20 +13,20 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         ///     The action of this suggestion
         /// </summary>
-        [JsonProperty("action")]
+        [JsonPropertyName("action")]
         public virtual string Action { get; }
 
         /// <summary>
         ///     The text the end user will see
         /// </summary>
-        [JsonProperty("label")]
+        [JsonPropertyName("label")]
         public string Label { get; set; }
 
         /// <summary>
         ///     When the item is selected and the postback data is set, then the Postback data will be
         ///     sent in a MO instead of the <see cref="Label" />.
         /// </summary>
-        [JsonProperty("postbackdata")]
+        [JsonPropertyName("postbackdata")]
         public string PostbackData { get; set; }
     }
 }

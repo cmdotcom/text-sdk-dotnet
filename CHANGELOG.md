@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Added
+- System.Text.Json, replaces Newtsonsoft, possibly breaking
+- Add Telegram as tag for the project
+- Multi target to .NET 7 and use .NET 7 included System.Text.Json
+### Changed
+- Enable "Treat Warnings as Errors" to adhere to code guidelines
+- Give internal response body messagerrorcode the correct type
+- Some internal refactoring
+- Changed PackageIconUrl > PackageIcon and added icon manually as it PackageIconUrl was deprecated
+- Change RichContent interface to support derived types
+### Removed 
+- Newtsonsoft.Json dependency
+
 ## [2.5.2] - 2022-10-14
 - Enable nupkg generation in project
 

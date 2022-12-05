@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using CM.Text.BusinessMessaging.Model;
-using Newtonsoft.Json;
 
 namespace CM.Text.BusinessMessaging
 {
@@ -37,7 +37,7 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         internal static string GetHttpPostBody(Guid apiKey, Message message)
         {
-            return JsonConvert.SerializeObject(
+            return JsonSerializer.Serialize(
                 new
                 {
                     messages = new Request.MessagesEnvelope
@@ -56,7 +56,7 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         internal static TextClientResult GetTextApiResult(string requestResultContent)
         {
-            var deserializedResponse = JsonConvert.DeserializeObject<Response.HttpResponseBody>(requestResultContent);
+            var deserializedResponse = JsonSerializer.Deserialize<HttpResponseBody>(requestResultContent);
 
             return new TextClientResult
             {
@@ -74,15 +74,6 @@ namespace CM.Text.BusinessMessaging
                     )
                     .ToArray()
             };
-        }
-
-        internal static class Constant
-        {
-            internal const string BusinessMessagingGatewayJsonEndpoint = "https://gw.cmtelecom.com/v1.0/message";
-            internal const string BusinessMessagingGatewayMediaTypeJson = "application/json";
-            internal const string BusinessMessagingBodyTypeAuto = "AUTO";
-            internal const int BusinessMessagingMessagePartsMinDefault = 1;
-            internal const int BusinessMessagingMessagePartsMaxDefault = 8;
         }
     }
 }

@@ -1,19 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
     <Authors>CM Text</Authors>
     <Company>CM.com</Company>
     <Product>CM Text SDK</Product>
-    <Description>A software development kit to provide ways to interact with CM.com's Text service.</Description>
-    <PackageTags>messaging, text, sms, email, push, whatsapp, viber, wechat, rcs, voice, business messaging, telegram, conversational, sms chat, chat, sms 2.0, rbm, mms, rich sms, rich communication services</PackageTags>
+    <Description>A software development kit to provide ways to interact with CM.com's Text/messaging service.</Description>
+    <PackageTags>messaging, text, sms, email, push, whatsapp, viber, wechat, rcs, voice, business messaging, telegram, conversational, sms chat, chat, sms 2.0, rbm, mms, rich sms, rich communication services, telegram</PackageTags>
     <RepositoryUrl>https://github.com/cmdotcom/text-sdk-dotnet</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
-    <Copyright>2022 CM.com</Copyright>
-    <PackageLicenseUrl>https://mit-license.org</PackageLicenseUrl>
-    <PackageReleaseNotes>See CHANGELOG.md for details</PackageReleaseNotes>
-    <Version>2.5.2</Version>
-    <PackageIconUrl>http://static.cmtelecom.com/images/cm-nuget.png</PackageIconUrl>
+    <Copyright>$([System.DateTime]::UtcNow.Year) CM.com</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../CHANGELOG.md"))</PackageReleaseNotes>
+    <Version>2.6.0-pre</Version>
     <PackageProjectUrl>https://github.com/cmdotcom/text-sdk-dotnet</PackageProjectUrl>
     <NeutralLanguage>en</NeutralLanguage>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -22,8 +22,58 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
+    <WarningLevel>9999</WarningLevel>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <NoWarn>1701;1702;</NoWarn>
+    <WarningsNotAsErrors></WarningsNotAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0|AnyCPU'">
+    <WarningLevel>9999</WarningLevel>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <NoWarn>1701;1702;</NoWarn>
+    <WarningsNotAsErrors></WarningsNotAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
+    <WarningLevel>9999</WarningLevel>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <NoWarn>1701;1702;</NoWarn>
+    <WarningsNotAsErrors></WarningsNotAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+    <WarningLevel>9999</WarningLevel>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <NoWarn>1701;1702;</NoWarn>
+    <WarningsNotAsErrors></WarningsNotAsErrors>
+  </PropertyGroup>
+    
+    <ItemGroup>
+        <InternalsVisibleTo Include="CM.Text.NET6.Tests" />
+    </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <PackageReference Include="System.Text.Json" Version="7.0.0" />
+  </ItemGroup>
+
+    <ItemGroup>
+    <None Update="../CHANGELOG.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+      
+    <None Include="$(MSBuildProjectDirectory)/../icon.png" Pack="true" Visible="false" PackagePath="" />
+    <None Include="$(MSBuildProjectDirectory)/../LICENSE" Pack="true" PackagePath="" />
+
   </ItemGroup>
 
 </Project>

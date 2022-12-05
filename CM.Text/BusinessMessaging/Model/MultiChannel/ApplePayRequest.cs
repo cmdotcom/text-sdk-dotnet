@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -10,7 +10,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         /// Gets or sets the apple pay configuration.
         /// </summary>
-        [JsonProperty("payment")]
+        [JsonPropertyName("payment")]
         public ApplePayConfiguration ApplePayConfiguration { get; set; }
     }
 }

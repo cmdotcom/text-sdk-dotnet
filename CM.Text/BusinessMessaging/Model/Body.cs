@@ -1,5 +1,5 @@
-﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
 namespace CM.Text.BusinessMessaging.Model
 {
@@ -22,7 +22,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     Another note is that not all operators in the world are able to handle Unicode messages, so you will need to test
         ///     for which operators it works.
         /// </summary>
-        [JsonProperty("content")]
+        [JsonPropertyName("content")]
         public string Content { get; set; }
 
         /// <summary>
@@ -34,7 +34,8 @@ namespace CM.Text.BusinessMessaging.Model
         ///     You can limit the number of parts by setting the maximum number of message parts.
         ///     <see cref="Message.MaximumNumberOfMessageParts" />
         /// </summary>
-        [JsonProperty("type", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        [JsonPropertyName("type")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Type { get; set; }
     }
 }

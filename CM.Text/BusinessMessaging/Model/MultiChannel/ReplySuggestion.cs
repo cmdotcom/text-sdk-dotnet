@@ -1,5 +1,5 @@
-﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
@@ -12,7 +12,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         ///     The action of this suggestion
         /// </summary>
-        [JsonProperty("action")]
+        [JsonPropertyName("action")]
         public override string Action => "reply";
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <remarks>
         ///     For <see cref="Channel.Twitter" />
         /// </remarks>
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <remarks>
         ///     For <see cref="Channel.FacebookMessenger" />
         /// </remarks>
-        [JsonProperty("media")]
+        [JsonPropertyName("media")]
         public MediaContent Media { get; set; }
     }
 }

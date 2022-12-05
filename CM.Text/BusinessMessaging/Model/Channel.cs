@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 using JetBrains.Annotations;
 
 namespace CM.Text.BusinessMessaging.Model
@@ -12,6 +13,7 @@ namespace CM.Text.BusinessMessaging.Model
     ///     For those flows to work, we need to be contacted.
     /// </remarks>
     [PublicAPI]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Channel
     {
         /// <summary>
@@ -29,7 +31,7 @@ namespace CM.Text.BusinessMessaging.Model
 
         /// <summary>
         ///     Sends messages to push using Hybrid messages.
-        ///     See also https://docs.cmtelecom.com/en/hybrid-messaging/v2.0.0
+        ///     See also https://developers.cm.com/messaging/docs
         /// </summary>
         /// <remarks>Works only when <see cref="Message.HybridAppKey" /> is set</remarks>
         Push,
