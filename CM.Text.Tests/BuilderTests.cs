@@ -3,7 +3,7 @@ using CM.Text.BusinessMessaging.Model;
 using CM.Text.BusinessMessaging.Model.MultiChannel;
 using FluentAssertions;
 
-namespace CM.Text.NET6.Tests
+namespace CM.Text.Tests
 {
     [TestClass]
     public class BuilderTests
