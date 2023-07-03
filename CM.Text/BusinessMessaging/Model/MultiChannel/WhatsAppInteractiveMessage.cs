@@ -148,6 +148,20 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         [JsonPropertyName("sections")]
         public InteractiveSection[] Sections { get; set; }
+        /// <summary>
+        /// Source: https://developers.facebook.com/docs/whatsapp/on-premises/reference/messages#action-object
+        /// Product’s unique identifier
+        /// Required for Single-Product Messages and Multi-Product Messages.
+        /// </summary>
+        [JsonPropertyName("product_retailer_id")]
+        public string ProductRetailerId { get; set; }
+        /// <summary>
+        /// Source: https://developers.facebook.com/docs/whatsapp/on-premises/reference/messages#action-object
+        /// Unique identifier of the Facebook catalog linked to your WhatsApp Business
+        /// Required for Single-Product Messages and Multi-Product Messages.
+        /// </summary>
+        [JsonPropertyName("catalog_id")]
+        public string CatalogId { get; set; }
     }
 
     /// <summary>
@@ -223,6 +237,13 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         [JsonPropertyName("rows")]
         public Rows[] Rows { get; set; }
+        /// <summary>
+        /// Source: https://developers.facebook.com/docs/whatsapp/on-premises/reference/messages#action-object
+        /// Array of product objects. There is a minimum of 1 product per section and a maximum of 30 products across all sections.
+        /// Required for Multi-Product Messages.
+        /// </summary>
+        [JsonPropertyName("product_items")]
+        public WhatsAppProduct[] ProductItems { get; set; }
     }
 
     /// <summary>
@@ -249,5 +270,18 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         [JsonPropertyName("description")]
         public string Description { get; set; }
+    }
+
+    /// <summary>
+    /// https://developers.facebook.com/docs/whatsapp/on-premises/reference/messages#action-object
+    /// Required for Multi-Product Messages.
+    /// </summary>
+    public class WhatsAppProduct
+    {
+        /// <summary>
+        /// Unique identifier of the product in a catalog
+        /// </summary>
+        [JsonPropertyName("product_retailer_id")]
+        public string ProductRetailerId { get; set; }
     }
 }
