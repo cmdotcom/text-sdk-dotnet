@@ -2,7 +2,7 @@ name: .NET nuget publish
 
 on:
   release:
-    types: published
+    types: released
 
 jobs:
   nugetpush:
