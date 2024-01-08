@@ -35,14 +35,14 @@ namespace CM.Text
         /// <param name="endPointOverride">(Optional) The end point to use, instead of the default "https://gw.cmtelecom.com/v1.0/message".</param>
         public TextClientFactory(HttpClient httpClient, Uri endPointOverride = null)
         {
-            this._httpClient = httpClient;
-            this._endPointOverride = endPointOverride;
+            _httpClient = httpClient;
+            _endPointOverride = endPointOverride;
         }
 
         /// <inheritdoc />
         public ITextClient GetClient(Guid productToken)
         {
-            return new TextClient(productToken, this._httpClient, this._endPointOverride);
+            return new TextClient(productToken, _httpClient, _endPointOverride);
         }
     }
 }

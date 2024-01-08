@@ -25,7 +25,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <param name="mimeType"></param>
         public MediaMessage(string mediaName, string mediaUri, string mimeType)
         {
-            this.Media = new MediaContent(mediaName, mediaUri, mimeType);
+            Media = new MediaContent(mediaName, mediaUri, mimeType);
         }
 
         /// <summary>

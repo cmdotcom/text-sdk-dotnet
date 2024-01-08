@@ -24,7 +24,7 @@ namespace CM.Text.BusinessMessaging
         /// <param name="to"></param>
         public MessageBuilder(string messageText, string from, params string[] to)
         {
-            this._message = new Message
+            _message = new Message
             {
                 Body = new Body
                 {
@@ -44,8 +44,8 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         public Message Build()
         {
-            this._message.RichContent = this._richContent;
-            return this._message;
+            _message.RichContent = _richContent;
+            return _message;
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace CM.Text.BusinessMessaging
         /// </remarks>
         public MessageBuilder WithAllowedChannels(params Channel[] channels)
         {
-            this._message.AllowedChannels = channels;
+            _message.AllowedChannels = channels;
             return this;
         }
 
@@ -70,7 +70,7 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         public MessageBuilder WithReference(string reference)
         {
-            this._message.Reference = reference;
+            _message.Reference = reference;
             return this;
         }
 
@@ -97,7 +97,7 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         public MessageBuilder WithValidityPeriod(string period)
         {
-            this._message.Validity = period;
+            _message.Validity = period;
             return this;
         }
 
@@ -110,10 +110,10 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         public MessageBuilder WithRichMessage(IRichMessage richMessage)
         {
-            if (this._richContent == null)
-                this._richContent = new RichContent();
+            if (_richContent == null)
+                _richContent = new RichContent();
 
-            this._richContent.AddConversationPart(richMessage);
+            _richContent.AddConversationPart(richMessage);
             return this;
         }
 
@@ -125,10 +125,10 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         public MessageBuilder WithSuggestions(params SuggestionBase[] suggestions)
         {
-            if (this._richContent == null)
-                this._richContent = new RichContent();
+            if (_richContent == null)
+                _richContent = new RichContent();
 
-            this._richContent.Suggestions = suggestions;
+            _richContent.Suggestions = suggestions;
             return this;
         }
 
@@ -138,7 +138,7 @@ namespace CM.Text.BusinessMessaging
         /// </summary>
         public MessageBuilder WitHybridAppKey(Guid appKey)
         {
-            this._message.HybridAppKey = appKey;
+            _message.HybridAppKey = appKey;
             return this;
         }
 
@@ -150,10 +150,10 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         public MessageBuilder WithTemplate(TemplateMessage template)
         {
-            if (this._richContent == null)
-                this._richContent = new RichContent();
+            if (_richContent == null)
+                _richContent = new RichContent();
 
-            this._richContent.AddConversationPart(template);
+            _richContent.AddConversationPart(template);
             return this;
         }
 
@@ -164,10 +164,10 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         public MessageBuilder WithInteractive(WhatsAppInteractiveMessage interactive)
         {
-            if (this._richContent == null)
-                this._richContent = new RichContent();
+            if (_richContent == null)
+                _richContent = new RichContent();
 
-            this._richContent.AddConversationPart(interactive);
+            _richContent.AddConversationPart(interactive);
             return this;
         }
 
@@ -178,10 +178,10 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         public MessageBuilder WithApplePay(ApplePayRequest applePayRequest)
         {
-            if (this._richContent == null)
-                this._richContent = new RichContent();
+            if (_richContent == null)
+                _richContent = new RichContent();
 
-            this._richContent.AddConversationPart(applePayRequest);
+            _richContent.AddConversationPart(applePayRequest);
             return this;
         }
     }

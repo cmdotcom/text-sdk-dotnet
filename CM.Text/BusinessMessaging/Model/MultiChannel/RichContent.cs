@@ -16,8 +16,8 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         public RichContent()
         {
-            this.Conversation = null;
-            this.Suggestions = null;
+            Conversation = null;
+            Suggestions = null;
         }
 
         /// <summary>
@@ -38,14 +38,14 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <param name="part"></param>
         public void AddConversationPart(IRichMessage part)
         {
-            if (this.Conversation == null)
-                this.Conversation = new[] {part};
+            if (Conversation == null)
+                Conversation = new[] {part};
             else
             {
-                var newArr = this.Conversation;
-                Array.Resize(ref newArr, this.Conversation.Length + 1);
+                var newArr = Conversation;
+                Array.Resize(ref newArr, Conversation.Length + 1);
                 newArr[newArr.Length - 1] = part;
-                this.Conversation = newArr;
+                Conversation = newArr;
             }
         }
 
@@ -55,14 +55,14 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <param name="suggestion"></param>
         public void AddSuggestion(SuggestionBase suggestion)
         {
-            if (this.Suggestions == null)
-                this.Suggestions = new[] {suggestion};
+            if (Suggestions == null)
+                Suggestions = new[] {suggestion};
             else
             {
-                var newArr = this.Suggestions;
-                Array.Resize(ref newArr, this.Suggestions.Length + 1);
+                var newArr = Suggestions;
+                Array.Resize(ref newArr, Suggestions.Length + 1);
                 newArr[newArr.Length - 1] = suggestion;
-                this.Suggestions = newArr;
+                Suggestions = newArr;
             }
         }
     }

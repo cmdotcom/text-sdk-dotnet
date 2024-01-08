@@ -150,7 +150,7 @@ namespace JetBrains.Annotations
         /// </param>
         public StringFormatMethodAttribute([NotNull] string formatParameterName)
         {
-            this.FormatParameterName = formatParameterName;
+            FormatParameterName = formatParameterName;
         }
 
         [NotNull]
@@ -166,7 +166,7 @@ namespace JetBrains.Annotations
     {
         public ValueProviderAttribute([NotNull] string name)
         {
-            this.Name = name;
+            Name = name;
         }
 
         [NotNull]
@@ -257,7 +257,7 @@ namespace JetBrains.Annotations
 
         public NotifyPropertyChangedInvocatorAttribute([NotNull] string parameterName)
         {
-            this.ParameterName = parameterName;
+            ParameterName = parameterName;
         }
 
         [CanBeNull]
@@ -328,8 +328,8 @@ namespace JetBrains.Annotations
 
         public ContractAnnotationAttribute([NotNull] string contract, bool forceFullStates)
         {
-            this.Contract = contract;
-            this.ForceFullStates = forceFullStates;
+            Contract = contract;
+            ForceFullStates = forceFullStates;
         }
 
         [NotNull]
@@ -358,7 +358,7 @@ namespace JetBrains.Annotations
 
         public LocalizationRequiredAttribute(bool required)
         {
-            this.Required = required;
+            Required = required;
         }
 
         public bool Required { get; }
@@ -410,7 +410,7 @@ namespace JetBrains.Annotations
     {
         public BaseTypeRequiredAttribute([NotNull] Type baseType)
         {
-            this.BaseType = baseType;
+            BaseType = baseType;
         }
 
         [NotNull]
@@ -440,8 +440,8 @@ namespace JetBrains.Annotations
 
         public UsedImplicitlyAttribute(ImplicitUseKindFlags useKindFlags, ImplicitUseTargetFlags targetFlags)
         {
-            this.UseKindFlags = useKindFlags;
-            this.TargetFlags = targetFlags;
+            UseKindFlags = useKindFlags;
+            TargetFlags = targetFlags;
         }
 
         public ImplicitUseTargetFlags TargetFlags { get; }
@@ -471,8 +471,8 @@ namespace JetBrains.Annotations
 
         public MeansImplicitUseAttribute(ImplicitUseKindFlags useKindFlags, ImplicitUseTargetFlags targetFlags)
         {
-            this.UseKindFlags = useKindFlags;
-            this.TargetFlags = targetFlags;
+            UseKindFlags = useKindFlags;
+            TargetFlags = targetFlags;
         }
 
         [UsedImplicitly]
@@ -533,7 +533,7 @@ namespace JetBrains.Annotations
 
         public PublicAPIAttribute([NotNull] string comment)
         {
-            this.Comment = comment;
+            Comment = comment;
         }
 
         [CanBeNull]
@@ -580,7 +580,7 @@ namespace JetBrains.Annotations
 
         public MustUseReturnValueAttribute([NotNull] string justification)
         {
-            this.Justification = justification;
+            Justification = justification;
         }
 
         [CanBeNull]
@@ -630,7 +630,7 @@ namespace JetBrains.Annotations
 
         public PathReferenceAttribute([NotNull] [PathReference] string basePath)
         {
-            this.BasePath = basePath;
+            BasePath = basePath;
         }
 
         [CanBeNull]
@@ -725,7 +725,7 @@ namespace JetBrains.Annotations
     {
         public AspMvcAreaMasterLocationFormatAttribute([NotNull] string format)
         {
-            this.Format = format;
+            Format = format;
         }
 
         [NotNull]
@@ -737,7 +737,7 @@ namespace JetBrains.Annotations
     {
         public AspMvcAreaPartialViewLocationFormatAttribute([NotNull] string format)
         {
-            this.Format = format;
+            Format = format;
         }
 
         [NotNull]
@@ -749,7 +749,7 @@ namespace JetBrains.Annotations
     {
         public AspMvcAreaViewLocationFormatAttribute([NotNull] string format)
         {
-            this.Format = format;
+            Format = format;
         }
 
         [NotNull]
@@ -761,7 +761,7 @@ namespace JetBrains.Annotations
     {
         public AspMvcMasterLocationFormatAttribute(string format)
         {
-            this.Format = format;
+            Format = format;
         }
 
         public string Format { get; }
@@ -772,7 +772,7 @@ namespace JetBrains.Annotations
     {
         public AspMvcPartialViewLocationFormatAttribute([NotNull] string format)
         {
-            this.Format = format;
+            Format = format;
         }
 
         [NotNull]
@@ -784,7 +784,7 @@ namespace JetBrains.Annotations
     {
         public AspMvcViewLocationFormatAttribute([NotNull] string format)
         {
-            this.Format = format;
+            Format = format;
         }
 
         [NotNull]
@@ -806,7 +806,7 @@ namespace JetBrains.Annotations
 
         public AspMvcActionAttribute([NotNull] string anonymousProperty)
         {
-            this.AnonymousProperty = anonymousProperty;
+            AnonymousProperty = anonymousProperty;
         }
 
         [CanBeNull]
@@ -827,7 +827,7 @@ namespace JetBrains.Annotations
 
         public AspMvcAreaAttribute([NotNull] string anonymousProperty)
         {
-            this.AnonymousProperty = anonymousProperty;
+            AnonymousProperty = anonymousProperty;
         }
 
         [CanBeNull]
@@ -849,7 +849,7 @@ namespace JetBrains.Annotations
 
         public AspMvcControllerAttribute([NotNull] string anonymousProperty)
         {
-            this.AnonymousProperty = anonymousProperty;
+            AnonymousProperty = anonymousProperty;
         }
 
         [CanBeNull]
@@ -979,7 +979,7 @@ namespace JetBrains.Annotations
 
         public HtmlElementAttributesAttribute([NotNull] string name)
         {
-            this.Name = name;
+            Name = name;
         }
 
         [CanBeNull]
@@ -991,7 +991,7 @@ namespace JetBrains.Annotations
     {
         public HtmlAttributeValueAttribute([NotNull] string name)
         {
-            this.Name = name;
+            Name = name;
         }
 
         [NotNull]
@@ -1017,7 +1017,7 @@ namespace JetBrains.Annotations
     {
         public CollectionAccessAttribute(CollectionAccessType collectionAccessType)
         {
-            this.CollectionAccessType = collectionAccessType;
+            CollectionAccessType = collectionAccessType;
         }
 
         public CollectionAccessType CollectionAccessType { get; }
@@ -1059,7 +1059,7 @@ namespace JetBrains.Annotations
     {
         public AssertionConditionAttribute(AssertionConditionType conditionType)
         {
-            this.ConditionType = conditionType;
+            ConditionType = conditionType;
         }
 
         public AssertionConditionType ConditionType { get; }
@@ -1148,8 +1148,8 @@ namespace JetBrains.Annotations
     {
         public AspChildControlTypeAttribute([NotNull] string tagName, [NotNull] Type controlType)
         {
-            this.TagName = tagName;
-            this.ControlType = controlType;
+            TagName = tagName;
+            ControlType = controlType;
         }
 
         [NotNull]
@@ -1179,7 +1179,7 @@ namespace JetBrains.Annotations
     {
         public AspRequiredAttributeAttribute([NotNull] string attribute)
         {
-            this.Attribute = attribute;
+            Attribute = attribute;
         }
 
         [NotNull]
@@ -1191,7 +1191,7 @@ namespace JetBrains.Annotations
     {
         public AspTypePropertyAttribute(bool createConstructorReferences)
         {
-            this.CreateConstructorReferences = createConstructorReferences;
+            CreateConstructorReferences = createConstructorReferences;
         }
 
         public bool CreateConstructorReferences { get; }
@@ -1202,7 +1202,7 @@ namespace JetBrains.Annotations
     {
         public RazorImportNamespaceAttribute([NotNull] string name)
         {
-            this.Name = name;
+            Name = name;
         }
 
         [NotNull]
@@ -1214,8 +1214,8 @@ namespace JetBrains.Annotations
     {
         public RazorInjectionAttribute([NotNull] string type, [NotNull] string fieldName)
         {
-            this.Type = type;
-            this.FieldName = fieldName;
+            Type = type;
+            FieldName = fieldName;
         }
 
         [NotNull]
@@ -1230,7 +1230,7 @@ namespace JetBrains.Annotations
     {
         public RazorDirectiveAttribute([NotNull] string directive)
         {
-            this.Directive = directive;
+            Directive = directive;
         }
 
         [NotNull]
