@@ -419,15 +419,16 @@ var result = await client.SendMessageAsync(message);
 ## Using the OTP API
 Send a simple OTP code
 ```cs
-    var result = await client.SendOtp("Sender_Name", "316012345678", "sms").ConfigureAwait(false);
+    var client = new TextClient(new Guid(ConfigurationManager.AppSettings["ApiKey"]));
+    var otpBuilder = new OtpRequestBuilder("Sender_name", "Recipient_PhoneNumber");
+    otpBuilder.WithMessage("Your otp code is {code}.");
+    var result = await textClient.SendOtpAsync(otpBuilder.Build());
 ```
 
 Verify the response code
 ```cs
-    client.VerifyOtp("OTP-ID", "code")
+    var verifyResult = client.VerifyOtp("OTP-ID", "code");
+    bool isValid = verifyResult.Verified;
 ```
 
-More advanced scenarios
-```cs		 
-    
-```
+For more advanced scenarios see also https://developers.cm.com/identity/docs/one-time-password-create

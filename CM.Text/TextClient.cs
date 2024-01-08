@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using CM.Text.BusinessMessaging;
 using CM.Text.BusinessMessaging.Model;
 using CM.Text.Common;
+using CM.Text.Identity;
 using CM.Text.Interfaces;
 using JetBrains.Annotations;
 
@@ -124,6 +126,76 @@ namespace CM.Text
                             .ConfigureAwait(false)
                     );
                 }
+            }
+        }
+        
+        /// <summary>
+        ///     Sends an One Time Password asynchronously.
+        /// </summary>
+        /// <param name="otpRequest">The otp to send.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        [PublicAPI]
+        public async Task<OtpResult> SendOtpAsync(
+            OtpRequest otpRequest,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var request = new HttpRequestMessage(
+                       HttpMethod.Post,
+                       _endPointOverride ?? new Uri(Constant.OtpRequestEndpoint)
+                   ))
+            {
+                request.Content = new StringContent(
+                    JsonSerializer.Serialize(otpRequest),
+                    Encoding.UTF8,
+                    Constant.BusinessMessagingGatewayMediaTypeJson
+                );
+
+                return await SendOtpApiRequestAsync(request, cancellationToken);
+            }
+        }
+        
+        /// <summary>
+        ///     Checks an One Time Password asynchronously.
+        /// </summary>
+        /// <param name="id">id of the OTP to check.</param>
+        /// <param name="code">The code the end user used</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        [PublicAPI]
+        public async Task<OtpResult> VerifyOtpAsync(
+            string id,
+            string code,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var request = new HttpRequestMessage(
+                       HttpMethod.Post,
+                       _endPointOverride ?? new Uri(string.Format(Constant.OtpVerifyEndpointPrefix, id))
+                   ))
+            {
+                request.Content = new StringContent(
+                    JsonSerializer.Serialize(new { code = code } ),
+                    Encoding.UTF8,
+                    Constant.BusinessMessagingGatewayMediaTypeJson
+                );
+
+                return await SendOtpApiRequestAsync(request, cancellationToken);
+            }
+        }
+
+        private async Task<OtpResult> SendOtpApiRequestAsync(HttpRequestMessage request,
+            CancellationToken cancellationToken)
+        {
+            request.Headers.Add("X-CM-ProductToken", _apiKey.ToString());
+            using (var requestResult = await _httpClient.SendAsync(request, cancellationToken)
+                       .ConfigureAwait(false))
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+
+                return JsonSerializer.Deserialize<OtpResult>(
+                    await requestResult.Content.ReadAsStringAsync()
+                        .ConfigureAwait(false)
+                );
             }
         }
     }
