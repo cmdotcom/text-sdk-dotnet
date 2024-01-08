@@ -7,7 +7,7 @@
         internal const string BusinessMessagingGatewayJsonEndpoint = "https://gw.cmtelecom.com/v1.0/message";
         
         internal const string OtpRequestEndpoint = "https://api.cm.com/otp/v2/otp";
-        internal const string OtpVerifyEndpointPrefix = "https://api.cm.com/otp/v2/otp/{0}/verify";
+        internal const string OtpVerifyEndpointFormatter = "https://api.cm.com/otp/v2/otp/{0}/verify";
         
         internal static readonly string BusinessMessagingGatewayMediaTypeJson = "application/json";
         internal static readonly string BusinessMessagingBodyTypeAuto = "AUTO";

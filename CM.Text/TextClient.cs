@@ -170,7 +170,7 @@ namespace CM.Text
         {
             using (var request = new HttpRequestMessage(
                        HttpMethod.Post,
-                       _endPointOverride ?? new Uri(string.Format(Constant.OtpVerifyEndpointPrefix, id))
+                       _endPointOverride ?? new Uri(string.Format(Constant.OtpVerifyEndpointFormatter, id))
                    ))
             {
                 request.Content = new StringContent(
