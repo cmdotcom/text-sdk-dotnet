@@ -415,3 +415,19 @@ var client = new TextClient(apiKey);
 var message = builder.Build();
 var result = await client.SendMessageAsync(message);
 ```
+
+## Using the OTP API
+Send a simple OTP code
+```cs
+    var result = await client.SendOtp("Sender_Name", "316012345678", "sms").ConfigureAwait(false);
+```
+
+Verify the response code
+```cs
+    client.VerifyOtp("OTP-ID", "code")
+```
+
+More advanced scenarios
+```cs		 
+    
+```
