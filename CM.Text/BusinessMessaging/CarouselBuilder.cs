@@ -19,7 +19,7 @@ namespace CM.Text.BusinessMessaging
         /// <param name="carouselCardWidth"></param>
         public CarouselBuilder(CarouselCardWidth carouselCardWidth)
         {
-            this._carouselCardWidth = carouselCardWidth;
+            _carouselCardWidth = carouselCardWidth;
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace CM.Text.BusinessMessaging
         /// <returns></returns>
         public CarouselBuilder AddCard(RichCard card)
         {
-            this._cards.Add(card);
+            _cards.Add(card);
             return this;
         }
 
@@ -41,7 +41,7 @@ namespace CM.Text.BusinessMessaging
         {
             return new CarouselMessage
             {
-                Carousel = new Carousel {Cards = this._cards.ToArray(), CarouselCardWidth = this._carouselCardWidth}
+                Carousel = new Carousel {Cards = _cards.ToArray(), CarouselCardWidth = _carouselCardWidth}
             };
         }
     }

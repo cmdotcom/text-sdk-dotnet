@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using CM.Text.BusinessMessaging;
 using CM.Text.BusinessMessaging.Model;
 using CM.Text.Common;
+using CM.Text.Identity;
 using CM.Text.Interfaces;
 using JetBrains.Annotations;
 
@@ -54,9 +56,9 @@ namespace CM.Text
         [PublicAPI]
         public TextClient(Guid apiKey, [CanBeNull] HttpClient httpClient, [CanBeNull] Uri endPointOverride)
         {
-            this._apiKey = apiKey;
-            this._httpClient = httpClient ?? ClientSingletonLazy.Value;
-            this._endPointOverride = endPointOverride;
+            _apiKey = apiKey;
+            _httpClient = httpClient ?? ClientSingletonLazy.Value;
+            _endPointOverride = endPointOverride;
         }
 
         /// <inheritdoc />
@@ -70,16 +72,16 @@ namespace CM.Text
         {
             using (var request = new HttpRequestMessage(
                        HttpMethod.Post,
-                       this._endPointOverride ?? new Uri(Constant.BusinessMessagingGatewayJsonEndpoint)
+                       _endPointOverride ?? new Uri(Constant.BusinessMessagingGatewayJsonEndpoint)
                    ))
             {
                 request.Content = new StringContent(
-                    BusinessMessagingApi.GetHttpPostBody(this._apiKey, messageText, from, to, reference),
+                    BusinessMessagingApi.GetHttpPostBody(_apiKey, messageText, from, to, reference),
                     Encoding.UTF8,
                     Constant.BusinessMessagingGatewayMediaTypeJson
                 );
 
-                using (var requestResult = await this._httpClient.SendAsync(request, cancellationToken)
+                using (var requestResult = await _httpClient.SendAsync(request, cancellationToken)
                     .ConfigureAwait(false))
                 {
                     cancellationToken.ThrowIfCancellationRequested();
@@ -105,16 +107,16 @@ namespace CM.Text
         {
             using (var request = new HttpRequestMessage(
                 HttpMethod.Post,
-                this._endPointOverride ?? new Uri(Constant.BusinessMessagingGatewayJsonEndpoint)
+                _endPointOverride ?? new Uri(Constant.BusinessMessagingGatewayJsonEndpoint)
             ))
             {
                 request.Content = new StringContent(
-                    BusinessMessagingApi.GetHttpPostBody(this._apiKey, message),
+                    BusinessMessagingApi.GetHttpPostBody(_apiKey, message),
                     Encoding.UTF8,
                     Constant.BusinessMessagingGatewayMediaTypeJson
                 );
 
-                using (var requestResult = await this._httpClient.SendAsync(request, cancellationToken)
+                using (var requestResult = await _httpClient.SendAsync(request, cancellationToken)
                     .ConfigureAwait(false))
                 {
                     cancellationToken.ThrowIfCancellationRequested();
@@ -124,6 +126,76 @@ namespace CM.Text
                             .ConfigureAwait(false)
                     );
                 }
+            }
+        }
+        
+        /// <summary>
+        ///     Sends an One Time Password asynchronously.
+        /// </summary>
+        /// <param name="otpRequest">The otp to send.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        [PublicAPI]
+        public async Task<OtpResult> SendOtpAsync(
+            OtpRequest otpRequest,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var request = new HttpRequestMessage(
+                       HttpMethod.Post,
+                       _endPointOverride ?? new Uri(Constant.OtpRequestEndpoint)
+                   ))
+            {
+                request.Content = new StringContent(
+                    JsonSerializer.Serialize(otpRequest),
+                    Encoding.UTF8,
+                    Constant.BusinessMessagingGatewayMediaTypeJson
+                );
+
+                return await SendOtpApiRequestAsync(request, cancellationToken);
+            }
+        }
+        
+        /// <summary>
+        ///     Checks an One Time Password asynchronously.
+        /// </summary>
+        /// <param name="id">id of the OTP to check.</param>
+        /// <param name="code">The code the end user used</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        [PublicAPI]
+        public async Task<OtpResult> VerifyOtpAsync(
+            string id,
+            string code,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var request = new HttpRequestMessage(
+                       HttpMethod.Post,
+                       _endPointOverride ?? new Uri(string.Format(Constant.OtpVerifyEndpointFormatter, id))
+                   ))
+            {
+                request.Content = new StringContent(
+                    JsonSerializer.Serialize(new { code = code } ),
+                    Encoding.UTF8,
+                    Constant.BusinessMessagingGatewayMediaTypeJson
+                );
+
+                return await SendOtpApiRequestAsync(request, cancellationToken);
+            }
+        }
+
+        private async Task<OtpResult> SendOtpApiRequestAsync(HttpRequestMessage request,
+            CancellationToken cancellationToken)
+        {
+            request.Headers.Add("X-CM-ProductToken", _apiKey.ToString());
+            using (var requestResult = await _httpClient.SendAsync(request, cancellationToken)
+                       .ConfigureAwait(false))
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+
+                return JsonSerializer.Deserialize<OtpResult>(
+                    await requestResult.Content.ReadAsStringAsync()
+                        .ConfigureAwait(false)
+                );
             }
         }
     }

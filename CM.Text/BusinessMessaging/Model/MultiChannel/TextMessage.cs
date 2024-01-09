@@ -23,7 +23,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <param name="text"></param>
         public TextMessage(string text)
         {
-            this.Text = text;
+            Text = text;
         }
 
         /// <summary>
