@@ -4,7 +4,7 @@
     {
         internal static readonly string TextSdkReference = $"text-sdk-dotnet-{typeof(TextClient).Assembly.GetName().Version}";
 
-        internal const string BusinessMessagingGatewayJsonEndpoint = "https://gw.cmtelecom.com/v1.0/message";
+        internal const string BusinessMessagingGatewayJsonEndpoint = "https://gw.messaging.cm.com/v1.0/message";
         
         internal const string OtpRequestEndpoint = "https://api.cm.com/otp/v2/otp";
         internal const string OtpVerifyEndpointFormatter = "https://api.cm.com/otp/v2/otp/{0}/verify";
