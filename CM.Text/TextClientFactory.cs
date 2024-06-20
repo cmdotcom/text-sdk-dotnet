@@ -32,7 +32,7 @@ namespace CM.Text
         /// Initializes a new instance of the <see cref="TextClientFactory"/> class.
         /// </summary>
         /// <param name="httpClient">The HTTP client.</param>
-        /// <param name="endPointOverride">(Optional) The end point to use, instead of the default "https://gw.cmtelecom.com/v1.0/message".</param>
+        /// <param name="endPointOverride">(Optional) The end point to use, instead of the default "https://gw.messaging.cm.com/v1.0/message".</param>
         public TextClientFactory(HttpClient httpClient, Uri endPointOverride = null)
         {
             _httpClient = httpClient;
