@@ -52,7 +52,7 @@ namespace CM.Text
         /// </summary>
         /// <param name="apiKey">The API key.</param>
         /// <param name="httpClient">An optional HTTP client.</param>
-        /// <param name="endPointOverride">(Optional) The end point to use, instead of the default "https://gw.cmtelecom.com/v1.0/message".</param>
+        /// <param name="endPointOverride">(Optional) The end point to use, instead of the default "https://gw.messaging.cm.com/v1.0/message".</param>
         [PublicAPI]
         public TextClient(Guid apiKey, [CanBeNull] HttpClient httpClient, [CanBeNull] Uri endPointOverride)
         {
