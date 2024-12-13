@@ -24,7 +24,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         ///     The messages.
         /// </summary>
         [JsonPropertyName("conversation")]
-        public IRichMessage[] Conversation { get; set; }
+        public RichMessage[] Conversation { get; set; }
 
         /// <summary>
         ///     The suggestions
@@ -36,7 +36,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         ///     Adds a message, such as a <see cref="RichCard" /> or <see cref="TextMessage" />.
         /// </summary>
         /// <param name="part"></param>
-        public void AddConversationPart(IRichMessage part)
+        public void AddConversationPart(RichMessage part)
         {
             if (Conversation == null)
                 Conversation = new[] {part};

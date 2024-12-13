@@ -8,7 +8,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     ///     Currently only supported by <see cref="Channel.RCS" />/
     /// </summary>
     [PublicAPI]
-    public class CarouselMessage : IRichMessage
+    public class CarouselMessage : RichMessage
     {
         /// <summary>
         ///     Contains the rich cards

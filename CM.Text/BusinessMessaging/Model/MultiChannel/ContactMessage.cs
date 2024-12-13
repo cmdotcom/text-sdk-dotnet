@@ -9,7 +9,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     /// See also https://developers.facebook.com/docs/whatsapp/api/messages/others#contacts
     /// </summary>
     [PublicAPI]
-    public class ContactMessage : IRichMessage
+    public class ContactMessage : RichMessage
     {
         /// <summary>
         /// The contacts to send.

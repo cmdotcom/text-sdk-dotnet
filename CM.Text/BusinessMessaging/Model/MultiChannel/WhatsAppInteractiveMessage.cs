@@ -8,7 +8,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     /// Used only in <see cref="Channel.WhatsApp"/>.
     /// </summary>
     [PublicAPI]
-    public class WhatsAppInteractiveMessage : IRichMessage
+    public class WhatsAppInteractiveMessage : RichMessage
     {
 
         /// <summary>
