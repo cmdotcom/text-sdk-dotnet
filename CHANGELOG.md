@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Add Context.MessageId support for RichMessages
 - RichMessage model is now an abstract class instead of an interface for Context.MessageId (breaking)
+- Updated `System.Text.Json` to 8.0.5 fixing a [high impact security vulnerability](https://github.com/advisories/GHSA-hh2w-p6rv-4g7w)
 
 ## [2.9.0] - 2024-06-20
 ### Changed
