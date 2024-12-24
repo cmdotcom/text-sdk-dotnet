@@ -8,7 +8,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     ///     <see cref="Channel.RCS" />, <see cref="Channel.WhatsApp" /> and <see cref="Channel.Viber" />.
     /// </summary>
     [PublicAPI]
-    public class MediaMessage : RichMessage
+    public class MediaMessage : IRichMessage
     {
         /// <summary>
         ///     Default constructor.

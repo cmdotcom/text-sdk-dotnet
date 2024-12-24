@@ -7,7 +7,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     /// Used to send a template message, at this moment only supported in <see cref="Channel.WhatsApp"/>.
     /// </summary>
     [PublicAPI]
-    public class TemplateMessage : RichMessage
+    public class TemplateMessage : IRichMessage
     {
         /// <summary>
         /// The Content of the WhatsApp template message

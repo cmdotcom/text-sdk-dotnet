@@ -8,7 +8,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     /// and <see cref="Channel.WhatsApp"/>.
     /// </summary>
     [PublicAPI]
-    public class LocationPushMessage : RichMessage
+    public class LocationPushMessage : IRichMessage
     {
         /// <summary>
         /// The location options to send.

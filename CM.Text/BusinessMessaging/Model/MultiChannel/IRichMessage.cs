@@ -16,26 +16,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     [JsonDerivedType(typeof(TemplateMessage))]
     [JsonDerivedType(typeof(TextMessage))]
     [JsonDerivedType(typeof(WhatsAppInteractiveMessage))]
-    public abstract class RichMessage
+    public interface IRichMessage
     {
-        /// <summary>
-        /// Contextual properties applicable to all message types
-        /// </summary>
-        [JsonPropertyName("context")]
-        [CanBeNull]
-        public Context Context { get; set; }
-    }
-
-    /// <summary>
-    /// Contextual properties applicable to all message types
-    /// </summary>
-    public class Context
-    {
-        /// <summary>
-        /// Message ID to which the current message is a reply
-        /// </summary>
-        [JsonPropertyName("message_id")]
-        [CanBeNull]
-        public string MessageId { get; set; }
     }
 }

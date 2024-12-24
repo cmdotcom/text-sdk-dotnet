@@ -8,7 +8,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     ///     (all channels except <see cref="Channel.SMS" />, <see cref="Channel.Voice" /> and <see cref="Channel.Push" /> at this moment)
     /// </summary>
     [PublicAPI]
-    public class TextMessage : RichMessage
+    public class TextMessage : IRichMessage
     {
         /// <summary>
         ///     Construct an empty text message.

@@ -108,7 +108,7 @@ namespace CM.Text.BusinessMessaging
         /// </summary>
         /// <param name="richMessage"></param>
         /// <returns></returns>
-        public MessageBuilder WithRichMessage(RichMessage richMessage)
+        public MessageBuilder WithRichMessage(IRichMessage richMessage)
         {
             if (_richContent == null)
                 _richContent = new RichContent();

@@ -5,7 +5,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     /// <summary>
     ///     ApplePay request rich message
     /// </summary>
-    public class ApplePayRequest : RichMessage
+    public class ApplePayRequest : IRichMessage
     {
         /// <summary>
         /// Gets or sets the apple pay configuration.
