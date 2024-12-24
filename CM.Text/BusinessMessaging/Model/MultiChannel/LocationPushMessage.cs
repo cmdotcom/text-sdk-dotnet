@@ -15,5 +15,12 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         [JsonPropertyName("location")]
         public ViewLocationOptions Location { get; set; }
+        
+        /// <summary>
+        /// Contextual properties of the message. Only applicable to <see cref="Channel.WhatsApp"/>
+        /// </summary>
+        [JsonPropertyName("context")]
+        [CanBeNull]
+        public MessageContext MessageContext { get; set; }
     }
 }
