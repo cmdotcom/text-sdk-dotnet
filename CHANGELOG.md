@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.10.0] - TBD
+### Changed
+- Updated `System.Text.Json` to 8.0.5 fixing a [high impact security vulnerability](https://github.com/advisories/GHSA-hh2w-p6rv-4g7w)
+
 ## [2.9.0] - 2024-06-20
 ### Changed
 - New global messaging endpoint
