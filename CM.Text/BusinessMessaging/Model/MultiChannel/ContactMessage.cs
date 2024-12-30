@@ -18,6 +18,13 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         [JsonPropertyName("contacts")]
         public Contact[] Contacts { get; set; }
+        
+        /// <summary>
+        /// Contextual properties of the message
+        /// </summary>
+        [JsonPropertyName("context")]
+        [CanBeNull]
+        public MessageContext MessageContext { get; set; }
     }
 
     /// <summary>

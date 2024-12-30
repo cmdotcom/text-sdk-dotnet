@@ -13,12 +13,12 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../CHANGELOG.md"))</PackageReleaseNotes>
-    <Version>2.10.0</Version>
+    <Version>2.11.0</Version>
     <PackageProjectUrl>https://github.com/cmdotcom/text-sdk-dotnet</PackageProjectUrl>
     <NeutralLanguage>en</NeutralLanguage>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <AssemblyVersion>2.10.0</AssemblyVersion>
-    <FileVersion>2.10.0</FileVersion>
+    <AssemblyVersion>2.11.0</AssemblyVersion>
+    <FileVersion>2.11.0</FileVersion>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 

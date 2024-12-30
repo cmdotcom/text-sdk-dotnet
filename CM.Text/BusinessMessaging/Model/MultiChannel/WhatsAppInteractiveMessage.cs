@@ -16,6 +16,13 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         [JsonPropertyName("interactive")]
         public WhatsAppInteractiveContent whatsAppInteractiveContent { get; set; }
+        
+        /// <summary>
+        /// Contextual properties of the message
+        /// </summary>
+        [JsonPropertyName("context")]
+        [CanBeNull]
+        public MessageContext MessageContext { get; set; }
     }
 
     /// <summary>
