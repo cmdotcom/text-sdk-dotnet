@@ -216,6 +216,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// You can have up to 3 buttons using index values of 0-2.
         /// </summary>
         [JsonPropertyName("index")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public int Index { get; set; }
 
         /// <summary>

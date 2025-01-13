@@ -58,7 +58,6 @@ namespace CM.Text.BusinessMessaging.JsonConverters
                 }
                 else
                 {
-                    Console.WriteLine(JsonSerializer.Serialize(node));
                     throw new JsonException("Unsupported message type to deserialize");
                 }
 
