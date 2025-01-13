@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.Json.Serialization;
+using CM.Text.BusinessMessaging.JsonConverters;
 using JetBrains.Annotations;
 
 namespace CM.Text.BusinessMessaging.Model.MultiChannel
@@ -24,6 +25,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         ///     The messages.
         /// </summary>
         [JsonPropertyName("conversation")]
+        [JsonConverter(typeof(RichMessageArrayJsonConverter))]
         public IRichMessage[] Conversation { get; set; }
 
         /// <summary>
