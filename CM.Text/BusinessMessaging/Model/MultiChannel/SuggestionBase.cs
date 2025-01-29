@@ -6,8 +6,15 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     /// <summary>
     ///     Suggestions can be used in several channels, not all channels
     ///     support all suggestions.
+    ///
+    ///     Requires a json derived type for serialization to work
     /// </summary>
     [PublicAPI]
+    [JsonDerivedType(typeof(CalendarSuggestion), nameof(CalendarSuggestion))]
+    [JsonDerivedType(typeof(DialSuggestion), nameof(DialSuggestion))]
+    [JsonDerivedType(typeof(OpenUrlSuggestion), nameof(OpenUrlSuggestion))]
+    [JsonDerivedType(typeof(ReplySuggestion), nameof(ReplySuggestion))]
+    [JsonDerivedType(typeof(ViewLocationSuggestion), nameof(ViewLocationSuggestion))]
     public abstract class SuggestionBase
     {
         /// <summary>
