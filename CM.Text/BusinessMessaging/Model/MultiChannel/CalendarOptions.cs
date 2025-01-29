@@ -13,12 +13,14 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// <summary>
         ///     The end of the appointment.
         /// </summary>
-        [JsonPropertyName("endTime")] public DateTime EndTime;
+        [JsonPropertyName("endTime")]
+        public DateTime EndTime { get; set; }
 
         /// <summary>
         ///     The start of the appointment.
         /// </summary>
-        [JsonPropertyName("startTime")] public DateTime StartTime;
+        [JsonPropertyName("startTime")]
+        public DateTime StartTime { get; set; }
 
         /// <summary>
         ///     The description which will appear in the calendar app
