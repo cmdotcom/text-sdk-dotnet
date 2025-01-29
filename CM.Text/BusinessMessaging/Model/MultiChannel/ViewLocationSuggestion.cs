@@ -10,12 +10,6 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     public class ViewLocationSuggestion : SuggestionBase
     {
         /// <summary>
-        ///     The action of this suggestion
-        /// </summary>
-        [JsonPropertyName("action")]
-        public override string Action => "viewLocation";
-
-        /// <summary>
         ///     The location options
         /// </summary>
         [JsonPropertyName("viewLocation")]

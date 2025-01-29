@@ -10,19 +10,14 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     ///     Requires a json derived type for serialization to work
     /// </summary>
     [PublicAPI]
-    [JsonDerivedType(typeof(CalendarSuggestion), nameof(CalendarSuggestion))]
-    [JsonDerivedType(typeof(DialSuggestion), nameof(DialSuggestion))]
-    [JsonDerivedType(typeof(OpenUrlSuggestion), nameof(OpenUrlSuggestion))]
-    [JsonDerivedType(typeof(ReplySuggestion), nameof(ReplySuggestion))]
-    [JsonDerivedType(typeof(ViewLocationSuggestion), nameof(ViewLocationSuggestion))]
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "action")]
+    [JsonDerivedType(typeof(CalendarSuggestion), "CreateCalendarEvent")]
+    [JsonDerivedType(typeof(DialSuggestion), "Dial")]
+    [JsonDerivedType(typeof(OpenUrlSuggestion), "openUrl")]
+    [JsonDerivedType(typeof(ReplySuggestion), "reply")]
+    [JsonDerivedType(typeof(ViewLocationSuggestion), "viewLocation")]
     public abstract class SuggestionBase
     {
-        /// <summary>
-        ///     The action of this suggestion
-        /// </summary>
-        [JsonPropertyName("action")]
-        public virtual string Action { get; }
-
         /// <summary>
         ///     The text the end user will see
         /// </summary>
