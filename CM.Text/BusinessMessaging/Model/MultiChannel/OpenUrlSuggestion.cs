@@ -14,12 +14,6 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     public class OpenUrlSuggestion : SuggestionBase
     {
         /// <summary>
-        ///     The action of this suggestion
-        /// </summary>
-        [JsonPropertyName("action")]
-        public override string Action => "openUrl";
-
-        /// <summary>
         ///     The url the end user can open
         /// </summary>
         /// <remarks>
