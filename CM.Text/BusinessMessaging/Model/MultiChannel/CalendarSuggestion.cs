@@ -12,12 +12,6 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     public class CalendarSuggestion : SuggestionBase
     {
         /// <summary>
-        ///     The action of this suggestion
-        /// </summary>
-        [JsonPropertyName("action")]
-        public override string Action => "CreateCalendarEvent";
-
-        /// <summary>
         ///     The options of the agenda item
         /// </summary>
         [JsonPropertyName("calendar")]

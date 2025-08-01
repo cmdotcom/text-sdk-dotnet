@@ -17,5 +17,12 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </remarks>
         [JsonPropertyName("template")]
         public TemplateMessageContent Content { get; set; }
+
+        /// <summary>
+        /// Contextual properties of the message
+        /// </summary>
+        [JsonPropertyName("context")]
+        [CanBeNull]
+        public MessageContext MessageContext { get; set; }
     }
 }

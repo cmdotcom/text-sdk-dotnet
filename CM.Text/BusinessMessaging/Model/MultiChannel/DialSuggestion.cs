@@ -12,12 +12,6 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     public class DialSuggestion : SuggestionBase
     {
         /// <summary>
-        ///     The action of this suggestion
-        /// </summary>
-        [JsonPropertyName("action")]
-        public override string Action => "Dial";
-
-        /// <summary>
         ///     The dial options
         /// </summary>
         [JsonPropertyName("dial")]

@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.11.1] - 2025-01-31
+### Added
+- Derived type declarations on `SuggestionBase`
+
+## [2.11.0] - 2025-01-10
+### Added
+- Context.MessageId on RichMessages supporting WhatsApp for referencing a previous message
+
+## [2.10.0] - 2024-12-30
+### Added
+- Polymorphic type discriminators on IRichMessage for deserialization
+
+### Changed
+- Updated `System.Text.Json` to 8.0.5 fixing a [high impact security vulnerability](https://github.com/advisories/GHSA-hh2w-p6rv-4g7w)
+
 ## [2.9.0] - 2024-06-20
 ### Changed
 - New global messaging endpoint
