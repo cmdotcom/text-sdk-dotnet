@@ -44,5 +44,12 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
         /// </summary>
         [JsonPropertyName("suggestions")]
         public SuggestionBase[] Suggestions { get; set; }
+        
+        /// <summary>
+        /// Contextual properties of the message. Currently only applicable to <see cref="Channel.WhatsApp" />
+        /// </summary>
+        [JsonPropertyName("context")]
+        [CanBeNull]
+        public MessageContext MessageContext { get; set; }
     }
 }

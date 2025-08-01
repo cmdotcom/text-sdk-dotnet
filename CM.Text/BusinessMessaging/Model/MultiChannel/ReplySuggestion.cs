@@ -10,12 +10,6 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
     public class ReplySuggestion : SuggestionBase
     {
         /// <summary>
-        ///     The action of this suggestion
-        /// </summary>
-        [JsonPropertyName("action")]
-        public override string Action => "reply";
-
-        /// <summary>
         ///     Description of the Reply suggestion
         /// </summary>
         /// <remarks>
