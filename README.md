@@ -1,434 +1,357 @@
+
+<div align="center">
+
 [![.NET build & tests](https://github.com/cmdotcom/text-sdk-dotnet/actions/workflows/main.yml/badge.svg)](https://github.com/cmdotcom/text-sdk-dotnet/actions/workflows/main.yml)
-[![NuGetV](https://img.shields.io/nuget/v/CM.Text.svg "NuGet Version")](https://www.nuget.org/packages/CM.Text)
-[![NuGetDownloads](https://img.shields.io/nuget/dt/CM.Text.svg "NuGet downloads")](https://www.nuget.org/packages/CM.Text)
+[![NuGet Version](https://img.shields.io/nuget/v/CM.Text.svg?logo=nuget&color=0078d7&label=version)](https://www.nuget.org/packages/CM.Text)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/CM.Text.svg?logo=nuget&color=green&label=downloads)](https://www.nuget.org/packages/CM.Text)
 
-# CM Text SDK
-A software development kit to provide ways to interact with CM.com's Text service. API's used:
-- [Messaging](https://developers.cm.com/messaging/docs)
+# CM Text SDK .NET
 
-# Usage
+**Send SMS, WhatsApp, RCS, iMessage and more — the modern way.**
 
-## Instantiate the client
-Using your unique `ApiKey` (or product token) which authorizes you on the CM platform. 
-Always keep this key secret!
+Powerful .NET client for [CM.com Messaging APIs](https://developers.cm.com/messaging/docs)
 
-The product token can be found in the [Channels](https://www.cm.com/app/channels) application on the platform, under the `Gateway` section.
+</div>
 
-```cs
-var client = new TextClient(new Guid(ConfigurationManager.AppSettings["ApiKey"]));
+## ✨ Features
+
+- Plain SMS / text messaging  
+- Rich messages (images, media) — WhatsApp, RCS, …  
+- WhatsApp **template messages** (simple, rich, currency/date, interactive)  
+- WhatsApp **interactive messages** (lists, reply buttons + media)  
+- Apple Business Chat **Apple Pay requests**  
+- One-Time Password (**OTP**) sending & verification  
+
+## 🚀 Quick Start
+
+```csharp
+using CM.Text;
+
+// Keep your key secret!
+var apiKey = Guid.Parse("your-product-token-here");
+var client = new TextClient(apiKey);
+
+// Simple SMS
+var result = await client.SendMessageAsync(
+    message: "Hello from C# 🚀",
+    sender: "MyBrand",
+    recipients: new[] { "+31612345678" },
+    reference: "msg-001"
+);
 ```
 
-## Send a message
-By calling `SendMessageAsync` and providing message text, sender name, recipient phone number(s) and a reference (optional).
+> `SendMessageAsync` returns a `TextClientResult` object with status & delivery details.
 
-```cs
-var result = await client.SendMessageAsync("Message_Text", "Sender_Name", new List<string> { "Recipient_PhoneNumber" }, "Your_Reference").ConfigureAwait(false);
+## 📖 Table of Contents
+
+<details open>
+<summary>Core Usage</summary>
+
+### Instantiate the client
+
+```csharp
+var client = new TextClient(Guid.Parse("your-api-key"));
 ```
 
-## Get the result
-`SendMessageAsync` returns an object of type `TextClientResult`, example:
+### Send plain text message(s)
 
-```cs
+```csharp
+var result = await client.SendMessageAsync(
+    "Welcome! Your order is confirmed.",
+    "ShopName",
+    new List<string> { "+310612345678", "+31698765432" },
+    "order-1234"
+);
+```
+
+</details>
+
+<details>
+<summary>Rich Messages (WhatsApp, RCS, …)</summary>
+
+Use `MessageBuilder` for media attachments
+
+```csharp
+var builder = new MessageBuilder(
+    "Check out our new collection!",
+    "FashionStore",
+    "+31612345678"
+);
+
+builder
+    .WithAllowedChannels(Channel.WhatsApp)
+    .WithRichMessage(
+        new MediaMessage(
+            "cm.com logo",
+            "https://avatars3.githubusercontent.com/u/8234794?s=200&v=4",
+            "image/png"
+        )
+    );
+
+var message = builder.Build();
+var result = await client.SendMessageAsync(message);
+```
+
+</details>
+
+<details>
+<summary>WhatsApp Template Messages</summary>
+
+**Important:** Template must be approved by WhatsApp first
+
+#### Basic template
+
+```csharp
+var builder = new MessageBuilder("ignored", "ignored", "+316xxxxxxxx");
+
+builder
+    .WithAllowedChannels(Channel.WhatsApp)
+    .WithTemplate(new TemplateMessage
+    {
+        Content = new TemplateMessageContent
+        {
+            Whatsapp = new WhatsappTemplate
+            {
+                Name = "hello_world",
+                Namespace = "xxxxxxxx_xxxx_xxxx_xxxx_xxxxxxxxxxxx",
+                Language = new Language { Code = "en", Policy = "deterministic" },
+                Components = new[]
+                {
+                    new TemplateComponents
+                    {
+                        Type = "body",
+                        ComponentParameters = new[]
+                        {
+                            new ComponentParameters { Type = "text", Text = "John" }
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+var result = await client.SendMessageAsync(builder.Build());
+```
+
+#### Rich template (image header)
+
+```csharp
+builder.WithTemplate(new TemplateMessage
+{
+    Content = new TemplateMessageContent
+    {
+        Whatsapp = new WhatsappTemplate
+        {
+            Name      = "welcome_template",
+            Namespace = "xxxxxxxx_xxxx_xxxx_xxxx_xxxxxxxxxxxx",
+            Language  = new Language { Code = "en", Policy = "deterministic" },
+            Components = new[]
+            {
+                new TemplateComponents
+                {
+                    Type = "header",
+                    ComponentParameters = new[]
+                    {
+                        new ComponentParameters
+                        {
+                            Type = "image",
+                            Media = new MediaContent
+                            {
+                                MediaName = "welcome",
+                                MediaUri  = "https://example.com/welcome.jpg"
+                            }
+                        }
+                    }
+                },
+                new TemplateComponents
+                {
+                    Type = "body",
+                    ComponentParameters = new[]
+                    {
+                        new ComponentParameters { Type = "text", Text = "Jane" }
+                    }
+                }
+            }
+        }
+    }
+});
+```
+
+#### Template with currency & date (UTC)
+
+```csharp
+// Add to Components array:
+new TemplateComponents
+{
+    Type = "body",
+    ComponentParameters = new[]
+    {
+        new ComponentParameters
+        {
+            Type = "currency",
+            Currency = new TemplateCurrency
+            {
+                FallbackValue = "€49.99",
+                Amount        = 499900,     // in smallest unit (cents)
+                CurrencyCode  = "EUR"
+            }
+        },
+        new ComponentParameters
+        {
+            Type = "date_time",
+            DateTime = new TemplateDateTime(DateTime.UtcNow.AddDays(7))
+        }
+    }
+}
+```
+
+</details>
+
+<details>
+<summary>WhatsApp Interactive Messages (no template required)</summary>
+
+#### List message example
+
+```csharp
+builder
+    .WithAllowedChannels(Channel.WhatsApp)
+    .WithInteractive(new WhatsAppInteractiveMessage
+    {
+        whatsAppInteractiveContent = new WhatsAppInteractiveContent
+        {
+            Type = "list",
+            Header = new InteractiveHeader { Type = "text", Text = "Our Menu" },
+            Body   = new InteractiveBody   { Text = "What would you like today?" },
+            Action = new InteractiveAction
+            {
+                Button = "View options",
+                Sections = new[]
+                {
+                    new InteractiveSection
+                    {
+                        Title = "Drinks",
+                        Rows = new[]
+                        {
+                            new Rows { Id = "cola",  Title = "Cola",  Description = "€2.50" },
+                            new Rows { Id = "water", Title = "Water", Description = "€1.50" }
+                        }
+                    }
+                }
+            },
+            Footer = new InteractiveFooter { Text = "Prices incl. VAT • Valid today only" }
+        }
+    });
+```
+
+#### Reply buttons + image
+
+```csharp
+builder
+    .WithAllowedChannels(Channel.WhatsApp)
+    .WithInteractive(new WhatsAppInteractiveMessage
+    {
+        whatsAppInteractiveContent = new WhatsAppInteractiveContent
+        {
+            Type = "button",
+            Header = new InteractiveHeader
+            {
+                Type = "image",
+                Media = new MediaContent { MediaUri = "https://example.com/product.jpg" }
+            },
+            Body = new InteractiveBody { Text = "Which size do you prefer?" },
+            Action = new InteractiveAction
+            {
+                Buttons = new[]
+                {
+                    new InteractiveButton { Type = "reply", Reply = new ReplyMessage { Id = "s", Title = "Small"  } },
+                    new InteractiveButton { Type = "reply", Reply = new ReplyMessage { Id = "m", Title = "Medium" } },
+                    new InteractiveButton { Type = "reply", Reply = new ReplyMessage { Id = "l", Title = "Large"  } }
+                }
+            }
+        }
+    });
+```
+
+</details>
+
+<details>
+<summary>Apple Pay Request (Apple Business Chat / iMessage only)</summary>
+
+```csharp
+builder
+    .WithAllowedChannels(Channel.iMessage)
+    .WithApplePay(new ApplePayRequest
+    {
+        ApplePayConfiguration = new ApplePayConfiguration
+        {
+            Total               = 42.99m,
+            RecipientCountryCode = "NL",
+            CurrencyCode        = "EUR",
+            Description         = "Premium Subscription – 1 month",
+            RecipientEmail      = "customer@example.com",
+            languageCountryCode = "en-NL",
+            OrderReference      = Guid.NewGuid().ToString(),
+            MerchantName        = "MyAwesomeShop",
+            LineItems = new[]
+            {
+                new LineItem { Amount = 39.99m, Label = "Plan", Type = "final" },
+                new LineItem { Amount =  3.00m, Label = "VAT",  Type = "final" }
+            }
+        }
+    });
+
+var message = builder.Build();
+var result  = await client.SendMessageAsync(message);
+```
+
+</details>
+
+<details>
+<summary>One-Time Password (OTP)</summary>
+
+```csharp
+// Send OTP
+var otpBuilder = new OtpRequestBuilder("MyApp", "+31612345678");
+otpBuilder.WithMessage("Your verification code is {code}. Valid for 10 minutes.");
+
+var otpResult = await client.SendOtpAsync(otpBuilder.Build());
+
+// Verify later
+var verifyResult = client.VerifyOtp(otpResult.OtpId, "483920");
+bool isValid = verifyResult.Verified;
+```
+
+→ More advanced OTP options: [developers.cm.com/identity/docs/one-time-password-create](https://developers.cm.com/identity/docs/one-time-password-create)
+
+</details>
+
+## 📄 Status & Result
+
+All send operations return a `TextClientResult` object.
+
+Example success response:
+
+```json
 {
   "statusMessage": "Created 1 message(s)",
   "statusCode": 201,
   "details": [
     {
-      "reference": "Example_Reference",
+      "reference": "order-1234",
       "status": "Accepted",
-      "to": "Example_PhoneNumber",
-      "parts": 1,
-      "details": null
-    },
-    {
-      "reference": "Example_Reference2",
-      "status": "Rejected",
-      "to": "Example_PhoneNumber2",
-      "parts": 0,
-      "details": "A body without content was found"
+      "to": "+31612345678",
+      "parts": 1
     }
   ]
 }
 ```
 
-## Sending a rich message
-By using the `MessageBuilder` it is possible to create images with media for channels such as WhatsApp and RCS
-```cs
-var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
-var client = new TextClient(apiKey);
-var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_PhoneNumber");
-builder
-    .WithAllowedChannels(Channel.WhatsApp)
-    .WithRichMessage(
-        new MediaMessage(
-            "cm.com",
-            "https://avatars3.githubusercontent.com/u/8234794?s=200&v=4",
-            "image/png"
-        )
-    );
-var message = builder.Build();
-var result = await client.SendMessageAsync(message);
-```
+See `TextClientStatusCode` enum for all possible status values.
 
-## Status codes
-For all possible status codes, please reference the `TextClientStatusCode` enum.
+## 🔗 Useful Links
 
+- 🌐 [Official Messaging Documentation](https://developers.cm.com/messaging/docs)  
+- 📦 [NuGet Package – CM.Text](https://www.nuget.org/packages/CM.Text)  
+- 🐛 [Report Issues / Contribute](https://github.com/cmdotcom/text-sdk-dotnet/issues)  
 
-## Sending a WhatsApp template message
-By using the `MessageBuilder` it is possible to create template messages. Please note that this is WhatsApp only and your template needs to be approved before sending.
-For more info please check our documentation: https://www.cm.com/en-en/app/docs/api/business-messaging-api/1.0/index#whatsapp-template-message
-```cs
-var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
-var client = new TextClient(apiKey);
-var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_PhoneNumber");
-builder
- .WithAllowedChannels(Channel.WhatsApp)
- .WithTemplate(new TemplateMessage() {
-  Content = new TemplateMessageContent() {
-   Whatsapp = new WhatsappTemplate() {
-    Name = "template-name",
-     Namespace = "the-namespace-of-template",
-     Language = new Language() {
-      Code = "en",
-       Policy = "deterministic"
-     },
-     Components = new TemplateComponents[] {
-      new TemplateComponents() {
-       Type = "body",
-        ComponentParameters = new ComponentParameters[] {
-         new ComponentParameters() {
-          Type = "text",
-           Text = "firstname"
-         }
-        }
-      },
-     }
-   }
-  }
- });
-
-var message = builder.Build();
-var result = await client.SendMessageAsync(message);
-```
-## Sending a rich WhatsApp template message
-It is also possible to send a rich template with an image!			
-			
-```cs
-var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
-var client = new TextClient(apiKey);
-var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_PhoneNumber");
-builder
- .WithAllowedChannels(Channel.WhatsApp)
- .WithTemplate(new TemplateMessage() {
-  Content = new TemplateMessageContent() {
-   Whatsapp = new WhatsappTemplate() {
-    Name = "template-name",
-     Namespace = "the-namespace-of-template",
-     Language = new Language() {
-      Code = "en",
-       Policy = "deterministic"
-     },
-     Components = new TemplateComponents[] {
-      new TemplateComponents() {
-        Type = "header",
-         ComponentParameters = new ComponentParameters[] {
-          new ComponentParameters() {
-           Type = "image",
-            Media = new MediaContent() {
-             MediaName = "cm.com",
-              MediaUri = "https://avatars3.githubusercontent.com/u/8234794?s=200&v=4"
-            }
-          }
-         }
-       },
-       new TemplateComponents() {
-        Type = "body",
-         ComponentParameters = new ComponentParameters[] {
-          new ComponentParameters() {
-           Type = "text",
-            Text = "firstname"
-          }
-         }
-       },
-     }
-   }
-  }
- });
-
-var message = builder.Build();
-var result = await client.SendMessageAsync(message);
-```
-## Sending a WhatsApp template message with date and Currency
-It is also possible to send a rich template with an currency and an date!
-please note that the timezone is in UTC format		
-			
-```cs
-var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
-var client = new TextClient(apiKey);
-var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_PhoneNumber");
- builder
- .WithAllowedChannels(Channel.WhatsApp)
- .WithTemplate(new TemplateMessage() {
-  Content = new TemplateMessageContent() {
-   Whatsapp = new WhatsappTemplate() {
-                            Name = "template-name",
-                            Namespace = "the-namespace-of-template",
-                            Language = new Language()
-                            {
-                                Code = "en",
-                                Policy = "deterministic"
-                            },
-                            Components = new TemplateComponents[] {
-                                new TemplateComponents() {
-                                    Type = "header",
-                                    ComponentParameters = new ComponentParameters[] {
-                                        new ComponentParameters() {
-                                            Type = "image",
-                                            Media = new MediaContent() {
-                                                MediaName = "cm.com",
-                                                MediaUri = "https://avatars3.githubusercontent.com/u/8234794?s=200&v=4"
-                                            },
-                                        }
-                                    }
-                                },
-                                new TemplateComponents()
-                                {
-                                    Type = "body",
-                                    ComponentParameters = new ComponentParameters[]
-                                    {
-                                        new ComponentParameters()
-                                       {
-                                           Type = "currency",
-                                           Currency = new TemplateCurrency()
-                                           {
-                                               FallbackValue = "$100.99",
-                                               Amount = 100990,
-                                               CurrencyCode = "USD"
-                                           }
-                                       },
-                                       new ComponentParameters()
-                                       {
-                                           Type = "date_time",
-                                           DateTime = new TemplateDateTime(DateTime.Now)
-                                       }
-                                    }}
-                            }
-                        }
-                    }
-                });
-
-   var message = builder.Build();
-   var result = await client.SendMessageAsync(message);
-```
-## Sending interactive template messages
-Interactive templates allows you to send templates that include buttons. 
-For more info please visit https://www.cm.com/app/docs/en/api/business-messaging-api/1.0/index#/whatsapp-template-message
-```cs
-var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
-var client = new TextClient(apiKey);
-var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_PhoneNumber");
-builder.WithAllowedChannels(Channel.WhatsApp).WithTemplate(new TemplateMessage() {
-	Content = new TemplateMessageContent() {
-		Whatsapp = new WhatsappTemplate() {
-			Name = "Template name",
-			Namespace = "whatsapp template id",
-			Language = new Language() {
-				Code = "en",
-				Policy = "deterministic"
-			},
-			Components = new TemplateComponents[] {
-				new TemplateComponents() {
-					Type = "body",
-					ComponentParameters = new ComponentParameters[] {
-						new ComponentParameters() {
-							Type = "text",
-							Text = "your message here"
-						}
-					}
-				},
-				new TemplateComponents() {
-					Type = "button",
-					SubType = "quick_reply",
-					Index = 0,
-					ComponentParameters = new ComponentParameters[] {
-						new ComponentParameters() {
-							Type = "payload",
-							Payload = "developer defined payload"
-						}
-					}
-				}
-			}
-		}
-	}
-});
-
-var message = builder.Build();
-var result = await client.SendMessageAsync(message);
-```
-## Sending an Apple Pay Request
-It is now possible to send an apple pay request only possible in Apple Business Chat
-
-```cs
-var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
-var client = new TextClient(apiKey);
-var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_PhoneNumber");
- builder
-        .WithAllowedChannels(Channel.iMessage)
-        .WithApplePay(new ApplePayRequest()
-           {
-             ApplePayConfiguration = new ApplePayConfiguration()
-                 {
-                        Total = 1,
-                        RecipientCountryCode = "recipient-country-code",
-                        CurrencyCode = "currency-code",
-                        Description = "product-description",
-                        RecipientEmail = "recipient-email",
-                        languageCountryCode = "language-country-code",
-                        OrderReference = "unique-order-guid",
-                        MerchantName = "merchant-name",
-                        LineItems = new LineItem[]
-                        {
-                            new LineItem()
-                            {
-                                Amount = 1,
-                                Label = "product-name",
-                                Type = "final-or-pending"
-                            },
-                        }
-                    }
-                });
-            
-var message = builder.Build();
-var result = await client.SendMessageAsync(message);
-```
-## Sending WhatsApp interactive messages
-It is now possible to send list messages and reply buttons without using templates
-only supported in WhatsApp
-
-```cs
-var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
-var client = new TextClient(apiKey);
- var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_PhoneNumber");
-     builder.WithAllowedChannels(Channel.WhatsApp).WithInteractive(new CM.Text.BusinessMessaging.Model.MultiChannel.WhatsAppInteractiveMessage()
-            {
-                whatsAppInteractiveContent = new CM.Text.BusinessMessaging.Model.MultiChannel.WhatsAppInteractiveContent()
-                {
-                    Type = "list",
-                    Header = new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveHeader()
-                    {
-                        Type = "text",
-                        Text = "List message example"
-                    },
-                    Body = new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveBody()
-                    {
-                        Text = "checkout our list message demo"
-                    },
-                    Action = new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveAction()
-                    {
-                        Button = "button text",
-                        Sections = new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveSection[]
-                         {
-                             new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveSection()
-                             {
-                                 Title = "Select an option",
-                                 Rows = new CM.Text.BusinessMessaging.Model.MultiChannel.Rows[]
-                                 {
-                                     new CM.Text.BusinessMessaging.Model.MultiChannel.Rows()
-                                     {
-                                         Id = "unique Id",
-                                         Title = "unique title1",
-                                         Description = "description text"
-                                     },
-                                     new CM.Text.BusinessMessaging.Model.MultiChannel.Rows()
-                                     {
-                                         Id = "unique Id2",
-                                         Title = "unique title2",
-                                         Description = "description text"
-                                     },
-                                 }
-                             }
-                         }
-                    },
-                    Footer = new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveFooter()
-                    {
-                        Text = "footer text"
-                    }
-                }
-        });
-            
-var message = builder.Build();
-var result = await client.SendMessageAsync(message);
-```
-
-Only with Reply buttons you can send media like image,video or document 
-see following example.
-
-```cs
-var apiKey = new Guid(ConfigurationManager.AppSettings["ApiKey"]);
-var client = new TextClient(apiKey);
- var builder = new MessageBuilder("Message Text", "Sender_name", "Recipient_PhoneNumber");
-    builder.WithAllowedChannels(Channel.WhatsApp).WithInteractive(new CM.Text.BusinessMessaging.Model.MultiChannel.WhatsAppInteractiveMessage()
-            {
-                whatsAppInteractiveContent = new CM.Text.BusinessMessaging.Model.MultiChannel.WhatsAppInteractiveContent()
-                {
-                    Type = "button",
-                    Header = new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveHeader()
-                    {
-                        Type = "image",                    
-                        Media = new CM.Text.BusinessMessaging.Model.MultiChannel.MediaContent()
-                         {
-                                MediaUri = "https://www.cm.com/cdn/web/blog/content/logo-cmcom.png"
-                          }
-                        
-                    },
-                    Body = new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveBody()
-                    {
-                        Text = "checkout our reply message demo"
-                    },
-                    Action = new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveAction()
-                    {
-                        Buttons = new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveButton[]
-                        {
-                            new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveButton()
-                            {
-                               Type = "reply",
-                                Reply = new CM.Text.BusinessMessaging.Model.MultiChannel.ReplyMessage()
-                                {
-                                    Id = "unique-postback-id1",
-                                    Title = "First Button"
-                                }
-                            },
-                               new CM.Text.BusinessMessaging.Model.MultiChannel.InteractiveButton()
-                            {
-                              Type = "reply",
-                                Reply = new CM.Text.BusinessMessaging.Model.MultiChannel.ReplyMessage()
-                                {
-                                    Id = "unique-postback-id2",
-                                    Title = "Second Button "
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-            
-var message = builder.Build();
-var result = await client.SendMessageAsync(message);
-```
-
-## Using the OTP API
-Send a simple OTP code
-```cs
-    var client = new TextClient(new Guid(ConfigurationManager.AppSettings["ApiKey"]));
-    var otpBuilder = new OtpRequestBuilder("Sender_name", "Recipient_PhoneNumber");
-    otpBuilder.WithMessage("Your otp code is {code}.");
-    var result = await textClient.SendOtpAsync(otpBuilder.Build());
-```
-
-Verify the response code
-```cs
-    var verifyResult = client.VerifyOtp("OTP-ID", "code");
-    bool isValid = verifyResult.Verified;
-```
-
-For more advanced scenarios see also https://developers.cm.com/identity/docs/one-time-password-create
+Happy messaging! 🚀
