@@ -81,7 +81,7 @@ namespace CM.Text.BusinessMessaging.Model
         public string From { get; set; }
 
         /// <summary>
-        ///     Used for Hybrid messaging, see https://developers.cm.com/messaging/docs for more information
+        ///     Used for Hybrid messaging, see https://docs.cm.com/messaging for more information
         ///     Messages will be sent over the <see cref="Channel.Push" /> channel.
         /// </summary>
         [JsonPropertyName("appKey")]
@@ -125,7 +125,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     The given reference will be used in the status reports and MO replies for the message,
         ///     so you can link the messages to the sent batch.
         ///     For more information on status reports, see:
-        ///     https://developers.cm.com/messaging/docs/incoming-status-report
+        ///     https://docs.cm.com/messaging/business-messaging/status-reports
         ///     The given reference must be between 1 - 32 alphanumeric characters, and will not work using demo accounts.
         /// </summary>
         [JsonPropertyName("reference")]
@@ -146,7 +146,7 @@ namespace CM.Text.BusinessMessaging.Model
         ///     or a relative offset. A message is considered failed if it was not successfully delivered before that time. 
         ///     And via a Status Report we inform you this was the case.
         ///     For more information on status reports, see:
-        ///     https://developers.cm.com/messaging/docs/incoming-status-report
+        ///     https://docs.cm.com/messaging/business-messaging/status-reports
         ///     You can supply the time zone for the validity period using either of the following formats:
         ///     
         ///     Absolute date and time:

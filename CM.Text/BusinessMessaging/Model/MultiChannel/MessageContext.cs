@@ -5,7 +5,7 @@ namespace CM.Text.BusinessMessaging.Model.MultiChannel
 {
     /// <summary>
     /// Contextual properties of the message. Currently only applicable to <see cref="Channel.WhatsApp" />
-    /// Docs: https://developers.cm.com/messaging/docs/whatsapp-inbound#mt-replies-mo
+    /// Docs: https://docs.cm.com/messaging/whatsapp/whatsapp-inbound#replying-to-a-users-message
     /// </summary>
     public class MessageContext
     {
